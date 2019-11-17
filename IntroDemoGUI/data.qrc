@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/text">
+        <file>intro.json</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>SF_Cartoonist_Hand.ttf</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file>theme.mp3</file>
+        <file>theme.ogg</file>
+    </qresource>
+</RCC>
