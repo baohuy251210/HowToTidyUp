@@ -1,5 +1,6 @@
 #include "mainmenuscene.h"
 #include "ui_mainmenuscene.h"
+#include <kitchenscene.h>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
@@ -11,4 +12,10 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 MainMenuScene::~MainMenuScene()
 {
     delete ui;
+}
+
+void MainMenuScene::on_newGameButton_clicked()
+{
+    KitchenScene* kitchen = new KitchenScene();
+    emit changeScene(kitchen);
 }

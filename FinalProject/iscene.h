@@ -10,7 +10,7 @@ public:
     explicit IScene(QWidget *parent = nullptr);
 
 signals:
-    virtual void changeScene(IScene scene);
+    virtual void changeScene(IScene* scene);
 public slots:
 };
 

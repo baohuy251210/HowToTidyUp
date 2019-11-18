@@ -16,6 +16,9 @@ public:
     explicit MainMenuScene(QWidget *parent = nullptr);
     ~MainMenuScene();
 
+private slots:
+    void on_newGameButton_clicked();
+
 private:
     Ui::MainMenuScene *ui;
 };

@@ -1,0 +1,5 @@
+build-FinalProject-Desktop_Qt_5_13_1_GCC_64bit-Debug/
+build-FinalProject-Desktop_Qt_5_13_1_GCC_64bit-Release/
+*.a
+*.o
+

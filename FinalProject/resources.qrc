@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/art/interactables">
+        <file>Art/Interactables/blood_floor_01.png</file>
+        <file>Art/Interactables/blood_floor_highlighted_01.png</file>
+        <file>Art/Interactables/blood_footprint_01.png</file>
+        <file>Art/Interactables/blood_handprint_01.png</file>
+        <file>Art/Interactables/blood_handprint_highlighted_01.png</file>
+        <file>Art/Interactables/blood_wall_01.png</file>
+        <file>Art/Interactables/blood_wall_highlighted_01.png</file>
+        <file>Art/Interactables/knife_bloody_01.png</file>
+        <file>Art/Interactables/knife_bloody_highlighted_01.png</file>
+        <file>Art/Interactables/knife_clean_01.png</file>
+        <file>Art/Interactables/knife_clean_highlighted_01.png</file>
+        <file>Art/Interactables/plate_broken_01.png</file>
+    </qresource>
+    <qresource prefix="/art/backgrounds">
+        <file>Art/Backgrounds/Endgame_BG_01.png</file>
+        <file>Art/Backgrounds/Endgame_BG_02.png</file>
+        <file>Art/Backgrounds/Kitchen_BG_01.png</file>
+        <file>Art/Backgrounds/MainScreen_BG_01.png</file>
+    </qresource>
+    <qresource prefix="/art/tools">
+        <file>Art/Tools/tool_bakingsoda_01.png</file>
+        <file>Art/Tools/tool_bleach_01.png</file>
+        <file>Art/Tools/tool_borax_01.png</file>
+        <file>Art/Tools/tool_glove_01.png</file>
+        <file>Art/Tools/tool_lye_01.png</file>
+        <file>Art/Tools/tool_nailpolishremover_01.png</file>
+        <file>Art/Tools/tool_pumice_01.png</file>
+        <file>Art/Tools/tool_rag_01.png</file>
+        <file>Art/Tools/tool_vinegar_01.png</file>
+        <file>Art/Tools/tool_water_01.png</file>
+    </qresource>
+    <qresource prefix="/art/effects">
+        <file>Art/Effects/leaf_01.png</file>
+    </qresource>
+</RCC>
