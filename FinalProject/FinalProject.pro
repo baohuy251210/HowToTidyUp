@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,27 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    intro.cpp \
-    introreader.cpp \
+    iscene.cpp \
     main.cpp \
+    mainmenuscene.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    intro.h \
-    introreader.h \
+    iscene.h \
+    mainmenuscene.h \
     mainwindow.h
 
 FORMS += \
-    intro.ui \
+    mainmenuscene.ui \
     mainwindow.ui
-LIBS += -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES +=
-
-RESOURCES += \
-    data.qrc
