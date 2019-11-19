@@ -19,3 +19,9 @@ void MainMenuScene::on_newGameButton_clicked()
     KitchenScene* kitchen = new KitchenScene();
     emit changeScene(kitchen);
 }
+
+void MainMenuScene::on_continueButton_clicked()
+{
+    KitchenScene* kitchen = new KitchenScene();
+    emit changeScene(kitchen);
+}
