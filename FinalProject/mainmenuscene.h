@@ -15,9 +15,15 @@ class MainMenuScene : public IScene
 public:
     explicit MainMenuScene(QWidget *parent = nullptr);
     ~MainMenuScene();
+public: signals:
+    void hovered();
 
 private slots:
     void on_newGameButton_clicked();
+    void aShockingReveal();
+
+protected:
+    bool eventFilter(QObject* obj,QEvent* e);
 
 private:
     Ui::MainMenuScene *ui;
