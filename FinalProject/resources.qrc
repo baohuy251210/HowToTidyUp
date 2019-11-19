@@ -34,4 +34,16 @@
     <qresource prefix="/art/effects">
         <file>Art/Effects/leaf_01.png</file>
     </qresource>
+    <qresource prefix="/introdata">
+        <file>IntroData/intro.json</file>
+        <file>IntroData/SF_Cartoonist_Hand.ttf</file>
+        <file>IntroData/theme.ogg</file>
+        <file>IntroData/SF_Cartoonist_Hand_SC_Italic.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_SC_Bold_Italic.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_SC_Bold.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_SC.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
+        <file>IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
+    </qresource>
 </RCC>

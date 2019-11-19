@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <iscene.h>
-
+#include <SFML/Audio.hpp>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,5 +22,8 @@ public:
 private:
     Ui::MainWindow *ui;
     IScene* currentScene;
+
+    void startThemeMusic();
+    sf::Music mainThemeMusic;
 };
 #endif // MAINWINDOW_H

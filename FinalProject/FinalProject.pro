@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     endscene01.cpp \
     endscene02.cpp \
+    introreader.cpp \
     introscene.cpp \
     iscene.cpp \
     kitchenscene.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     endscene01.h \
     endscene02.h \
+    introreader.h \
     introscene.h \
     iscene.h \
     kitchenscene.h \
@@ -44,7 +46,7 @@ FORMS += \
     mainmenuscene.ui \
     mainwindow.ui \
     toolbarwidget.ui
-
+LIBS += -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

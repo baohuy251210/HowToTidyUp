@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <iscene.h>
-
+#include <QTimer>
 namespace Ui {
 class MainMenuScene;
 }
@@ -21,6 +21,10 @@ private slots:
 
 private:
     Ui::MainMenuScene *ui;
+
+    void fadeWhiteFlash();
+    int fadeOpacity;
+    QTimer * fadeTimer;
 };
 
 #endif // MAINMENUSCENE_H
