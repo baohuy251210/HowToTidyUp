@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>1024</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
-     <height>1024</height>
+     <width>1024</width>
+     <height>768</height>
     </rect>
    </property>
    <property name="text">
@@ -27,6 +27,9 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/backgrounds/Art/Backgrounds/Endgame_BG_01.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
