@@ -9,11 +9,11 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->setupUi(this);
     ui->maskLabel->setFixedSize(QSize(1024,768));
 
-    drawTextLabel(ui->nameLabel, 50,"SF Cartoonist Hand SC", "Bold");
+    drawTextLabel(ui->nameLabel, 50,"SF Cartoonist Hand", "Bold Italic");
     drawTextPushButton(ui->newGameButton, 40,"SF Cartoonist Hand");
 
     fadeOpacity = 100; //percentage
-    ui->maskLabel->setStyleSheet("background-color: rgba(0,0,0)");
+    ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
     fadeTimer = new QTimer(this);
     connect(fadeTimer, &QTimer::timeout, this, &MainMenuScene::fadeWhiteFlash);
     fadeTimer->start(30);

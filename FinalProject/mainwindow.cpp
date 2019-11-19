@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     startThemeMusic();
     currentScene = new IntroScene(this);
-//    currentScene = new MainMenuScene(this);
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     ui->SceneContainer->addWidget(currentScene);
 }

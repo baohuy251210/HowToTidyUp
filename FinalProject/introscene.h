@@ -4,14 +4,12 @@
 #include <QWidget>
 #include <iscene.h>
 #include <QTimer>
-#include <SFML/Graphics.hpp>
-#include<SFML/Audio.hpp>
 #include "introreader.h"
 namespace Ui {
 class IntroScene;
 }
 
-class IntroScene : public IScene, public sf::RenderWindow
+class IntroScene : public IScene
 {
     Q_OBJECT
 
@@ -26,9 +24,6 @@ protected:
 
 private:
     Ui::IntroScene *ui;
-    sf::RenderTexture texture;
-    sf::Texture sprite_texture;
-    sf::Sprite sprite;
     IntroReader introReader;
     QTimer *timer;
     QTimer *delayTimer;
@@ -38,8 +33,6 @@ private:
     void fadeText();
     int fadeOpacity;
     QString currentText;
-    sf::Font mainFont;
-    sf::Music themeMusic;
 };
 
 #endif // INTROSCENE_H

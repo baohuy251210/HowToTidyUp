@@ -13,9 +13,10 @@ class IScene : public QWidget
 public:
     explicit IScene(QWidget *parent = nullptr);
     QFont appFont;
-
+    /*Draw Text for a PushButton passed in a size, Font name and style*/
     void drawTextPushButton(QPushButton*, int size,
                             QString fontName="SF Cartoonist Hand",QString style = "");
+    /*Draw Text for a PushButton passed in a size, Font name and style*/
     void drawTextLabel(QLabel*, int size,
                        QString fontName="SF Cartoonist Hand",QString style="");
 
@@ -24,6 +25,7 @@ signals:
 public slots:
 
 private:
+    /*Font database for the app*/
     QFontDatabase fontFamily;
 };
 
