@@ -17,6 +17,12 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     fadeTimer = new QTimer(this);
     connect(fadeTimer, &QTimer::timeout, this, &MainMenuScene::fadeWhiteFlash);
     fadeTimer->start(30);
+
+    //gained from the same SO entry.
+    ui->newGameButton->installEventFilter(this);
+    ui->aMurder->setVisible(false);
+    //ui->aMurder->setText()
+    connect(this, &MainMenuScene::hovered, this, &MainMenuScene::aShockingReveal);
 }
 
 MainMenuScene::~MainMenuScene()
@@ -40,4 +46,19 @@ void MainMenuScene::on_newGameButton_clicked()
 {
     KitchenScene* kitchen = new KitchenScene();
     emit changeScene(kitchen);
+}
+//Method gained from this Stack overflow entry:
+//https://stackoverflow.com/questions/9261175/how-to-emit-a-signal-from-a-qpushbutton-when-the-mouse-hovers-over-it
+bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
+    QPushButton* target = ui->newGameButton;
+    if(obj == (QObject*)target){
+        if(e->type() == QEvent::Enter){
+            emit MainMenuScene::hovered();
+        }
+    }else{
+        return QWidget::eventFilter(obj, e);
+    }
+}
+void MainMenuScene::aShockingReveal(){
+    ui->aMurder->setVisible(true);
 }
