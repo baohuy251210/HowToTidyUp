@@ -16,8 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cleaningtool.cpp \
     endscene01.cpp \
     endscene02.cpp \
+    evidence.cpp \
     introreader.cpp \
     introscene.cpp \
     iscene.cpp \
@@ -28,8 +30,10 @@ SOURCES += \
     toolbarwidget.cpp
 
 HEADERS += \
+    cleaningtool.h \
     endscene01.h \
     endscene02.h \
+    evidence.h \
     introreader.h \
     introscene.h \
     iscene.h \
