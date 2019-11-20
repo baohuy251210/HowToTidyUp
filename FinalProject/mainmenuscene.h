@@ -22,6 +22,8 @@ private slots:
     void on_newGameButton_clicked();
     void aShockingReveal();
 
+    void on_continueButton_clicked();
+
 protected:
     bool eventFilter(QObject* obj,QEvent* e);
 
