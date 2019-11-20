@@ -20,6 +20,7 @@ SOURCES += \
     endscene01.cpp \
     endscene02.cpp \
     evidence.cpp \
+    evidencelabel.cpp \
     introreader.cpp \
     introscene.cpp \
     iscene.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     endscene01.h \
     endscene02.h \
     evidence.h \
+    evidencelabel.h \
     introreader.h \
     introscene.h \
     iscene.h \
