@@ -23,6 +23,7 @@ SOURCES += \
     introreader.cpp \
     introscene.cpp \
     iscene.cpp \
+    itemdialog.cpp \
     kitchenscene.cpp \
     main.cpp \
     mainmenuscene.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     introreader.h \
     introscene.h \
     iscene.h \
+    itemdialog.h \
     kitchenscene.h \
     mainmenuscene.h \
     mainwindow.h \
@@ -46,6 +48,7 @@ FORMS += \
     endscene01.ui \
     endscene02.ui \
     introscene.ui \
+    itemdialog.ui \
     kitchenscene.ui \
     mainmenuscene.ui \
     mainwindow.ui \
