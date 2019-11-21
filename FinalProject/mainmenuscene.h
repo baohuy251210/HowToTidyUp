@@ -16,11 +16,9 @@ public:
     explicit MainMenuScene(QWidget *parent = nullptr);
     ~MainMenuScene();
 public: signals:
-    void hovered();
 
 private slots:
     void on_newGameButton_clicked();
-    void aShockingReveal();
 
     void on_continueButton_clicked();
 

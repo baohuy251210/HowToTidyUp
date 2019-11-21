@@ -23,8 +23,10 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     //gained from the same SO entry.
     ui->newGameButton->installEventFilter(this);
     ui->aMurder->setVisible(false);
-    //ui->aMurder->setText()
-    connect(this, &MainMenuScene::hovered, this, &MainMenuScene::aShockingReveal);
+    QFontDatabase::addApplicationFont(":/fonts/Fiendish.ttf");
+    QFont creepy = QFont("Fiendish", 36, 1);
+    ui->aMurder->setFont(creepy);
+
 }
 
 MainMenuScene::~MainMenuScene()
@@ -56,14 +58,16 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     QPushButton* target = ui->newGameButton;
     if(obj == (QObject*)target){
         if(e->type() == QEvent::Enter){
-            emit MainMenuScene::hovered();
+
+            ui->aMurder->setVisible(true);
+        }else if(e->type() == QEvent::Leave){
+            ui->aMurder->setVisible(false);
         }
-    }else{
+    }
+    else{
+
         return QWidget::eventFilter(obj, e);
     }
-}
-void MainMenuScene::aShockingReveal(){
-    ui->aMurder->setVisible(true);
 }
 
 void MainMenuScene::on_continueButton_clicked()

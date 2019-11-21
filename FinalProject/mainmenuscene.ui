@@ -133,15 +133,6 @@
      <height>181</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Fiendish</family>
-     <pointsize>34</pointsize>
-     <weight>75</weight>
-     <italic>true</italic>
-     <bold>true</bold>
-    </font>
-   </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(204, 0, 0);</string>
    </property>
