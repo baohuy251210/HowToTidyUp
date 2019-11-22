@@ -214,7 +214,7 @@
     </rect>
    </property>
    <property name="text">
-    <string> Box2D Boi</string>
+    <string>Im a leaf!</string>
    </property>
   </widget>
   <zorder>bgLabel</zorder>

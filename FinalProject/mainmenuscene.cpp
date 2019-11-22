@@ -144,18 +144,27 @@ void MainMenuScene::updateWorld(){
     world.Step(timeStep, velocityIterations, positionIterations);
 
     // Now print the position and angle of the body.
-    b2Vec2 position = body->GetPosition();
-    float32 angle = body->GetAngle();
+    b2Vec2 position = body->GetWorldCenter();
 
-    emit(newPosition(position.y *100));
+    //Experimenting with apply force
+    //Idea gained here:
+    //https://www.youtube.com/watch?v=bJJbQIoJeFc
+    //https://natureofcode.com/book/chapter-5-physics-libraries/#chapter05_section12
+    b2Vec2 force(200.0, -500.0);
+    body->ApplyForce(force, position, true);
+
+    //float32 angle = body->GetAngle();
+
+    emit(newPosition(position));
     QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
     //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
 }
 
-void MainMenuScene::changeGeometry(int height){
+void MainMenuScene::changeGeometry(b2Vec2 position){
 
-    ui->leaf1->setGeometry(10, height, ui->continueButton->width(),ui->continueButton->height());
+    ui->leaf1->setGeometry(position.x, position.y, ui->continueButton->width(),ui->continueButton->height());
+
 
 }
 

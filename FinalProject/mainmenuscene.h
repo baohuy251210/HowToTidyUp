@@ -23,14 +23,14 @@ public:
 
 
 public: signals:
-    void newPosition(int height);
+    void newPosition(b2Vec2 vector);
 
 
 private slots:
     void on_newGameButton_clicked();
     void on_continueButton_clicked();
     void updateWorld();
-    void changeGeometry(int height);
+    void changeGeometry(b2Vec2 vector);
 
 
 protected:
