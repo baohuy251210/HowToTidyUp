@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <iscene.h>
 #include <QTimer>
+#include "Box2D/Box2D.h"
+
+
 namespace Ui {
 class MainMenuScene;
 }
@@ -15,12 +18,20 @@ class MainMenuScene : public IScene
 public:
     explicit MainMenuScene(QWidget *parent = nullptr);
     ~MainMenuScene();
+    b2World world;
+    b2Body* body;
+
+
 public: signals:
+    void newPosition(int height);
+
 
 private slots:
     void on_newGameButton_clicked();
-
     void on_continueButton_clicked();
+    void updateWorld();
+    void changeGeometry(int height);
+
 
 protected:
     bool eventFilter(QObject* obj,QEvent* e);
