@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "mainmenuscene.h"
 #include "introscene.h"
+#include "kitchenscene.h"
+#include "model.h"
 #include <QResource>
 #include <SFML/Audio.hpp>
 MainWindow::MainWindow(QWidget *parent)
@@ -9,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow){
 
     ui->setupUi(this);
+    initializeModel();
     startThemeMusic();
     currentScene = new IntroScene(this);
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
@@ -18,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow(){
     delete ui;
     delete currentScene;
+}
+
+void MainWindow::initializeModel(){
+    model = new Model(this);
+    model->addEvidenceObject("Knife",{WATER, BLEACH}, "It's a knife");
 }
 
 void MainWindow::startThemeMusic(){
@@ -35,6 +43,6 @@ void MainWindow::ChangeScene(IScene* scene){
     ui->SceneContainer->addWidget(scene);
 }
 
-void MainWindow::EvidenceInteractionSlot(){
+void MainWindow::evidenceInteractionSlot(){
 
 }

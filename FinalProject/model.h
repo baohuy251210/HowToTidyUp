@@ -3,11 +3,14 @@
 #include <evidence.h>
 #include <cleaningtool.h>
 #include <ToolsEnum.cpp>
-class Model
+#include <QObject>
+class Model : public QObject
 {
+    Q_OBJECT
 public:
-    Model();
-    void addEvidenceObject(QVector<Tools> correctTools, QString description);
+    Model(QObject *parent);
+    void addEvidenceObject(QString evidenceName,QVector<Tools> correctTools, QString description);
+    void eraseAll();
 private:
     QVector<Evidence> evidences;
     QVector<CleaningTool> cleaningTools;

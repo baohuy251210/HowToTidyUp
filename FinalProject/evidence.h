@@ -8,11 +8,13 @@
 class Evidence
 {
 public:
-    Evidence(QVector<Tools>, QVector<Tools>, QString);
+    Evidence(QString, QVector<Tools>, QString );
     QVector<Tools> correctTools;
     QVector<Tools> usedTools;
     QString description;
+    QString evidenceName;
 private:
+     void nothing();
 
 };
 

@@ -3,9 +3,10 @@
 #include <QVector>
 #include <QString>
 #include "ToolsEnum.cpp"
-
-Evidence::Evidence(QVector<Tools> correctTools, QVector<Tools> usedTools, QString description)
-    : correctTools(correctTools), usedTools(usedTools), description(description)
+#include <QDebug>
+Evidence::Evidence(QString evidenceName,QVector<Tools> correctTools, QString description)
+    : evidenceName(evidenceName), correctTools(correctTools), description(description)
 {
-
+    usedTools.clear();
+    qDebug()<< "Evidence::done add evidence ";
 }

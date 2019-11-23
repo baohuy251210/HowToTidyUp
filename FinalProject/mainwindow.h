@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <iscene.h>
+#include "model.h"
+#include "ToolsEnum.cpp"
 #include <SFML/Audio.hpp>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,7 +26,9 @@ private:
     Ui::MainWindow *ui;
     IScene* currentScene;
 
+    Model* model;
     void startThemeMusic();
+    void initializeModel();
     sf::Music mainThemeMusic;
 };
 #endif // MAINWINDOW_H
