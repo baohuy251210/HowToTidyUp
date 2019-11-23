@@ -29,6 +29,8 @@
         <file alias="pumice">Art/Tools/tool_pumice_01.png</file>
         <file alias="rag">Art/Tools/tool_rag_01.png</file>
         <file alias="vinegar">Art/Tools/tool_vinegar_01.png</file>
+        <file alias="oxiclean">Art/Tools/tool-oxiclean2.png</file>
+        <file alias="water">Art/Tools/tool-water-bucket.png</file>
     </qresource>
     <qresource prefix="/art/effects">
         <file alias="leaf">Art/Effects/leaf_01.png</file>

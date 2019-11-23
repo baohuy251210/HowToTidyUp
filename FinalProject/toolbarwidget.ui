@@ -27,7 +27,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool_glove_01.png</normaloff>:/art/tools/Art/Tools/tool_glove_01.png</iconset>
+     <normaloff>:/art/tools/glove</normaloff>:/art/tools/glove</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -53,7 +53,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool_rag_01.png</normaloff>:/art/tools/Art/Tools/tool_rag_01.png</iconset>
+     <normaloff>:/art/tools/rag</normaloff>:/art/tools/rag</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -98,7 +98,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool_bleach_01.png</normaloff>:/art/tools/Art/Tools/tool_bleach_01.png</iconset>
+     <normaloff>:/art/tools/bleach</normaloff>:/art/tools/bleach</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -124,7 +124,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool-water-bucket.png</normaloff>:/art/tools/Art/Tools/tool-water-bucket.png</iconset>
+     <normaloff>:/art/tools/water</normaloff>:/art/tools/water</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -150,7 +150,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool_nailpolishremover_01.png</normaloff>:/art/tools/Art/Tools/tool_nailpolishremover_01.png</iconset>
+     <normaloff>:/art/tools/nailpolishremover</normaloff>:/art/tools/nailpolishremover</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -176,7 +176,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/Art/Tools/tool-oxiclean2.png</normaloff>:/art/tools/Art/Tools/tool-oxiclean2.png</iconset>
+     <normaloff>:/art/tools/oxiclean</normaloff>:/art/tools/oxiclean</iconset>
    </property>
    <property name="iconSize">
     <size>

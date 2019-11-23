@@ -136,6 +136,7 @@ void MainMenuScene::on_continueButton_clicked()
 }
 
 void MainMenuScene::updateWorld(){
+    /*
     static int updates = 0;
     static int direction = 1;
     updates ++;
@@ -174,7 +175,7 @@ void MainMenuScene::updateWorld(){
 
     emit(newPosition(position));
     QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
-    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);*/
 
 }
 
