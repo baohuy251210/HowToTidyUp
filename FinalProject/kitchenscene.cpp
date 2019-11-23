@@ -9,6 +9,7 @@ KitchenScene::KitchenScene(QWidget *parent) :
     QImage cleanKnife = QImage(":/art/interactables/Art/Interactables/knife_bloody_01.png");
     QPixmap pm = QPixmap::fromImage(cleanKnife);
     ui->knifeLabel->setPixmap(pm);
+//    connect(ui->knifeLabel);
 }
 
 KitchenScene::~KitchenScene()

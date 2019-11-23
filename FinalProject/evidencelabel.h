@@ -10,6 +10,11 @@ class EvidenceLabel: public QLabel
 public:
     EvidenceLabel(QWidget * parent);
     ~EvidenceLabel();
+    QString name;
+
+signals:
+    void interactionSignal(QString sender, QString interaction);
+
 
 protected slots:
 
