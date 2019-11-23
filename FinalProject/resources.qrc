@@ -1,50 +1,51 @@
 <RCC>
     <qresource prefix="/art/interactables">
-        <file>Art/Interactables/blood_floor_01.png</file>
-        <file>Art/Interactables/blood_floor_highlighted_01.png</file>
-        <file>Art/Interactables/blood_footprint_01.png</file>
-        <file>Art/Interactables/blood_handprint_01.png</file>
-        <file>Art/Interactables/blood_handprint_highlighted_01.png</file>
-        <file>Art/Interactables/blood_wall_01.png</file>
-        <file>Art/Interactables/blood_wall_highlighted_01.png</file>
-        <file>Art/Interactables/knife_bloody_01.png</file>
-        <file>Art/Interactables/knife_bloody_highlighted_01.png</file>
-        <file>Art/Interactables/knife_clean_01.png</file>
-        <file>Art/Interactables/knife_clean_highlighted_01.png</file>
-        <file>Art/Interactables/plate_broken_01.png</file>
+        <file alias="blood_floor">Art/Interactables/blood_floor_01.png</file>
+        <file alias="blood_floor_highlighted">Art/Interactables/blood_floor_highlighted_01.png</file>
+        <file alias="blood_footprint">Art/Interactables/blood_footprint_01.png</file>
+        <file alias="blood_handprint">Art/Interactables/blood_handprint_01.png</file>
+        <file alias="blood_handprint_highlighted">Art/Interactables/blood_handprint_highlighted_01.png</file>
+        <file alias="blood_wall">Art/Interactables/blood_wall_01.png</file>
+        <file alias="blood_wall_highlighted">Art/Interactables/blood_wall_highlighted_01.png</file>
+        <file alias="knife_bloody">Art/Interactables/knife_bloody_01.png</file>
+        <file alias="knife_bloody_highlighted">Art/Interactables/knife_bloody_highlighted_01.png</file>
+        <file alias="knife_clean">Art/Interactables/knife_clean_01.png</file>
+        <file alias="knife_clean_highlighted">Art/Interactables/knife_clean_highlighted_01.png</file>
+        <file alias="plate_broken">Art/Interactables/plate_broken_01.png</file>
     </qresource>
     <qresource prefix="/art/backgrounds">
-        <file>Art/Backgrounds/Endgame_BG_01.png</file>
-        <file>Art/Backgrounds/Endgame_BG_02.png</file>
-        <file>Art/Backgrounds/Kitchen_BG_01.png</file>
-        <file>Art/Backgrounds/MainScreen_BG_01.png</file>
+        <file alias="Endgame1">Art/Backgrounds/Endgame_BG_01.png</file>
+        <file alias="Endgame2">Art/Backgrounds/Endgame_BG_02.png</file>
+        <file alias="Kitchen">Art/Backgrounds/Kitchen_BG_01.png</file>
+        <file alias="MainScreen">Art/Backgrounds/MainScreen_BG_01.png</file>
     </qresource>
     <qresource prefix="/art/tools">
-        <file>Art/Tools/tool_bakingsoda_01.png</file>
-        <file>Art/Tools/tool_bleach_01.png</file>
-        <file>Art/Tools/tool_borax_01.png</file>
-        <file>Art/Tools/tool_glove_01.png</file>
-        <file>Art/Tools/tool_lye_01.png</file>
-        <file>Art/Tools/tool_nailpolishremover_01.png</file>
-        <file>Art/Tools/tool_pumice_01.png</file>
-        <file>Art/Tools/tool_rag_01.png</file>
-        <file>Art/Tools/tool_vinegar_01.png</file>
-        <file>Art/Tools/tool-water-bucket.png</file>
-        <file>Art/Tools/tool-oxiclean2.png</file>
+        <file alias="bakingsoda">Art/Tools/tool_bakingsoda_01.png</file>
+        <file alias="bleach">Art/Tools/tool_bleach_01.png</file>
+        <file alias="borax">Art/Tools/tool_borax_01.png</file>
+        <file alias="glove">Art/Tools/tool_glove_01.png</file>
+        <file alias="lye">Art/Tools/tool_lye_01.png</file>
+        <file alias="nailpolishremover">Art/Tools/tool_nailpolishremover_01.png</file>
+        <file alias="pumice">Art/Tools/tool_pumice_01.png</file>
+        <file alias="rag">Art/Tools/tool_rag_01.png</file>
+        <file alias="vinegar">Art/Tools/tool_vinegar_01.png</file>
     </qresource>
     <qresource prefix="/art/effects">
-        <file>Art/Effects/leaf_01.png</file>
+        <file alias="leaf">Art/Effects/leaf_01.png</file>
     </qresource>
     <qresource prefix="/introdata">
-        <file>IntroData/intro.json</file>
-        <file>IntroData/SF_Cartoonist_Hand.ttf</file>
-        <file>IntroData/theme.ogg</file>
-        <file>IntroData/SF_Cartoonist_Hand_SC_Italic.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_SC_Bold_Italic.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_SC_Bold.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_SC.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
-        <file>IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
+        <file alias="intro">IntroData/intro.json</file>
+        <file alias="SF_Cartoonish_Hand">IntroData/SF_Cartoonist_Hand.ttf</file>
+        <file alias="theme">IntroData/theme.ogg</file>
+        <file alias="SF_Cartoonish_Hand_SC_Italic">IntroData/SF_Cartoonist_Hand_SC_Italic.ttf</file>
+        <file alias="SF_Cartoonist_Hand_SC_Bold_Italic">IntroData/SF_Cartoonist_Hand_SC_Bold_Italic.ttf</file>
+        <file alias="SF_Cartoonist_Hand_SC_Bold">IntroData/SF_Cartoonist_Hand_SC_Bold.ttf</file>
+        <file alias="SF_Cartoonish_Hand_SC">IntroData/SF_Cartoonist_Hand_SC.ttf</file>
+        <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
+        <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
+        <file alias="SF_Cartoonish_Hand_Bold">IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
+    </qresource>
+    <qresource prefix="/art/fonts">
+        <file alias="Fiendish">fonts/Fiendish.ttf</file>
     </qresource>
 </RCC>
