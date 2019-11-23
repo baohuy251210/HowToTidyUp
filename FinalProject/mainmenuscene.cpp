@@ -11,6 +11,8 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 
     drawTextLabel(ui->nameLabel, 50,"SF Cartoonist Hand", "Bold Italic");
     drawTextPushButton(ui->newGameButton, 40,"SF Cartoonist Hand");
+    drawTextPushButton(ui->continueButton, 40,"SF Cartoonist Hand");
+
 
     fadeOpacity = 100; //percentage
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
@@ -47,6 +49,7 @@ void MainMenuScene::on_newGameButton_clicked()
     KitchenScene* kitchen = new KitchenScene();
     emit changeScene(kitchen);
 }
+
 //Method gained from this Stack overflow entry:
 //https://stackoverflow.com/questions/9261175/how-to-emit-a-signal-from-a-qpushbutton-when-the-mouse-hovers-over-it
 bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
@@ -61,4 +64,10 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
 }
 void MainMenuScene::aShockingReveal(){
     ui->aMurder->setVisible(true);
+}
+
+void MainMenuScene::on_continueButton_clicked()
+{
+    KitchenScene* kitchen = new KitchenScene();
+    emit changeScene(kitchen);
 }
