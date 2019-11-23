@@ -133,15 +133,6 @@
      <height>181</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Fiendish</family>
-     <pointsize>34</pointsize>
-     <weight>75</weight>
-     <italic>true</italic>
-     <bold>true</bold>
-    </font>
-   </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(204, 0, 0);</string>
    </property>
@@ -213,12 +204,32 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="leaf1">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>240</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>50</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Im a leaf!</string>
+   </property>
+  </widget>
   <zorder>bgLabel</zorder>
   <zorder>newGameButton</zorder>
   <zorder>nameLabel</zorder>
   <zorder>maskLabel</zorder>
   <zorder>aMurder</zorder>
   <zorder>continueButton</zorder>
+  <zorder>leaf1</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

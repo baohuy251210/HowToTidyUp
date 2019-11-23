@@ -45,4 +45,7 @@
         <file>IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
         <file>IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
     </qresource>
+    <qresource prefix="/">
+        <file>fonts/Fiendish.ttf</file>
+    </qresource>
 </RCC>
