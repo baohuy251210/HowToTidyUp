@@ -16,6 +16,7 @@ KitchenScene::KitchenScene(QWidget *parent) :
     selectedCleaningTool = GLOVE;
     InitializeWidgets();
     setupConnections();
+    qDebug()<<"kitchen";
 }
 
 KitchenScene::~KitchenScene()

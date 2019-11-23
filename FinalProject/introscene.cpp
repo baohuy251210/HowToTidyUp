@@ -26,7 +26,7 @@ IntroScene::IntroScene(QWidget *parent) :
     connect(delayTimer, &QTimer::timeout, this, &IntroScene::displayNextContext);
     connect(timer, &QTimer::timeout, this, &IntroScene::fadeText);
     delayTimer->start(1);
-
+    qDebug() << "constructor intro";
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -44,6 +44,7 @@ void IntroScene::displayNextContext(){
     if (introReader.reachEndOfText()){
         delayTimer->stop();
         timer->stop();
+        qDebug() << "intro done";
         emit changeScene(MAINMENU);
         return;
     }

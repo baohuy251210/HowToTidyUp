@@ -106,6 +106,7 @@ void MainMenuScene::fadeWhiteFlash(){
 
 void MainMenuScene::on_newGameButton_clicked()
 {
+    qDebug() << "mainmenu:button pressed";
     emit changeScene(KITCHEN);
 }
 

@@ -4,31 +4,37 @@
 #include "introscene.h"
 #include "kitchenscene.h"
 #include "model.h"
+#include <QDebug>
 #include <QResource>
 #include <SFML/Audio.hpp>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow){
 
+    qDebug() << "MAINWINDOW";
     ui->setupUi(this);
     initializeModel();
     initializeScenes();
     startThemeMusic();
     currentScene = introScene;
-    ui->SceneContainer->addWidget(currentScene);
     setupConnections();
+    ui->SceneContainer->addWidget(currentScene);
+//    qDebug() << currentScene;
 }
 
 void MainWindow::initializeScenes(){
     introScene = new IntroScene(this);
-    kitchenScene = new KitchenScene(this);
-    mainmenuScene = new MainMenuScene(this);
+//   mainmenuScene = new MainMenuScene(this);
+//    mainmenuScene->hide();
+//    kitchenScene = new KitchenScene(this);
+//    kitchenScene->hide();
 }
 
 void MainWindow::setupConnections(){
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     //connect(currentScene, SIGNAL(KitchenScene::signalUseToolAndEvidence(Tools, QString)), model, SLOT(signalUseToolAndEvidence(Tools, QString)));
-    //connect(currentScene, &KitchenScene::signalUseToolAndEvidence, model, &Model::slotUsedToolAndEvidence);
+//    connect(kitchenScene, &KitchenScene::signalUseToolAndEvidence, model, &Model::slotUsedToolAndEvidence);
+
 }
 
 MainWindow::~MainWindow(){
@@ -49,22 +55,29 @@ void MainWindow::startThemeMusic(){
 }
 
 void MainWindow::ChangeScene(Scene sceneEnum){
+    qDebug() << "MW:Changescene";
     ui->SceneContainer->removeWidget(currentScene);
-//    delete currentScene;
+    delete currentScene;
     switch (sceneEnum){
     case INTRO1:
         currentScene = introScene;
         break;
     case KITCHEN:
+        qDebug() <<"MW:change to kitchen";
+        kitchenScene = new KitchenScene(this);
+//        kitchenScene->show();
         currentScene = kitchenScene;
+        connect(kitchenScene, &KitchenScene::signalUseToolAndEvidence, model, &Model::slotUsedToolAndEvidence);
         break;
     case MAINMENU:
+        mainmenuScene = new MainMenuScene(this);
+//        mainmenuScene->show();
         currentScene = mainmenuScene;
         break;
     default:
         break;
     }
-//    connect(scene, &IScene::changeScene, this, &MainWindow::ChangeScene);
+    connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     ui->SceneContainer->addWidget(currentScene);
 }
 

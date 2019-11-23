@@ -22,7 +22,7 @@ public:
                        QString fontName="SF Cartoonist Hand",QString style="");
 
 signals:
-    virtual void changeScene(Scene sceneName);
+    void changeScene(Scene sceneName);
 public slots:
 
 private:
