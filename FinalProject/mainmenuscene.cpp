@@ -6,7 +6,7 @@
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
-    world(b2Vec2(0.0f, -10.0f)),
+    world(b2Vec2(0.0f, 0.0f)),
     ui(new Ui::MainMenuScene)
 {
     ui->setupUi(this);
@@ -34,7 +34,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 
     // Define the ground body.
     b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, -10.0f);
+    groundBodyDef.position.Set(0.0f, 0.0f);
 
     // Call the body factory which allocates memory for the ground body
     // from a pool and creates the ground box shape (also from a pool).
@@ -45,7 +45,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     b2PolygonShape groundBox;
 
     // The extents are the half-widths of the box.
-    groundBox.SetAsBox(50.0f, 10.0f);
+    groundBox.SetAsBox(1.0f, 1.0f);
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
@@ -53,7 +53,10 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(0.0f, 4.0f);
+    bodyDef.position.Set(900.0f, 20.0f);
+    bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
+    bodyDef.angularVelocity = 0.0f;
+
     body = world.CreateBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
@@ -68,11 +71,13 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     fixtureDef.density = 1.0f;
 
     // Override the default friction.
-    fixtureDef.friction = 0.3f;
+    //fixtureDef.friction = 0.3f;
 
-    fixtureDef.restitution = 0.9f;
+    //fixtureDef.restitution = 0.9f;
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
+
+    srand(time(0));
 
     connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);
 
@@ -131,6 +136,9 @@ void MainMenuScene::on_continueButton_clicked()
 }
 
 void MainMenuScene::updateWorld(){
+    static int updates = 0;
+    static int direction = 1;
+    updates ++;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -139,19 +147,28 @@ void MainMenuScene::updateWorld(){
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
 
-    // Instruct the world to perform a single step of simulation.
-    // It is generally best to keep the time step and iterations fixed.
-    world.Step(timeStep, velocityIterations, positionIterations);
 
     // Now print the position and angle of the body.
     b2Vec2 position = body->GetWorldCenter();
+    qDebug() << "Position X: " << position.x << " Y: " << position.y;
 
     //Experimenting with apply force
     //Idea gained here:
     //https://www.youtube.com/watch?v=bJJbQIoJeFc
     //https://natureofcode.com/book/chapter-5-physics-libraries/#chapter05_section12
-    b2Vec2 force(200.0, -500.0);
-    body->ApplyForce(force, position, true);
+    int frc = rand() % 5000;
+    if(updates % 30 == 0) {
+        direction = rand() % 2;
+    }
+    qDebug() << "Frc: " << frc << " dir: " << direction;
+
+    b2Vec2 force(-500.0f, direction?frc:-frc);
+    //body->SetAwake(true);
+    body->ApplyForce(force, body->GetWorldCenter(), true);
+
+    // Instruct the world to perform a single step of simulation.
+    // It is generally best to keep the time step and iterations fixed.
+    world.Step(timeStep, velocityIterations, positionIterations);
 
     //float32 angle = body->GetAngle();
 
@@ -162,8 +179,7 @@ void MainMenuScene::updateWorld(){
 }
 
 void MainMenuScene::changeGeometry(b2Vec2 position){
-
-    ui->leaf1->setGeometry(position.x, position.y, ui->continueButton->width(),ui->continueButton->height());
+    ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
 
 
 }
