@@ -15,9 +15,9 @@ IntroScene::IntroScene(QWidget *parent) :
 {
     ui->setupUi(this);
     /*Read resources*/
-    QFile file(":/introdata/IntroData/intro.json");
+    QFile file(":/introdata/intro");
     file.open(QIODevice::ReadOnly);
-    QResource fontfile(":/introdata/IntroData/SF_Cartoonist_Hand.ttf");
+    QResource fontfile(":/introdata/SF_Cartoonist_Hand");
     QByteArray content = file.readAll();
     introReader.readFromFile(QJsonDocument().fromJson(content));
     /*Timers*/

@@ -15,6 +15,16 @@ public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
 
+
+
+signals:
+    void toolSelectedSignal(QString);
+
+private slots:
+    void on_gloveButton_clicked();
+
+    void on_ragButton_clicked();
+
 private:
     Ui::ToolbarWidget *ui;
 };

@@ -29,7 +29,7 @@ void MainWindow::initializeModel(){
 }
 
 void MainWindow::startThemeMusic(){
-    QResource musicfile(":/introdata/IntroData/theme.ogg");
+    QResource musicfile(":/introdata/theme");
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
     mainThemeMusic.setVolume(100);
     mainThemeMusic.play();
