@@ -2,8 +2,9 @@
 
 #include <QVector>
 #include <QString>
+#include "ToolsEnum.cpp"
 
-Evidence::Evidence(QVector<QString> correctTools, QVector<QString> usedTools, QString description)
+Evidence::Evidence(QVector<Tools> correctTools, QVector<Tools> usedTools, QString description)
     : correctTools(correctTools), usedTools(usedTools), description(description)
 {
 

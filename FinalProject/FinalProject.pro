@@ -62,6 +62,7 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    ToolsEnum.cpp \
     cleaningtool.cpp \
     endscene01.cpp \
     endscene02.cpp \
@@ -74,6 +75,7 @@ SOURCES += \
     main.cpp \
     mainmenuscene.cpp \
     mainwindow.cpp \
+    model.cpp \
     toolbarwidget.cpp
 
 HEADERS += \
@@ -135,6 +137,7 @@ HEADERS += \
     kitchenscene.h \
     mainmenuscene.h \
     mainwindow.h \
+    model.h \
     toolbarwidget.h
 
 FORMS += \
