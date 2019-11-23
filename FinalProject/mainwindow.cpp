@@ -34,3 +34,7 @@ void MainWindow::ChangeScene(IScene* scene){
     connect(scene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     ui->SceneContainer->addWidget(scene);
 }
+
+void MainWindow::EvidenceInteractionSlot(){
+
+}
