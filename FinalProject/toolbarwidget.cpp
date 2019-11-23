@@ -11,4 +11,15 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
 ToolbarWidget::~ToolbarWidget()
 {
     delete ui;
+
+}
+
+void ToolbarWidget::on_gloveButton_clicked()
+{
+    emit toolSelectedSignal("glove");
+}
+
+void ToolbarWidget::on_ragButton_clicked()
+{
+    emit toolSelectedSignal("rag");
 }

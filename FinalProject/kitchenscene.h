@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <iscene.h>
+#include <toolbarwidget.h>
 
 namespace Ui {
 class KitchenScene;
@@ -16,8 +17,17 @@ public:
     explicit KitchenScene(QWidget *parent = nullptr);
     ~KitchenScene();
 
+public slots:
+    void toolSelectedSlot(QString);
+
 private:
     Ui::KitchenScene *ui;
+    QString selectedCleaningTool;
+    QString selectedEvidence;
+    ToolbarWidget* cleaningTools;
+
+    void InitializeWidgets();
+    void setupConnections();
 };
 
 #endif // KITCHENSCENE_H
