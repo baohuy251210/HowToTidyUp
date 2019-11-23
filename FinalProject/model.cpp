@@ -15,3 +15,7 @@ void Model::addEvidenceObject(QString evidenceName, QVector<Tools> correctTools,
     qDebug() << "model::done adding evidence";
 }
 
+void Model::slotUsedToolAndEvidence(Tools usedTool, QString usedEvidence){
+    qDebug()<<"Model::UsedToolAndEvidence";
+}
+

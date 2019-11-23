@@ -62,6 +62,7 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    SceneEnum.cpp \
     ToolsEnum.cpp \
     cleaningtool.cpp \
     endscene01.cpp \

@@ -1,6 +1,6 @@
 #include "toolbarwidget.h"
 #include "ui_toolbarwidget.h"
-
+#include "ToolsEnum.cpp"
 ToolbarWidget::ToolbarWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ToolbarWidget)
@@ -16,10 +16,10 @@ ToolbarWidget::~ToolbarWidget()
 
 void ToolbarWidget::on_gloveButton_clicked()
 {
-    emit toolSelectedSignal("glove");
+    emit toolSelectedSignal(GLOVE);
 }
 
 void ToolbarWidget::on_ragButton_clicked()
 {
-    emit toolSelectedSignal("rag");
+    emit toolSelectedSignal(RAG);
 }

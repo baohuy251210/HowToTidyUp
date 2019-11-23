@@ -2,7 +2,7 @@
 #define TOOLBARWIDGET_H
 
 #include <QWidget>
-
+#include "ToolsEnum.cpp"
 namespace Ui {
 class ToolbarWidget;
 }
@@ -18,7 +18,7 @@ public:
 
 
 signals:
-    void toolSelectedSignal(QString);
+    void toolSelectedSignal(Tools);
 
 private slots:
     void on_gloveButton_clicked();

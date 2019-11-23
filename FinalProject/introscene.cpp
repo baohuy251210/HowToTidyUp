@@ -44,8 +44,7 @@ void IntroScene::displayNextContext(){
     if (introReader.reachEndOfText()){
         delayTimer->stop();
         timer->stop();
-        MainMenuScene * mainMenuScene = new MainMenuScene();
-        emit changeScene(mainMenuScene);
+        emit changeScene(MAINMENU);
         return;
     }
     else delayTimer->setInterval(5000);

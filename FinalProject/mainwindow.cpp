@@ -12,10 +12,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     initializeModel();
+    initializeScenes();
     startThemeMusic();
-    currentScene = new IntroScene(this);
-    connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
+    currentScene = introScene;
     ui->SceneContainer->addWidget(currentScene);
+    setupConnections();
+}
+
+void MainWindow::initializeScenes(){
+    introScene = new IntroScene(this);
+    kitchenScene = new KitchenScene(this);
+    mainmenuScene = new MainMenuScene(this);
+}
+
+void MainWindow::setupConnections(){
+    connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
+    //connect(currentScene, SIGNAL(KitchenScene::signalUseToolAndEvidence(Tools, QString)), model, SLOT(signalUseToolAndEvidence(Tools, QString)));
+    //connect(currentScene, &KitchenScene::signalUseToolAndEvidence, model, &Model::slotUsedToolAndEvidence);
 }
 
 MainWindow::~MainWindow(){
@@ -35,12 +48,24 @@ void MainWindow::startThemeMusic(){
     mainThemeMusic.play();
 }
 
-void MainWindow::ChangeScene(IScene* scene){
+void MainWindow::ChangeScene(Scene sceneEnum){
     ui->SceneContainer->removeWidget(currentScene);
-    delete currentScene;
-    currentScene = scene;
-    connect(scene, &IScene::changeScene, this, &MainWindow::ChangeScene);
-    ui->SceneContainer->addWidget(scene);
+//    delete currentScene;
+    switch (sceneEnum){
+    case INTRO1:
+        currentScene = introScene;
+        break;
+    case KITCHEN:
+        currentScene = kitchenScene;
+        break;
+    case MAINMENU:
+        currentScene = mainmenuScene;
+        break;
+    default:
+        break;
+    }
+//    connect(scene, &IScene::changeScene, this, &MainWindow::ChangeScene);
+    ui->SceneContainer->addWidget(currentScene);
 }
 
 void MainWindow::evidenceInteractionSlot(){

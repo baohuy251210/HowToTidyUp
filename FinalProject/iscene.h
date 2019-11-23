@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QFontDatabase>
+#include "SceneEnum.cpp"
 class IScene : public QWidget
 {
     Q_OBJECT
@@ -21,7 +22,7 @@ public:
                        QString fontName="SF Cartoonist Hand",QString style="");
 
 signals:
-    virtual void changeScene(IScene* scene);
+    virtual void changeScene(Scene sceneName);
 public slots:
 
 private:

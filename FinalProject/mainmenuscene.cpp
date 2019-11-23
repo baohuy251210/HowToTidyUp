@@ -106,8 +106,7 @@ void MainMenuScene::fadeWhiteFlash(){
 
 void MainMenuScene::on_newGameButton_clicked()
 {
-    KitchenScene* kitchen = new KitchenScene();
-    emit changeScene(kitchen);
+    emit changeScene(KITCHEN);
 }
 
 //Method gained from this Stack overflow entry:
@@ -122,16 +121,15 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
             ui->aMurder->setVisible(false);
         }
     }
-    else{
-
+    //else{
         return QWidget::eventFilter(obj, e);
-    }
+   // }
 }
 
 void MainMenuScene::on_continueButton_clicked()
 {
-    KitchenScene* kitchen = new KitchenScene();
-    emit changeScene(kitchen);
+//    KitchenScene* kitchen = new KitchenScene();
+    emit changeScene(KITCHEN);
 }
 
 void MainMenuScene::updateWorld(){

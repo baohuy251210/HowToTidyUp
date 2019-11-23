@@ -49,10 +49,13 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:black;</string>
+    <string notr="true">color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
-    <string>Knife</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/knife_bloody</pixmap>
    </property>
   </widget>
  </widget>

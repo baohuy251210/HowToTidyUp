@@ -7,6 +7,8 @@
 class Model : public QObject
 {
     Q_OBJECT
+public slots:
+    void slotUsedToolAndEvidence(Tools, QString);
 public:
     Model(QObject *parent);
     void addEvidenceObject(QString evidenceName,QVector<Tools> correctTools, QString description);
