@@ -29,7 +29,6 @@
         <file>Art/Tools/tool_pumice_01.png</file>
         <file>Art/Tools/tool_rag_01.png</file>
         <file>Art/Tools/tool_vinegar_01.png</file>
-        <file>Art/Tools/tool_water_01.png</file>
     </qresource>
     <qresource prefix="/art/effects">
         <file>Art/Effects/leaf_01.png</file>
