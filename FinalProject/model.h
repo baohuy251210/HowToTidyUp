@@ -7,6 +7,8 @@
 class Model : public QObject
 {
     Q_OBJECT
+signals:
+    void signalDialogBox(Evidence);
 public slots:
     void slotUsedToolAndEvidence(Tools, QString);
 public:
@@ -16,6 +18,7 @@ public:
 private:
     QVector<Evidence> evidences;
     QVector<CleaningTool> cleaningTools;
+    int findEvidenceIndex(QString evidenceName);
 };
 
 #endif // MODEL_H

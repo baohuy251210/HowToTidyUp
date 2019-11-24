@@ -230,10 +230,10 @@
   <zorder>bgLabel</zorder>
   <zorder>newGameButton</zorder>
   <zorder>nameLabel</zorder>
-  <zorder>maskLabel</zorder>
   <zorder>aMurder</zorder>
   <zorder>continueButton</zorder>
   <zorder>leaf1</zorder>
+  <zorder>maskLabel</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

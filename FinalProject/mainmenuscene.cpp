@@ -21,7 +21,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
     fadeTimer = new QTimer(this);
     connect(fadeTimer, &QTimer::timeout, this, &MainMenuScene::fadeWhiteFlash);
-    fadeTimer->start(30);
+    fadeTimer->start(20);
 
     //gained from the same SO entry.
     ui->newGameButton->installEventFilter(this);
@@ -94,7 +94,6 @@ MainMenuScene::~MainMenuScene()
 
 void MainMenuScene::fadeWhiteFlash(){
     QString maskStyleSheet ="background-color: rgba(255, 255, 255, "+QString::number(fadeOpacity)+"%);";
-//    qDebug() <<maskStyleSheet;
     ui->maskLabel->setStyleSheet(maskStyleSheet);
     fadeOpacity-=2;
     if (fadeOpacity <= 0){
@@ -106,7 +105,6 @@ void MainMenuScene::fadeWhiteFlash(){
 
 void MainMenuScene::on_newGameButton_clicked()
 {
-    qDebug() << "mainmenu:button pressed";
     emit changeScene(KITCHEN);
 }
 
@@ -122,14 +120,13 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
             ui->aMurder->setVisible(false);
         }
     }
-    //else{
+    else{
         return QWidget::eventFilter(obj, e);
-   // }
+    }
 }
 
 void MainMenuScene::on_continueButton_clicked()
 {
-//    KitchenScene* kitchen = new KitchenScene();
     emit changeScene(KITCHEN);
 }
 
@@ -179,8 +176,6 @@ void MainMenuScene::updateWorld(){
 
 void MainMenuScene::changeGeometry(b2Vec2 position){
     ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
-
-
 }
 
 

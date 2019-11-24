@@ -9,13 +9,35 @@ void Model::eraseAll(){
     cleaningTools.clear();
 }
 
-
 void Model::addEvidenceObject(QString evidenceName, QVector<Tools> correctTools, QString description){
     evidences.push_back(Evidence(evidenceName, correctTools, description));
-    qDebug() << "model::done adding evidence";
+}
+/*
+ * slot called when an evidenceName and usedTool
+ * add the usedTool (if applicable) to the usedEvidence
+ * and signal a change to dialog box
+**/
+void Model::slotUsedToolAndEvidence(Tools usedTool, QString usedEvidenceName){
+    int eviIndex = findEvidenceIndex(usedEvidenceName);
+    if (eviIndex == -1){
+        qDebug() << "evidence name not found";
+        return;
+    }
+    if (usedTool != GLOVE){
+        evidences[eviIndex].addUsedTool(usedTool);
+    }
+    emit signalDialogBox(evidences[eviIndex]);
 }
 
-void Model::slotUsedToolAndEvidence(Tools usedTool, QString usedEvidence){
-    qDebug()<<"Model::UsedToolAndEvidence";
+/*
+ * find the index of the evidence given in 'evidences'
+**/
+int Model::findEvidenceIndex(QString usedEvidenceName){
+    for (int i = 0; i < evidences.size(); i++){
+        if (evidences[i].evidenceName == usedEvidenceName){
+            return i;
+        }
+    }
+    return -1;
 }
 

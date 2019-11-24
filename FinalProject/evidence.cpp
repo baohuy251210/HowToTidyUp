@@ -8,5 +8,11 @@ Evidence::Evidence(QString evidenceName,QVector<Tools> correctTools, QString des
     : evidenceName(evidenceName), correctTools(correctTools), description(description)
 {
     usedTools.clear();
-    qDebug()<< "Evidence::done add evidence ";
+}
+
+void Evidence::addUsedTool(Tools usedTool){
+    if (usedTools.size() == correctTools.size()){
+        usedTools.removeFirst();
+    }
+    usedTools.push_back(usedTool);
 }

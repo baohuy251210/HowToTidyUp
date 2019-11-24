@@ -25,7 +25,6 @@ public:
 public: signals:
     void newPosition(b2Vec2 vector);
 
-
 private slots:
     void on_newGameButton_clicked();
     void on_continueButton_clicked();
