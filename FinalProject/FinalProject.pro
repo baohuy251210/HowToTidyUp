@@ -62,13 +62,14 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    CleanStateEnum.cpp \
+    EvidenceEnum.cpp \
     SceneEnum.cpp \
     ToolsEnum.cpp \
     cleaningtool.cpp \
     endscene01.cpp \
     endscene02.cpp \
     evidence.cpp \
-    evidencelabel.cpp \
     introreader.cpp \
     introscene.cpp \
     iscene.cpp \
@@ -132,7 +133,6 @@ HEADERS += \
     endscene01.h \
     endscene02.h \
     evidence.h \
-    evidencelabel.h \
     introreader.h \
     introscene.h \
     iscene.h \

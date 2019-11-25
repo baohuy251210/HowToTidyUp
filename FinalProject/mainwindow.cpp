@@ -34,7 +34,6 @@ MainWindow::~MainWindow(){
 
 void MainWindow::initializeModel(){
     model = new Model(this);
-    model->addEvidenceObject("Knife",{WATER, BLEACH}, "It's a knife");
 }
 
 void MainWindow::startThemeMusic(){
@@ -52,10 +51,9 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         currentScene = introScene;
         break;
     case KITCHEN:
-        kitchenScene = new KitchenScene(this);
+        kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
-        connect(kitchenScene, &KitchenScene::signalUseToolAndEvidence, model, &Model::slotUsedToolAndEvidence);
-//        connect(model, &Model::signalDialogBox, )
+        connect(kitchenScene, &KitchenScene::addEvidence, model, &Model::addEvidenceObject);
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);

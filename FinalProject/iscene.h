@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QFontDatabase>
 #include "SceneEnum.cpp"
+#include <evidence.h>
 class IScene : public QWidget
 {
     Q_OBJECT
@@ -23,6 +24,7 @@ public:
 
 signals:
     void changeScene(Scene sceneName);
+    void addEvidence(Evidence* evidenceName);
 public slots:
 
 private:

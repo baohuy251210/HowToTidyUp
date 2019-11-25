@@ -5,6 +5,10 @@
 #include <iscene.h>
 #include <toolbarwidget.h>
 #include "ToolsEnum.cpp"
+#include <EvidenceEnum.cpp>
+#include <evidence.h>
+#include <model.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class KitchenScene;
@@ -15,24 +19,23 @@ class KitchenScene : public IScene
 {
     Q_OBJECT
 public:
-    explicit KitchenScene(QWidget *parent = nullptr);
+    explicit KitchenScene(QWidget *parent, Model* model);
     ~KitchenScene();
 signals:
-    void signalUseToolAndEvidence(Tools, QString);
+    void signalUseToolAndEvidence(EvidenceEnum);
 
 public slots:
-    void toolSelectedSlot(Tools);
-    void evidenceActionSlot(QString, QString);
+    void evidenceClickedSlot(EvidenceEnum);
 private:
     Ui::KitchenScene *ui;
-    Tools selectedCleaningTool;
-    QString selectedEvidence;
     ToolbarWidget* cleaningTools;
+    Model* model;
 
     void InitializeWidgets();
     void setupConnections();
-    void evidencePressed(QString evidenceName);
-    void evidenceHovered(QString evidenceName);
+    void evidenceHovered(EvidenceEnum evidenceName);
+    void setupPixmaps();
+    void setupEvidence();
 };
 
 #endif // KITCHENSCENE_H

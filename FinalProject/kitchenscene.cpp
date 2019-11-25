@@ -3,16 +3,16 @@
 #include "ToolsEnum.cpp"
 #include <QDebug>
 
-KitchenScene::KitchenScene(QWidget *parent) :
+KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     IScene(parent),
-    ui(new Ui::KitchenScene)
+    ui(new Ui::KitchenScene),
+    model(model)
 {
-    ui->setupUi(this);
-    /*connect add knife (test)*/
-    selectedEvidence = "";
-    selectedCleaningTool = GLOVE;
+    ui->setupUi(this);\
     InitializeWidgets();
     setupConnections();
+    setupPixmaps();
+    setupEvidence();
 }
 
 KitchenScene::~KitchenScene()
@@ -26,22 +26,26 @@ void KitchenScene::InitializeWidgets(){
 }
 void KitchenScene::setupConnections(){
     connect(cleaningTools, SIGNAL(toolSelectedSignal(QString)), this, SLOT(toolSelectedSlot(QString)));
-    connect(ui->knifeLabel, &EvidenceLabel::interactionSignal, this, &KitchenScene::evidenceActionSlot);
+    connect(ui->knifeLabel, &Evidence::clickedSignal, this, &KitchenScene::evidenceClickedSlot);
+
 }
 
-void KitchenScene::toolSelectedSlot(Tools tool){
-    qDebug() << tool << " selected" << endl;
-    selectedCleaningTool = tool;
+
+void KitchenScene::evidenceClickedSlot(EvidenceEnum evidenceName){
+    emit signalUseToolAndEvidence(evidenceName);
 }
 
-void KitchenScene::evidenceActionSlot(QString evidenceName, QString actionName){
-    if (actionName == "press"){
-        evidencePressed(evidenceName);
-    }
+
+void KitchenScene::setupPixmaps(){
+    ui->knifeLabel->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
+                               QPixmap(":/art/interactables/knife_bloody_highlighted"),
+                               QPixmap(":/art/interactables/knife_clean"),
+                               QPixmap(":/art/interactables/knife_clean_highlighted)"),
+                               QPixmap(":/art/interactables/knife_clean"),
+                               QPixmap(":/art/interactables/knife_clean_highlighted)"));
 }
 
-void KitchenScene::evidencePressed(QString evidenceName){
-    selectedEvidence = evidenceName;
-    emit signalUseToolAndEvidence(selectedCleaningTool, selectedEvidence);
+void KitchenScene::setupEvidence(){
+    ui->knifeLabel->setStartValues(KNIFE, {WATER, RAG, BLEACH},"i'm a knife!!!");
+    emit addEvidence(ui->knifeLabel);
 }
-
