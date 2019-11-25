@@ -12,7 +12,6 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     InitializeWidgets();
     setupConnections();
     setupPixmaps();
-    setupEvidence();
 }
 
 KitchenScene::~KitchenScene()
@@ -26,18 +25,18 @@ void KitchenScene::InitializeWidgets(){
 }
 void KitchenScene::setupConnections(){
     connect(cleaningTools, SIGNAL(toolSelectedSignal(QString)), this, SLOT(toolSelectedSlot(QString)));
-    connect(ui->knifeLabel, &Evidence::clickedSignal, this, &KitchenScene::evidenceClickedSlot);
-
+    connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
+    connect(model, &Model::clearEvidenceSelections, ui->knifeLabel, &EvidenceView::clearSelection);
+    connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
+    connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
 }
-
 
 void KitchenScene::evidenceClickedSlot(EvidenceEnum evidenceName){
     model->selectedEvidence = evidenceName;
-    ui->evidenceDialog->setDescription("i'm a temporary description!!!");
 }
 
-
 void KitchenScene::setupPixmaps(){
+    ui->knifeLabel->setType(KNIFE);
     ui->knifeLabel->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
                                QPixmap(":/art/interactables/knife_bloody_highlighted"),
                                QPixmap(":/art/interactables/knife_clean"),
@@ -46,7 +45,3 @@ void KitchenScene::setupPixmaps(){
                                QPixmap(":/art/interactables/knife_clean_highlighted)"));
 }
 
-void KitchenScene::setupEvidence(){
-    ui->knifeLabel->setStartValues(KNIFE, {WATER, RAG, BLEACH},"i'm a knife!!!");
-    emit addEvidence(ui->knifeLabel);
-}

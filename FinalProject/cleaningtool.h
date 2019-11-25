@@ -7,9 +7,11 @@
 class CleaningTool
 {
 public:
-    CleaningTool(QString, QString);
+    CleaningTool(QString description);
+    void setSelected(bool);
+private:
+    bool isSelected;
     QString description;
-    QString toolName;
 };
 
 #endif // CLEANINGTOOL_H

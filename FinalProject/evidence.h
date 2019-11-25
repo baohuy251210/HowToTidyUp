@@ -8,47 +8,27 @@
 #include <CleanStateEnum.cpp>
 #include <QPixmap>
 #include <QLabel>
+#include <cleaningtool.h>
 
-class Evidence : public QLabel
+class Evidence : public QObject
 {
     Q_OBJECT
 
 public:
-    Evidence(QWidget* parent);
+    Evidence();
     ~Evidence() override;
 
-    void setStartValues(EvidenceEnum name, QVector<Tools> correctTools, QString description);
+    void setStartValues(QVector<CleaningTool*> correctTools, QString description);
+    void addUsedTool(CleaningTool* usedTool);
 
-    void setPixmaps(QPixmap dirty,
-                    QPixmap dirtySelected,
-                    QPixmap semiclean,
-                    QPixmap semicleanSelected,
-                    QPixmap clean,
-                    QPixmap cleanSelected);
-    void addUsedTool(Tools usedTool);
-signals:
-    void clickedSignal(EvidenceEnum name);
-
+    QList<CleaningTool*> usedTools;
+    QString description;
 private:
      void nothing();
-    EvidenceEnum name;
-    QVector<Tools> correctTools;
-    QList<Tools> usedTools;
-    QString description;
-    QString evidenceName;
-
-    QPixmap dirty;
-    QPixmap dirtySelected;
-    QPixmap semiclean;
-    QPixmap semicleanSelected;
-    QPixmap clean;
-    QPixmap cleanSelected;
+    QVector<CleaningTool*> correctTools;
 
     CleanState cleanState;
 
-    void enterEvent(QEvent* event) override;
-    void leaveEvent(QEvent* event) override;
-    void mouseReleaseEvent(QMouseEvent *ev) override;
 };
 
 #endif // EVIDENCE_H

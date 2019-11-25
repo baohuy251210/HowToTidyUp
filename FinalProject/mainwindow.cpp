@@ -53,7 +53,6 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     case KITCHEN:
         kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
-        connect(kitchenScene, &KitchenScene::addEvidence, model, &Model::addEvidenceObject);
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);

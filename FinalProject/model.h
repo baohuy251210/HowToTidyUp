@@ -5,23 +5,30 @@
 #include <ToolsEnum.cpp>
 #include <EvidenceEnum.cpp>
 #include <QObject>
+#include <QHash>
 
 class Model : public QObject
 {
     Q_OBJECT
 signals:
-    void signalDialogBox(Evidence*);
+    void updateDialogBoxSignal(Evidence*);
+    void clearEvidenceSelections();
+    void setSelected(EvidenceEnum);
+
 public slots:
-    void addEvidenceObject(Evidence* evidenceName);
+    void evidenceClicked(EvidenceEnum evidence);
+
 public:
     Model(QObject *parent);
+    ~Model();
     void eraseAll();
     Tools selectedTool;
     EvidenceEnum selectedEvidence;
 private:
-    QVector<Evidence*> evidences;
-    QVector<CleaningTool> cleaningTools;
-
+    QHash<EvidenceEnum, Evidence*> evidences;
+    QHash<Tools, CleaningTool*> cleaningTools;
+    void initializeTools();
+    void initializeEvidence();
 };
 
 #endif // MODEL_H

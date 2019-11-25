@@ -39,22 +39,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="Evidence" name="knifeLabel">
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>220</y>
-     <width>191</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="resources.qrc">:/art/interactables/knife_bloody</pixmap>
-   </property>
-  </widget>
   <widget class="itemDialog" name="evidenceDialog" native="true">
    <property name="geometry">
     <rect>
@@ -63,6 +47,22 @@
      <width>371</width>
      <height>281</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="knifeLabel">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>220</y>
+     <width>201</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/knife_bloody</pixmap>
    </property>
   </widget>
  </widget>
@@ -74,15 +74,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Evidence</class>
-   <extends>QLabel</extends>
-   <header>evidence.h</header>
-  </customwidget>
-  <customwidget>
    <class>itemDialog</class>
    <extends>QWidget</extends>
    <header>itemdialog.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>EvidenceView</class>
+   <extends>QLabel</extends>
+   <header>evidenceview.h</header>
   </customwidget>
  </customwidgets>
  <resources>
