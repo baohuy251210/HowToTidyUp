@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <CleanStateEnum.cpp>
 #include <EvidenceEnum.cpp>
+#include <evidence.h>
 
 class EvidenceView : public QLabel
 {
@@ -11,25 +12,14 @@ class EvidenceView : public QLabel
 public:
     EvidenceView(QWidget* parent);
 
-    void setPixmaps(QPixmap dirty,
-                    QPixmap dirtySelected,
-                    QPixmap semiclean,
-                    QPixmap semicleanSelected,
-                    QPixmap clean,
-                    QPixmap cleanSelected);
-
+    void setModel(Evidence*);
     void setType(EvidenceEnum type);
 public slots:
     void setState(EvidenceEnum evidence, CleanState state);
     void setSelected(EvidenceEnum evidence);
     void clearSelection();
 private:
-    QPixmap dirty;
-    QPixmap dirtySelected;
-    QPixmap semiclean;
-    QPixmap semicleanSelected;
-    QPixmap clean;
-    QPixmap cleanSelected;
+    Evidence* model;
 
     EvidenceEnum name;
 

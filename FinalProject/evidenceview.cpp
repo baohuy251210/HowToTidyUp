@@ -8,37 +8,25 @@ EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
 
 }
 
-void EvidenceView::setType(EvidenceEnum type){
-    name = type;
+void EvidenceView::setModel(Evidence* evidence){
+    model = evidence;
 }
 
-void EvidenceView::setPixmaps(QPixmap dirty,
-                          QPixmap dirtySelected,
-                          QPixmap semiclean,
-                          QPixmap semicleanSelected,
-                          QPixmap clean,
-                          QPixmap cleanSelected){
-    this->dirty = dirty;
-    this->dirtySelected = dirtySelected;
-    this->semiclean = semiclean;
-    this->semicleanSelected = semicleanSelected;
-    this->clean = clean;
-    this->cleanSelected = cleanSelected;
-
-    this->setPixmap(dirty);
+void EvidenceView::setType(EvidenceEnum type){
+    name = type;
 }
 
 void EvidenceView::enterEvent ( QEvent * event )
 {
     switch(cleanState){
     case CLEAN:
-        this->setPixmap(cleanSelected);
+        this->setPixmap(model->clean_highlighted);
         break;
     case SEMICLEAN:
-        this->setPixmap(semicleanSelected);
+        this->setPixmap(model->semiclean_highlighted);
         break;
     case DIRTY:
-        this->setPixmap(dirtySelected);
+        this->setPixmap(model->dirty_highlighted);
         break;
     }
 }
@@ -47,13 +35,13 @@ void EvidenceView::leaveEvent ( QEvent * event )
 {
     switch(cleanState){
     case CLEAN:
-        this->setPixmap(clean);
+        this->setPixmap(model->clean);
         break;
     case SEMICLEAN:
-        this->setPixmap(semiclean);
+        this->setPixmap(model->semiclean);
         break;
     case DIRTY:
-        this->setPixmap(dirty);
+        this->setPixmap(model->dirty);
         break;
     }
 }

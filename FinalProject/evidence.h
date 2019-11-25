@@ -18,14 +18,22 @@ public:
     Evidence();
     ~Evidence() override;
 
-    void setStartValues(QVector<CleaningTool*> correctTools, QString description);
+    void setStartValues(QVector<Tools> correctTools, QString description);
     void addUsedTool(CleaningTool* usedTool);
+    void setPixmaps(QPixmap dirty,
+                    QPixmap dirty_highlighted,
+                    QPixmap semiclean,
+                    QPixmap semiclean_highlighted,
+                    QPixmap clean,
+                    QPixmap clean_highlighted);
 
     QList<CleaningTool*> usedTools;
     QString description;
+    QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
+
 private:
      void nothing();
-    QVector<CleaningTool*> correctTools;
+    QVector<Tools> correctTools;
 
     CleanState cleanState;
 

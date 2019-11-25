@@ -14,7 +14,7 @@ Evidence::~Evidence(){
 
 }
 
-void Evidence::setStartValues(QVector<CleaningTool*> correctTools, QString newDescription){
+void Evidence::setStartValues(QVector<Tools> correctTools, QString newDescription){
     this->correctTools = correctTools;
     this->description = newDescription;
 }
@@ -25,4 +25,19 @@ void Evidence::addUsedTool(CleaningTool* usedTool){
         usedTools.removeFirst();
     }
 }
+
+void Evidence::setPixmaps(QPixmap dirty,
+                          QPixmap dirtySelected,
+                          QPixmap semiclean,
+                          QPixmap semicleanSelected,
+                          QPixmap clean,
+                          QPixmap cleanSelected){
+    this->dirty = dirty;
+    this->dirty_highlighted = dirtySelected;
+    this->semiclean = semiclean;
+    this->semiclean_highlighted = semicleanSelected;
+    this->clean = clean;
+    this->clean_highlighted = cleanSelected;
+}
+
 

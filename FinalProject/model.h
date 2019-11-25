@@ -24,11 +24,13 @@ public:
     void eraseAll();
     Tools selectedTool;
     EvidenceEnum selectedEvidence;
+    Evidence* getEvidence(EvidenceEnum type);
+    void addCleaningTool(Tools type, CleaningTool* evidence);
+    void addEvidence(EvidenceEnum type, Evidence* evidence);
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
     void initializeTools();
-    void initializeEvidence();
 };
 
 #endif // MODEL_H

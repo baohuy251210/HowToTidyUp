@@ -10,6 +10,8 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
 {
     ui->setupUi(this);\
     InitializeWidgets();
+    initializeEvidence();
+
     setupConnections();
     setupPixmaps();
 }
@@ -37,11 +39,19 @@ void KitchenScene::evidenceClickedSlot(EvidenceEnum evidenceName){
 
 void KitchenScene::setupPixmaps(){
     ui->knifeLabel->setType(KNIFE);
-    ui->knifeLabel->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
-                               QPixmap(":/art/interactables/knife_bloody_highlighted"),
-                               QPixmap(":/art/interactables/knife_clean"),
-                               QPixmap(":/art/interactables/knife_clean_highlighted)"),
-                               QPixmap(":/art/interactables/knife_clean"),
-                               QPixmap(":/art/interactables/knife_clean_highlighted)"));
+    ui->knifeLabel->setModel(model->getEvidence(KNIFE));
 }
 
+void KitchenScene::initializeEvidence(){
+    Evidence* knife = new Evidence();
+    knife->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
+                      QPixmap(":/art/interactables/knife_bloody_highlighted"),
+                      QPixmap(":/art/interactables/knife_clean"),
+                      QPixmap(":/art/interactables/knife_clean_highlighted"),
+                      QPixmap(":/art/interactables/knife_clean"),
+                      QPixmap(":/art/interactables/knife_clean_highlighted") );
+    ui->knifeLabel->setType(KNIFE);
+    ui->knifeLabel->setModel(model->getEvidence(KNIFE));
+    knife->setStartValues({BLEACH, RAG, WATER}, "I'm a knife!");
+    model->addEvidence(KNIFE, knife);
+}

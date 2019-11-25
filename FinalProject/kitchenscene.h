@@ -23,7 +23,6 @@ public:
     ~KitchenScene();
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
-
 public slots:
     void evidenceClickedSlot(EvidenceEnum);
 private:
@@ -36,6 +35,7 @@ private:
     void evidenceHovered(EvidenceEnum evidenceName);
     void setupPixmaps();
     void setupEvidence();
+    void initializeEvidence();
 };
 
 #endif // KITCHENSCENE_H

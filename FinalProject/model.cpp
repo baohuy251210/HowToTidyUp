@@ -8,7 +8,6 @@ Model::Model(QObject * parent) :
     selectedEvidence(NONE){
 
     initializeTools();
-    initializeEvidence();
 }
 
 Model::~Model(){
@@ -35,10 +34,14 @@ void Model::initializeTools(){
     cleaningTools.insert(WATER, water);
 }
 
-void Model::initializeEvidence(){
-    Evidence* knife = new Evidence();
-    evidences.insert(KNIFE, knife);
-    evidences[KNIFE]->setStartValues({cleaningTools[BLEACH], cleaningTools[RAG], cleaningTools[WATER]}, "I'm a knife!");
+
+
+void Model::addEvidence(EvidenceEnum type, Evidence* evidence){
+    evidences.insert(type, evidence);
+}
+
+void Model::addCleaningTool(Tools type, CleaningTool* tool){
+    cleaningTools.insert(type, tool);
 }
 
 void Model::evidenceClicked(EvidenceEnum evidence){
@@ -46,4 +49,8 @@ void Model::evidenceClicked(EvidenceEnum evidence){
     emit clearEvidenceSelections();
     emit setSelected(evidence);
     emit updateDialogBoxSignal(evidences[evidence]);
+}
+
+Evidence* Model::getEvidence(EvidenceEnum type){
+    return evidences[type];
 }
