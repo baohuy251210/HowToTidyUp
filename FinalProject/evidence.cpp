@@ -42,7 +42,7 @@ void Evidence::setPixmaps(QPixmap dirty,
     this->clean = clean;
     this->cleanSelected = cleanSelected;
 
-    this->setPixmap(clean);
+    this->setPixmap(dirty);
 }
 
 void Evidence::enterEvent ( QEvent * event )

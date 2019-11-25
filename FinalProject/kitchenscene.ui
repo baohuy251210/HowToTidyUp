@@ -55,6 +55,16 @@
     <pixmap resource="resources.qrc">:/art/interactables/knife_bloody</pixmap>
    </property>
   </widget>
+  <widget class="itemDialog" name="evidenceDialog" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>371</width>
+     <height>281</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -67,6 +77,12 @@
    <class>Evidence</class>
    <extends>QLabel</extends>
    <header>evidence.h</header>
+  </customwidget>
+  <customwidget>
+   <class>itemDialog</class>
+   <extends>QWidget</extends>
+   <header>itemdialog.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

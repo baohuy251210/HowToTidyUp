@@ -32,7 +32,8 @@ void KitchenScene::setupConnections(){
 
 
 void KitchenScene::evidenceClickedSlot(EvidenceEnum evidenceName){
-    emit signalUseToolAndEvidence(evidenceName);
+    model->selectedEvidence = evidenceName;
+    ui->evidenceDialog->setDescription("i'm a temporary description!!!");
 }
 
 

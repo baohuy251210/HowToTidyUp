@@ -78,6 +78,28 @@
     <string>description</string>
    </property>
   </widget>
+  <widget class="QLabel" name="bgLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>371</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 87, 83);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>bgLabel</zorder>
+  <zorder>step1</zorder>
+  <zorder>step2</zorder>
+  <zorder>step3</zorder>
+  <zorder>itemPicture</zorder>
+  <zorder>itemDescription</zorder>
  </widget>
  <resources/>
  <connections/>

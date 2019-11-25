@@ -16,11 +16,12 @@ public slots:
 public:
     Model(QObject *parent);
     void eraseAll();
+    Tools selectedTool;
+    EvidenceEnum selectedEvidence;
 private:
     QVector<Evidence*> evidences;
     QVector<CleaningTool> cleaningTools;
-    EvidenceEnum currentEvidence;
-    Tools selectedTool;
+
 };
 
 #endif // MODEL_H

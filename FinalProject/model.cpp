@@ -5,7 +5,7 @@
 
 Model::Model(QObject * parent) :
     QObject(parent),
-    currentEvidence(NONE){
+    selectedEvidence(NONE){
 
 }
 

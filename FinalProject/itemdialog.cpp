@@ -12,3 +12,11 @@ itemDialog::~itemDialog()
 {
     delete ui;
 }
+
+void itemDialog::setDescription(QString description){
+    ui->itemDescription->setText(description);
+}
+
+void itemDialog::setUsedTools(QList<Tools> tools){
+    //ui->step1->setPixmap()
+}
