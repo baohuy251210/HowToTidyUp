@@ -217,7 +217,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/art/effects/leaf</pixmap>
+    <pixmap resource="resources.qrc">:/art/effects/Art/Effects/leaf rotate 2.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="leaf2">
@@ -233,7 +233,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/art/effects/leaf</pixmap>
+    <pixmap resource="resources.qrc">:/art/effects/Art/Effects/leaf rotate 1.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="leaf3">
