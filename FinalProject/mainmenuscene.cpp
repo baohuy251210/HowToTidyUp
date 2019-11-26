@@ -50,7 +50,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     groundBody->CreateFixture(&groundBox, 0.0f);
 
     // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
+    b2BodyDef bodyDef;        
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(900.0f, 20.0f);
     bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
@@ -131,7 +131,7 @@ void MainMenuScene::on_continueButton_clicked()
 }
 
 void MainMenuScene::updateWorld(){
-    /*
+
     static int updates = 0;
     static int direction = 1;
     updates ++;
@@ -146,7 +146,7 @@ void MainMenuScene::updateWorld(){
 
     // Now print the position and angle of the body.
     b2Vec2 position = body->GetWorldCenter();
-    qDebug() << "Position X: " << position.x << " Y: " << position.y;
+    //qDebug() << "Position X: " << position.x << " Y: " << position.y;
 
     //Experimenting with apply force
     //Idea gained here:
@@ -156,9 +156,9 @@ void MainMenuScene::updateWorld(){
     if(updates % 30 == 0) {
         direction = rand() % 2;
     }
-    qDebug() << "Frc: " << frc << " dir: " << direction;
+    //qDebug() << "Frc: " << frc << " dir: " << direction;
 
-    b2Vec2 force(-500.0f, direction?frc:-frc);
+    b2Vec2 force(direction?frc:-frc, 500.0f);
     //body->SetAwake(true);
     body->ApplyForce(force, body->GetWorldCenter(), true);
 
@@ -170,7 +170,7 @@ void MainMenuScene::updateWorld(){
 
     emit(newPosition(position));
     QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
-    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);*/
+    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
 }
 
