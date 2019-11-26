@@ -8,6 +8,12 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
     ui->setupUi(this);
 
     glove = ui->gloveButton;
+    bleach = ui->bleachButton;
+    oxiclean = ui->oxicleanButton;
+    water = ui->waterButton;
+    nailpolish_remover = ui->nailPolishRemoverButton;
+    rag = ui->ragButton;
+
 }
 
 ToolbarWidget::~ToolbarWidget()
@@ -16,12 +22,4 @@ ToolbarWidget::~ToolbarWidget()
 
 }
 
-void ToolbarWidget::on_gloveButton_clicked()
-{
-    emit toolSelectedSignal(GLOVE);
-}
 
-void ToolbarWidget::on_ragButton_clicked()
-{
-    emit toolSelectedSignal(RAG);
-}

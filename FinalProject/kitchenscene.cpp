@@ -27,7 +27,6 @@ void KitchenScene::InitializeWidgets(){
 
 }
 void KitchenScene::setupConnections(){
-    connect(cleaningTools, SIGNAL(toolSelectedSignal(QString)), this, SLOT(toolSelectedSlot(QString)));
     connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(model, &Model::clearEvidenceSelections, ui->knifeLabel, &EvidenceView::clearSelection);
     connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
@@ -45,20 +44,34 @@ void KitchenScene::setupPixmaps(){
 
 void KitchenScene::initializeTools(){
     CleaningTool* glove = new CleaningTool("click on things for more info");
+    // glove is default tool
+    glove->setSelected(true);
     CleaningTool* rag = new CleaningTool("i'm a rag");
     CleaningTool* bleach = new CleaningTool("i'm bleach");
     CleaningTool* water = new CleaningTool("i'm water");
+    CleaningTool* oxiclean = new CleaningTool("I'm oxiclean!");
+    CleaningTool* nailPolishRemover = new CleaningTool("I'm nail polish remover");
 
     glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
     rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
     bleach->setPixmaps(QPixmap(":/art/tools/bleach"),QPixmap(":/art/tools/bleach"));
     water->setPixmaps(QPixmap(":/art/tools/water"),QPixmap(":/art/tools/water"));
+    oxiclean->setPixmaps(QPixmap(":/art/tools/oxiclean"), QPixmap(":/art/tools/oxiclean"));
+    nailPolishRemover->setPixmaps(QPixmap(":/art/tools/nailpolishremover"), QPixmap(":/art/tools/nailpolishremover"));
 
     ui->toolbarWidget->glove->setModel(glove);
+    ui->toolbarWidget->rag->setModel(rag);
+    ui->toolbarWidget->bleach->setModel(bleach);
+    ui->toolbarWidget->water->setModel(water);
+    ui->toolbarWidget->oxiclean->setModel(oxiclean);
+    ui->toolbarWidget->nailpolish_remover->setModel(nailPolishRemover);
+
 
     model->addCleaningTool(RAG, rag);
     model->addCleaningTool(BLEACH, bleach);
     model->addCleaningTool(WATER, water);
+    model->addCleaningTool(OXICLEAN, oxiclean);
+    model->addCleaningTool(NAILPOLISHREMOVER, nailPolishRemover);
 }
 
 void KitchenScene::initializeEvidence(){

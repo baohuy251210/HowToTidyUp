@@ -24,15 +24,13 @@ public:
     CleaningToolView* lye;
     CleaningToolView* borax;
     CleaningToolView* oxiclean;
+    CleaningToolView* rag;
     Ui::ToolbarWidget *ui;
 
 signals:
-    void toolSelectedSignal(Tools);
 
 private slots:
-    void on_gloveButton_clicked();
 
-    void on_ragButton_clicked();
 
 private:
 
