@@ -30,7 +30,7 @@ public:
     QList<CleaningTool*> usedTools;
     QString description;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
-
+    QPixmap* getIcon();
 private:
      void nothing();
     QVector<Tools> correctTools;

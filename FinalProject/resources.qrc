@@ -31,6 +31,7 @@
         <file alias="vinegar">Art/Tools/tool_vinegar_01.png</file>
         <file alias="oxiclean">Art/Tools/tool-oxiclean2.png</file>
         <file alias="water">Art/Tools/tool-water-bucket.png</file>
+        <file alias="glove_highlighted">Art/Tools/tool_glove_highlighted_01.png</file>
     </qresource>
     <qresource prefix="/art/effects">
         <file alias="leaf">Art/Effects/leaf_01.png</file>

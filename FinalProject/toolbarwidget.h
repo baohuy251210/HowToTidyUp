@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "ToolsEnum.cpp"
+#include "cleaningtoolview.h"
+
 namespace Ui {
 class ToolbarWidget;
 }
@@ -15,7 +17,14 @@ public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
 
-
+    CleaningToolView* glove;
+    CleaningToolView* water;
+    CleaningToolView* bleach;
+    CleaningToolView* nailpolish_remover;
+    CleaningToolView* lye;
+    CleaningToolView* borax;
+    CleaningToolView* oxiclean;
+    Ui::ToolbarWidget *ui;
 
 signals:
     void toolSelectedSignal(Tools);
@@ -26,7 +35,7 @@ private slots:
     void on_ragButton_clicked();
 
 private:
-    Ui::ToolbarWidget *ui;
+
 };
 
 #endif // TOOLBARWIDGET_H

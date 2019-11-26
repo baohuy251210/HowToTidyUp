@@ -13,32 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="gloveButton">
-   <property name="geometry">
-    <rect>
-     <x>18</x>
-     <y>20</y>
-     <width>111</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/art/tools/glove</normaloff>:/art/tools/glove</iconset>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>128</width>
-     <height>128</height>
-    </size>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QPushButton" name="ragButton">
    <property name="geometry">
     <rect>
@@ -191,14 +165,40 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="CleaningToolView" name="gloveButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/tools/glove</pixmap>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>bgLabel</zorder>
-  <zorder>gloveButton</zorder>
   <zorder>ragButton</zorder>
   <zorder>bleachButton</zorder>
   <zorder>waterButton</zorder>
   <zorder>nailPolishRemoverButton</zorder>
   <zorder>oxicleanButton</zorder>
+  <zorder>gloveButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CleaningToolView</class>
+   <extends>QLabel</extends>
+   <header>cleaningtoolview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

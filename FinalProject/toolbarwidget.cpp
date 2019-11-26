@@ -6,6 +6,8 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
     ui(new Ui::ToolbarWidget)
 {
     ui->setupUi(this);
+
+    glove = ui->gloveButton;
 }
 
 ToolbarWidget::~ToolbarWidget()

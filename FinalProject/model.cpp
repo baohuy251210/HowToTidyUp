@@ -7,7 +7,6 @@ Model::Model(QObject * parent) :
     QObject(parent),
     selectedEvidence(NONE){
 
-    initializeTools();
 }
 
 Model::~Model(){
@@ -22,16 +21,6 @@ Model::~Model(){
 void Model::eraseAll(){
     evidences.clear();
     cleaningTools.clear();
-}
-
-void Model::initializeTools(){
-    CleaningTool* rag = new CleaningTool("i'm a rag");
-    CleaningTool* bleach = new CleaningTool("i'm bleach");
-    CleaningTool* water = new CleaningTool("i'm water");
-
-    cleaningTools.insert(RAG, rag);
-    cleaningTools.insert(BLEACH, bleach);
-    cleaningTools.insert(WATER, water);
 }
 
 

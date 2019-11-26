@@ -40,4 +40,13 @@ void Evidence::setPixmaps(QPixmap dirty,
     this->clean_highlighted = cleanSelected;
 }
 
-
+QPixmap* Evidence::getIcon(){
+    switch(cleanState){
+    case CLEAN:
+        return &clean;
+    case DIRTY:
+        return &dirty;
+    case SEMICLEAN:
+        return &semiclean;
+    }
+}

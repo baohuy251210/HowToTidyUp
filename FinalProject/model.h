@@ -30,7 +30,6 @@ public:
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
-    void initializeTools();
 };
 
 #endif // MODEL_H

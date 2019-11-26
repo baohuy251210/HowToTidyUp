@@ -35,6 +35,7 @@ private:
     void evidenceHovered(EvidenceEnum evidenceName);
     void setupPixmaps();
     void setupEvidence();
+    void initializeTools();
     void initializeEvidence();
 };
 

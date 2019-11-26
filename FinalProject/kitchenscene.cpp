@@ -10,6 +10,7 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
 {
     ui->setupUi(this);\
     InitializeWidgets();
+    initializeTools();
     initializeEvidence();
 
     setupConnections();
@@ -40,6 +41,24 @@ void KitchenScene::evidenceClickedSlot(EvidenceEnum evidenceName){
 void KitchenScene::setupPixmaps(){
     ui->knifeLabel->setType(KNIFE);
     ui->knifeLabel->setModel(model->getEvidence(KNIFE));
+}
+
+void KitchenScene::initializeTools(){
+    CleaningTool* glove = new CleaningTool("click on things for more info");
+    CleaningTool* rag = new CleaningTool("i'm a rag");
+    CleaningTool* bleach = new CleaningTool("i'm bleach");
+    CleaningTool* water = new CleaningTool("i'm water");
+
+    glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
+    rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
+    bleach->setPixmaps(QPixmap(":/art/tools/bleach"),QPixmap(":/art/tools/bleach"));
+    water->setPixmaps(QPixmap(":/art/tools/water"),QPixmap(":/art/tools/water"));
+
+    ui->toolbarWidget->glove->setModel(glove);
+
+    model->addCleaningTool(RAG, rag);
+    model->addCleaningTool(BLEACH, bleach);
+    model->addCleaningTool(WATER, water);
 }
 
 void KitchenScene::initializeEvidence(){
