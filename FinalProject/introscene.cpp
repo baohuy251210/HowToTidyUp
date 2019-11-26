@@ -45,7 +45,7 @@ void IntroScene::displayNextContext(){
         delayTimer->stop();
         timer->stop();
         qDebug() << "intro done";
-        emit changeScene(MAINMENU);
+        emit changeScene(KITCHEN);
         return;
     }
     else delayTimer->setInterval(5000);
