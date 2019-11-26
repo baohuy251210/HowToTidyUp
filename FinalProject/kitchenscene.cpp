@@ -28,6 +28,7 @@ void KitchenScene::InitializeWidgets(){
 }
 void KitchenScene::setupConnections(){
     connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
+    connect(ui->toolbarWidget->glove, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
     connect(model, &Model::clearEvidenceSelections, ui->evidenceDialog, &itemDialog::clearEvidenceSlot);
     connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
@@ -58,6 +59,13 @@ void KitchenScene::initializeTools(){
     oxiclean->setPixmaps(QPixmap(":/art/tools/oxiclean"), QPixmap(":/art/tools/oxiclean"));
     nailPolishRemover->setPixmaps(QPixmap(":/art/tools/nailpolishremover"), QPixmap(":/art/tools/nailpolishremover"));
 
+    ui->toolbarWidget->glove->setType(GLOVE);
+    ui->toolbarWidget->rag->setType(RAG);
+    ui->toolbarWidget->bleach->setType(BLEACH);
+    ui->toolbarWidget->water->setType(WATER);
+    ui->toolbarWidget->oxiclean->setType(OXICLEAN);
+    ui->toolbarWidget->nailpolish_remover->setType(NAILPOLISHREMOVER);
+
     ui->toolbarWidget->glove->setModel(glove);
     ui->toolbarWidget->glove->highlightTool();
     ui->toolbarWidget->rag->setModel(rag);
@@ -65,6 +73,8 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->water->setModel(water);
     ui->toolbarWidget->oxiclean->setModel(oxiclean);
     ui->toolbarWidget->nailpolish_remover->setModel(nailPolishRemover);
+
+
 
 
     model->addCleaningTool(RAG, rag);
@@ -86,4 +96,8 @@ void KitchenScene::initializeEvidence(){
     ui->knifeLabel->setModel(model->getEvidence(KNIFE));
     knife->setStartValues({BLEACH, RAG, WATER}, "I'm a knife!");
     model->addEvidence(KNIFE, knife);
+}
+
+void KitchenScene::unselectTool(){
+
 }

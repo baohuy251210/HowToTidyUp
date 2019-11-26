@@ -25,6 +25,8 @@ signals:
     void signalUseToolAndEvidence(EvidenceEnum);
 public slots:
     void evidenceClickedSlot(EvidenceEnum);
+    void unselectTool();
+
 private:
     Ui::KitchenScene *ui;
     ToolbarWidget* cleaningTools;

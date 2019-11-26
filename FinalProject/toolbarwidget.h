@@ -17,6 +17,7 @@ public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
 
+
     CleaningToolView* glove;
     CleaningToolView* water;
     CleaningToolView* bleach;
