@@ -14,17 +14,18 @@ MainWindow::MainWindow(QWidget *parent)
     initializeModel();
     initializeScenes();
     startThemeMusic();
-    currentScene = introScene;
+    currentScene = mainmenuScene;
     setupConnections();
     ui->SceneContainer->addWidget(currentScene);
 }
 
 void MainWindow::initializeScenes(){
-    introScene = new IntroScene(this);
+    mainmenuScene = new MainMenuScene(this);
 }
 
 void MainWindow::setupConnections(){
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
+
 }
 
 MainWindow::~MainWindow(){
@@ -48,6 +49,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     delete currentScene;
     switch (sceneEnum){
     case INTRO1:
+        introScene = new IntroScene(this);
         currentScene = introScene;
         break;
     case KITCHEN:

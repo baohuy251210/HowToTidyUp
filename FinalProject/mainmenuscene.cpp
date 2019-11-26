@@ -56,7 +56,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     bodyDef.type = bodyDef2.type = bodyDef3.type = b2_dynamicBody;
     bodyDef.position.Set(900.0f, 50.0f);
     bodyDef2.position.Set(950.0f, 60.0f);
-    bodyDef3.position.Set(800.0f, 90.0f);
+    bodyDef3.position.Set(700.0f, 100.0f);
     bodyDef3.linearVelocity = bodyDef2.linearVelocity = bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
     bodyDef3.angularVelocity = bodyDef2.angularVelocity = bodyDef.angularVelocity = 0.0f;
 
@@ -113,7 +113,7 @@ void MainMenuScene::fadeWhiteFlash(){
 
 void MainMenuScene::on_newGameButton_clicked()
 {
-    emit changeScene(KITCHEN);
+    emit changeScene(INTRO1);
 }
 
 //Method gained from this Stack overflow entry:
@@ -122,7 +122,6 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     QPushButton* target = ui->newGameButton;
     if(obj == (QObject*)target){
         if(e->type() == QEvent::Enter){
-
             ui->aMurder->setVisible(true);
         }else if(e->type() == QEvent::Leave){
             ui->aMurder->setVisible(false);
@@ -178,9 +177,20 @@ void MainMenuScene::updateWorld(){
     b2Vec2 force3(direction2?frc:-frc, 250.0f);
 
     //body->SetAwake(true);
+    if(updates % 7 == 0){
+
+    }
+    else if(updates % 5 == 0){
+
+    }
+    else if (updates % 9 == 0) {
+
+    }
+
     body->ApplyForce(force, body->GetWorldCenter(), true);
     body2->ApplyForce(force2, body2->GetWorldCenter(), true);
     body3->ApplyForce(force3, body3->GetWorldCenter(), true);
+
 
 
     // Instruct the world to perform a single step of simulation.
