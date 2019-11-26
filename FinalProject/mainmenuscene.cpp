@@ -54,9 +54,9 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     b2BodyDef bodyDef;
     b2BodyDef bodyDef2, bodyDef3;
     bodyDef.type = bodyDef2.type = bodyDef3.type = b2_dynamicBody;
-    bodyDef.position.Set(900.0f, 10.0f);
-    bodyDef2.position.Set(700.0f, 10.0f);
-    bodyDef3.position.Set(800.0f, 1.0f);
+    bodyDef.position.Set(900.0f, 50.0f);
+    bodyDef2.position.Set(950.0f, 60.0f);
+    bodyDef3.position.Set(800.0f, 90.0f);
     bodyDef3.linearVelocity = bodyDef2.linearVelocity = bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
     bodyDef3.angularVelocity = bodyDef2.angularVelocity = bodyDef.angularVelocity = 0.0f;
 
@@ -142,6 +142,8 @@ void MainMenuScene::updateWorld(){
 
     static int updates = 0;
     static int direction = 1;
+    static int direction1 = 1;
+    static int direction2 = 1;
     updates ++;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
@@ -164,14 +166,16 @@ void MainMenuScene::updateWorld(){
     //https://www.youtube.com/watch?v=bJJbQIoJeFc
     //https://natureofcode.com/book/chapter-5-physics-libraries/#chapter05_section12
     int frc = rand() % 5000;
-    if(updates % 30 == 0) {
+    if(updates % 15 == 0) {
         direction = rand() % 2;
+        direction1 = rand() % 2;
+        direction2 = rand() % 2;
     }
     //qDebug() << "Frc: " << frc << " dir: " << direction;
 
     b2Vec2 force(direction?frc:-frc, 500.0f);
-    b2Vec2 force2(direction?frc:-frc, 100.0f);
-    b2Vec2 force3(direction?frc:-frc, 250.0f);
+    b2Vec2 force2(direction1?frc:-frc, 100.0f);
+    b2Vec2 force3(direction2?frc:-frc, 250.0f);
 
     //body->SetAwake(true);
     body->ApplyForce(force, body->GetWorldCenter(), true);
