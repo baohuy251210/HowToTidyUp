@@ -13,8 +13,9 @@ public:
     void setPixmaps(QPixmap icon, QPixmap icon_selected);
     QPixmap icon;
     QPixmap icon_selected;
-private:
     bool isSelected;
+
+private:
     QString description;
 
 };

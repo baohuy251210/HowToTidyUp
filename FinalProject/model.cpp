@@ -36,8 +36,11 @@ void Model::addCleaningTool(Tools type, CleaningTool* tool){
 void Model::evidenceClicked(EvidenceEnum evidence){
     selectedEvidence = evidence;
     emit clearEvidenceSelections();
-    emit setSelected(evidence);
-    emit updateDialogBoxSignal(evidences[evidence]);
+    if (evidences[evidence]->isSelected){
+        emit setSelected(evidence);
+        emit updateDialogBoxSignal(evidences[evidence]);
+    }
+
 }
 
 Evidence* Model::getEvidence(EvidenceEnum type){

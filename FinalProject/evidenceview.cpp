@@ -18,6 +18,30 @@ void EvidenceView::setType(EvidenceEnum type){
 
 void EvidenceView::enterEvent ( QEvent * event )
 {
+    highlightEvidence();
+}
+
+void EvidenceView::leaveEvent ( QEvent * event )
+{
+    if (!this->model->isSelected){
+        unhighlightEvidence();
+    }
+
+}
+
+void EvidenceView::mouseReleaseEvent ( QMouseEvent * event )
+{
+    this->model->isSelected = !this->model->isSelected;
+    if (this->model->isSelected){
+        highlightEvidence();
+    } else {
+        unhighlightEvidence();
+    }
+
+    emit clickedSignal(name);
+}
+
+void EvidenceView::highlightEvidence(){
     switch(cleanState){
     case CLEAN:
         this->setPixmap(model->clean_highlighted);
@@ -31,8 +55,7 @@ void EvidenceView::enterEvent ( QEvent * event )
     }
 }
 
-void EvidenceView::leaveEvent ( QEvent * event )
-{
+void EvidenceView::unhighlightEvidence(){
     switch(cleanState){
     case CLEAN:
         this->setPixmap(model->clean);
@@ -44,11 +67,6 @@ void EvidenceView::leaveEvent ( QEvent * event )
         this->setPixmap(model->dirty);
         break;
     }
-}
-
-void EvidenceView::mouseReleaseEvent ( QMouseEvent * event )
-{
-    emit clickedSignal(name);
 }
 
 void EvidenceView::setState(EvidenceEnum evidence, CleanState state){

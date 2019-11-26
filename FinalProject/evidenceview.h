@@ -25,6 +25,8 @@ private:
 
     CleanState cleanState;
     bool isSelected;
+    void highlightEvidence();
+    void unhighlightEvidence();
 
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;

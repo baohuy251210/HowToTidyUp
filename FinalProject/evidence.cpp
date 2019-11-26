@@ -5,7 +5,7 @@
 #include "ToolsEnum.cpp"
 #include <QDebug>
 
-Evidence::Evidence(): cleanState(DIRTY)
+Evidence::Evidence(): isSelected(false), cleanState(DIRTY)
 {
     usedTools.clear();
 }

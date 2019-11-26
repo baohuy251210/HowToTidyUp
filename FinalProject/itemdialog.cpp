@@ -15,4 +15,10 @@ itemDialog::~itemDialog()
 
 void itemDialog::setEvidence(Evidence* evidence){
     ui->itemDescription->setText(evidence->description);
+    ui->itemPicture->setPixmap(*evidence->getIcon());
+}
+
+void itemDialog::clearEvidenceSlot(){
+    ui->itemDescription->setText("");
+    ui->itemPicture->clear();
 }

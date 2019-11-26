@@ -31,6 +31,7 @@ public:
     QString description;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
     QPixmap* getIcon();
+    bool isSelected;
 private:
      void nothing();
     QVector<Tools> correctTools;

@@ -14,6 +14,7 @@ class CleaningToolView : public QLabel
 public:
     explicit CleaningToolView(QWidget *parent = nullptr);
     void setModel(CleaningTool* tool);
+    void highlightTool();
 signals:
 
 public slots:
