@@ -17,6 +17,7 @@ signals:
 
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
+    void toolClickedSlot(Tools tool);
 
 public:
     Model(QObject *parent);
@@ -30,6 +31,7 @@ public:
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
+
 };
 
 #endif // MODEL_H

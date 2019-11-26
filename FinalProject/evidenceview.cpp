@@ -2,7 +2,7 @@
 
 EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
     cleanState(DIRTY),
-    name(NONE),
+    name(EvidenceEnum::NONE),
     isSelected(false)
 {
 

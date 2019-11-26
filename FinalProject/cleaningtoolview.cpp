@@ -1,4 +1,5 @@
 #include "cleaningtoolview.h"
+#include "ToolsEnum.cpp"
 #include <qdebug.h>
 
 CleaningToolView::CleaningToolView(QWidget *parent) : QLabel(parent)
@@ -30,8 +31,18 @@ void CleaningToolView::mouseReleaseEvent(QMouseEvent* event){
     } else {
         this->setPixmap(model->icon);
     }
+
+    emit toolClickedSignal(name);
+}
+
+void CleaningToolView::setType(Tools type){
+    this->name = type;
 }
 
 void CleaningToolView::highlightTool(){
     this->setPixmap(model->icon_selected);
+}
+
+void CleaningToolView::unhighlightTool(){
+    this->setPixmap(model->icon);
 }
