@@ -220,6 +220,38 @@
     <pixmap resource="resources.qrc">:/art/effects/leaf</pixmap>
    </property>
   </widget>
+  <widget class="QLabel" name="leaf2">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>110</y>
+     <width>61</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/effects/leaf</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="leaf3">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>140</y>
+     <width>61</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/effects/leaf</pixmap>
+   </property>
+  </widget>
   <zorder>bgLabel</zorder>
   <zorder>newGameButton</zorder>
   <zorder>nameLabel</zorder>
@@ -227,6 +259,8 @@
   <zorder>continueButton</zorder>
   <zorder>maskLabel</zorder>
   <zorder>leaf1</zorder>
+  <zorder>leaf2</zorder>
+  <zorder>leaf3</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

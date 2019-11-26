@@ -2,6 +2,7 @@
 #include "ui_mainmenuscene.h"
 #include <kitchenscene.h>
 #include <QDebug>
+#include "Box2D/Box2D.h"
 
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
@@ -50,13 +51,18 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     groundBody->CreateFixture(&groundBox, 0.0f);
 
     // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;        
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(900.0f, 20.0f);
-    bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
-    bodyDef.angularVelocity = 0.0f;
+    b2BodyDef bodyDef;
+    b2BodyDef bodyDef2, bodyDef3;
+    bodyDef.type = bodyDef2.type = bodyDef3.type = b2_dynamicBody;
+    bodyDef.position.Set(900.0f, 10.0f);
+    bodyDef2.position.Set(700.0f, 10.0f);
+    bodyDef3.position.Set(800.0f, 1.0f);
+    bodyDef3.linearVelocity = bodyDef2.linearVelocity = bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
+    bodyDef3.angularVelocity = bodyDef2.angularVelocity = bodyDef.angularVelocity = 0.0f;
 
     body = world.CreateBody(&bodyDef);
+    body2 = world.CreateBody(&bodyDef2);
+    body3 = world.CreateBody(&bodyDef3);
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
@@ -64,10 +70,11 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
+    b2FixtureDef fixtureDef2, fixtureDef3;
+    fixtureDef3.shape = fixtureDef2.shape = fixtureDef.shape = &dynamicBox;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
+    fixtureDef3.density = fixtureDef2.density = fixtureDef.density = 1.0f;
 
     // Override the default friction.
     //fixtureDef.friction = 0.3f;
@@ -75,12 +82,13 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     //fixtureDef.restitution = 0.9f;
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
+    body2->CreateFixture(&fixtureDef2);
+    body3->CreateFixture(&fixtureDef3);
+
 
     srand(time(0));
 
-    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);
-
-
+    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);    
 
     QTimer::singleShot(30,this, &MainMenuScene::updateWorld);
 
@@ -146,6 +154,9 @@ void MainMenuScene::updateWorld(){
 
     // Now print the position and angle of the body.
     b2Vec2 position = body->GetWorldCenter();
+    b2Vec2 position2 = body2->GetWorldCenter();
+    b2Vec2 position3 = body3->GetWorldCenter();
+
     //qDebug() << "Position X: " << position.x << " Y: " << position.y;
 
     //Experimenting with apply force
@@ -159,8 +170,14 @@ void MainMenuScene::updateWorld(){
     //qDebug() << "Frc: " << frc << " dir: " << direction;
 
     b2Vec2 force(direction?frc:-frc, 500.0f);
+    b2Vec2 force2(direction?frc:-frc, 100.0f);
+    b2Vec2 force3(direction?frc:-frc, 250.0f);
+
     //body->SetAwake(true);
     body->ApplyForce(force, body->GetWorldCenter(), true);
+    body2->ApplyForce(force2, body2->GetWorldCenter(), true);
+    body3->ApplyForce(force3, body3->GetWorldCenter(), true);
+
 
     // Instruct the world to perform a single step of simulation.
     // It is generally best to keep the time step and iterations fixed.
@@ -168,15 +185,24 @@ void MainMenuScene::updateWorld(){
 
     //float32 angle = body->GetAngle();
 
-    emit(newPosition(position));
+    emit(newPosition(position, position2, position3));
+
+
     QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
     //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
 }
 
-void MainMenuScene::changeGeometry(b2Vec2 position){
+void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 position3){
     ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
+    ui->leaf2->setGeometry(position2.x, position2.y, ui->leaf2->width(),ui->leaf2->height());
+    ui->leaf3->setGeometry(position3.x, position3.y, ui->leaf3->width(),ui->leaf3->height());
+
 }
+
+
+
+
 
 
 
