@@ -28,12 +28,13 @@ public:
     CleaningToolView* rag;
     Ui::ToolbarWidget *ui;
 
-signals:
-
-private slots:
+public slots:
+    void displayDescriptionSlot(Tools);
+    void hideDescriptionSlot(Tools);
 
 
 private:
+    void setupConnections();
 
 };
 

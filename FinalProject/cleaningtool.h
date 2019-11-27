@@ -14,9 +14,10 @@ public:
     QPixmap icon;
     QPixmap icon_selected;
     bool isSelected;
+    QString description;
+
 
 private:
-    QString description;
 
 };
 

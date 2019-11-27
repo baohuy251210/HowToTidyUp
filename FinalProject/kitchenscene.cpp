@@ -15,6 +15,8 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
 
     setupConnections();
     setupPixmaps();
+
+
 }
 
 KitchenScene::~KitchenScene()
@@ -44,13 +46,13 @@ void KitchenScene::setupPixmaps(){
 }
 
 void KitchenScene::initializeTools(){
-    CleaningTool* glove = new CleaningTool("click on things for more info");
+    CleaningTool* glove = new CleaningTool("Glove: A convenient cleaning tool.  I can use it to find out more information about evidence.");
     glove->setSelected(true);
-    CleaningTool* rag = new CleaningTool("i'm a rag");
-    CleaningTool* bleach = new CleaningTool("i'm bleach");
-    CleaningTool* water = new CleaningTool("i'm water");
-    CleaningTool* oxiclean = new CleaningTool("I'm oxiclean!");
-    CleaningTool* nailPolishRemover = new CleaningTool("I'm nail polish remover");
+    CleaningTool* rag = new CleaningTool("Rag: An absorbent material good for cleaning up liquids and wiping down surfaces.");
+    CleaningTool* bleach = new CleaningTool("Bleach: A hydrogen peroxide based cleaner. Good for removing stains and eliminating odor.");
+    CleaningTool* water = new CleaningTool("Water: An old fashioned cleaning liquid that can still be useful on occasion.");
+    CleaningTool* oxiclean = new CleaningTool("OxiClean: A versitile stain remover containing an active ingredient known as sodium percarbonate. Known to cause hemoglobin proteins to degrade and no longer uptake oxygen");
+    CleaningTool* nailPolishRemover = new CleaningTool("Nail Polish Remover: An organic solvent that can remove the lipids from non-porous substrates if used properly");
 
     glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
     rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
