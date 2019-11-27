@@ -8,7 +8,8 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     ui(new Ui::KitchenScene),
     model(model)
 {
-    ui->setupUi(this);\
+    ui->setupUi(this);
+
     InitializeWidgets();
     initializeTools();
     initializeEvidence();
@@ -23,12 +24,19 @@ KitchenScene::~KitchenScene()
 }
 
 void KitchenScene::InitializeWidgets(){
-    cleaningTools = ui->toolbarWidget;
-
+    toolbarWidget = ui->toolbarWidget;
 }
+
 void KitchenScene::setupConnections(){
     connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
+
     connect(ui->toolbarWidget->glove, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->rag, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->bleach, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->water, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->oxiclean, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->nailpolish_remover, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+
     connect(model, &Model::clearEvidenceSelections, ui->evidenceDialog, &itemDialog::clearEvidenceSlot);
     connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
@@ -74,17 +82,14 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->oxiclean->setModel(oxiclean);
     ui->toolbarWidget->nailpolish_remover->setModel(nailPolishRemover);
 
-
-
-
     model->addCleaningTool(RAG, rag);
     model->addCleaningTool(BLEACH, bleach);
     model->addCleaningTool(WATER, water);
     model->addCleaningTool(OXICLEAN, oxiclean);
     model->addCleaningTool(NAILPOLISHREMOVER, nailPolishRemover);
-}
 
-void KitchenScene::initializeEvidence(){
+
+
     Evidence* knife = new Evidence();
     knife->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
                       QPixmap(":/art/interactables/knife_bloody_highlighted"),
@@ -94,8 +99,12 @@ void KitchenScene::initializeEvidence(){
                       QPixmap(":/art/interactables/knife_clean_highlighted") );
     ui->knifeLabel->setType(KNIFE);
     ui->knifeLabel->setModel(model->getEvidence(KNIFE));
-    knife->setStartValues({BLEACH, RAG, WATER}, "I'm a knife!");
+    knife->setStartValues({bleach, rag, water}, "I'm a knife!");
     model->addEvidence(KNIFE, knife);
+}
+
+void KitchenScene::initializeEvidence(){
+
 }
 
 void KitchenScene::unselectTool(){

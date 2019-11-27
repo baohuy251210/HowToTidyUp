@@ -47,6 +47,9 @@
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/tools/glove</pixmap>
    </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
@@ -54,7 +57,7 @@
   <widget class="CleaningToolView" name="ragButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>130</x>
      <y>20</y>
      <width>111</width>
      <height>101</height>
@@ -65,6 +68,9 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/tools/rag</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -85,6 +91,9 @@
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/tools/bleach</pixmap>
    </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
@@ -93,9 +102,9 @@
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>10</y>
-     <width>111</width>
-     <height>111</height>
+     <y>20</y>
+     <width>91</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="text">
@@ -114,7 +123,7 @@
   <widget class="CleaningToolView" name="nailPolishRemoverButton">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>510</x>
      <y>20</y>
      <width>111</width>
      <height>101</height>
@@ -126,6 +135,9 @@
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/tools/nailpolishremover</pixmap>
    </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
@@ -133,10 +145,10 @@
   <widget class="CleaningToolView" name="oxicleanButton">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>20</y>
-     <width>111</width>
-     <height>101</height>
+     <x>640</x>
+     <y>30</y>
+     <width>81</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="sizePolicy">

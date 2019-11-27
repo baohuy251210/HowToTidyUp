@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <cleaningtool.h>
+#include <ToolsEnum.cpp>
 
 class Evidence : public QObject
 {
@@ -18,7 +19,7 @@ public:
     Evidence();
     ~Evidence() override;
 
-    void setStartValues(QVector<Tools> correctTools, QString description);
+    void setStartValues(QVector<CleaningTool*> correctTools, QString description);
     void addUsedTool(CleaningTool* usedTool);
     void setPixmaps(QPixmap dirty,
                     QPixmap dirty_highlighted,
@@ -31,11 +32,14 @@ public:
     QString description;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
     QPixmap* getIcon();
+    EvidenceEnum getType();
+    void setType(EvidenceEnum type);
     bool isSelected;
+    QList<CleaningTool*>* getUsedTools();
 private:
      void nothing();
-    QVector<Tools> correctTools;
-
+    QVector<CleaningTool*> correctTools;
+    EvidenceEnum type;
     CleanState cleanState;
 
 };

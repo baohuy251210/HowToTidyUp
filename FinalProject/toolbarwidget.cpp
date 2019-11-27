@@ -16,6 +16,12 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
 
 }
 
+void ToolbarWidget::setModel(Model * model){
+    this->model = model;
+
+
+}
+
 ToolbarWidget::~ToolbarWidget()
 {
     delete ui;

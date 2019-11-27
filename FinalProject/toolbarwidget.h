@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ToolsEnum.cpp"
 #include "cleaningtoolview.h"
+#include "model.h"
 
 namespace Ui {
 class ToolbarWidget;
@@ -17,6 +18,7 @@ public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
 
+    void setModel(Model*);
 
     CleaningToolView* glove;
     CleaningToolView* water;
@@ -34,7 +36,7 @@ private slots:
 
 
 private:
-
+    Model* model;
 };
 
 #endif // TOOLBARWIDGET_H
