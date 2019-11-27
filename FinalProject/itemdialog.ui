@@ -28,6 +28,9 @@
      <height>64</height>
     </size>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(46, 52, 54);</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
    </property>
@@ -52,6 +55,9 @@
      <width>64</width>
      <height>64</height>
     </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(46, 52, 54);</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
@@ -78,6 +84,9 @@
      <height>64</height>
     </size>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(46, 52, 54);</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
    </property>
@@ -98,13 +107,13 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-color: rgb(46, 52, 54);</string>
+    <string notr="true">background-color: rgb(46, 52, 54);</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
    </property>
    <property name="text">
-    <string>picture</string>
+    <string/>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -124,6 +133,9 @@
    </property>
    <property name="text">
     <string>description</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
   <widget class="QLabel" name="bgLabel">

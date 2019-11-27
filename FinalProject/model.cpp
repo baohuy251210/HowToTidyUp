@@ -5,7 +5,8 @@
 
 Model::Model(QObject * parent) :
     QObject(parent),
-    selectedEvidence(EvidenceEnum::NONE){
+    selectedEvidence(EvidenceEnum::NONE),
+    selectedTool(GLOVE){
 
 }
 
@@ -34,16 +35,22 @@ void Model::addCleaningTool(Tools type, CleaningTool* tool){
 }
 
 void Model::toolClickedSlot(Tools tool){
-
+    selectedTool = tool;
 }
 
 void Model::evidenceClicked(EvidenceEnum evidence){
+
+    if(selectedTool != GLOVE && selectedTool != EMPTY){
+        evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
+    }
+
     if (selectedEvidence == evidence){
         evidences[evidence]->isSelected = false;
         selectedEvidence = NONE;
         emit clearEvidenceSelections();
         return;
     }
+
     if (selectedEvidence != NONE){
         evidences[selectedEvidence]->isSelected = false;
     } else {
@@ -55,8 +62,6 @@ void Model::evidenceClicked(EvidenceEnum evidence){
             emit updateDialogBoxSignal(evidences[evidence]);
         }
     }
-
-
 }
 
 Evidence* Model::getEvidence(EvidenceEnum type){

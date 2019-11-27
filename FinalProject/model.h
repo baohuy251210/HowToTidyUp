@@ -23,7 +23,6 @@ public:
     Model(QObject *parent);
     ~Model();
     void eraseAll();
-    Tools selectedTool;
     EvidenceEnum selectedEvidence;
     Evidence* getEvidence(EvidenceEnum type);
     void addCleaningTool(Tools type, CleaningTool* evidence);
@@ -31,6 +30,8 @@ public:
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
+
+    Tools selectedTool;
 
 };
 
