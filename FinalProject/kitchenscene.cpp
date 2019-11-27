@@ -30,6 +30,8 @@ void KitchenScene::InitializeWidgets(){
 }
 
 void KitchenScene::setupConnections(){
+    connect(this, &IScene::hideDialogSignal, model, &Model::hideDialogSlot);
+    connect(model, &Model::hideDialogSignal, ui->evidenceDialog, &itemDialog::hideDialogSlot );
     connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
 
     connect(ui->toolbarWidget->glove, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);

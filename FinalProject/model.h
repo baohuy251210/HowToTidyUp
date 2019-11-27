@@ -14,11 +14,11 @@ signals:
     void updateDialogBoxSignal(Evidence*);
     void clearEvidenceSelections();
     void setSelected(EvidenceEnum);
-
+    void hideDialogSignal();
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);
-
+    void hideDialogSlot();
 public:
     Model(QObject *parent);
     ~Model();

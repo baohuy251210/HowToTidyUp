@@ -28,3 +28,7 @@ void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString 
     appFont.setPointSize(size);
     textLbl->setFont(appFont);
 }
+
+void IScene::mouseReleaseEvent(QMouseEvent *event){
+    emit hideDialogSignal();
+}

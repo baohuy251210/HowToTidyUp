@@ -40,30 +40,34 @@ void Model::toolClickedSlot(Tools tool){
 
 void Model::evidenceClicked(EvidenceEnum evidence){
 
-    if(selectedTool != GLOVE && selectedTool != EMPTY){
+    if(selectedTool != GLOVE && selectedTool != EMPTY && !evidences[evidence]->usedTools.contains(cleaningTools[selectedTool])){
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
     }
 
-    if (selectedEvidence == evidence){
+    if (selectedEvidence == evidence && selectedTool == GLOVE){
         evidences[evidence]->isSelected = false;
         selectedEvidence = NONE;
         emit clearEvidenceSelections();
+        emit hideDialogSignal();
         return;
     }
 
     if (selectedEvidence != NONE){
         evidences[selectedEvidence]->isSelected = false;
-    } else {
-        selectedEvidence = evidence;
-        evidences[evidence]->isSelected = true;
-        emit clearEvidenceSelections();
-        if (evidences[evidence]->isSelected){
-            emit setSelected(evidence);
-            emit updateDialogBoxSignal(evidences[evidence]);
-        }
     }
+
+    selectedEvidence = evidence;
+    evidences[evidence]->isSelected = true;
+    emit clearEvidenceSelections();
+    emit setSelected(evidence);
+    emit updateDialogBoxSignal(evidences[evidence]);
+
 }
 
 Evidence* Model::getEvidence(EvidenceEnum type){
     return evidences[type];
+}
+
+void Model::hideDialogSlot(){
+    emit hideDialogSignal();
 }
