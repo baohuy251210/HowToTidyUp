@@ -14,11 +14,12 @@ public:
     void highlightTool();
     void unhighlightTool();
     void setType(Tools type);
+    QCursor curCursor;
 
     CleaningTool* model;
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
-    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
 private:
     Tools name;
 signals:

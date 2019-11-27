@@ -32,10 +32,11 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
    // connect(this, &MainMenuScene::showFootprint, this, &MainMenuScene::showFootprintSlot);
 
     ui->continueButton->installEventFilter(this);
+   /*
     ui->footprint1->setVisible(false);
     ui->footprint2->setVisible(false);
     ui->footprint3->setVisible(false);
-
+    */
     //Start Box2D
 
     // Define the ground body.
