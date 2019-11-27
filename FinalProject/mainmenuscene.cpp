@@ -29,6 +29,12 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->aMurder->setVisible(false);
     drawTextLabel(ui->aMurder, 50, "Fiendish", "Italic");
 
+   // connect(this, &MainMenuScene::showFootprint, this, &MainMenuScene::showFootprintSlot);
+
+    ui->continueButton->installEventFilter(this);
+    ui->footprint1->setVisible(false);
+    ui->footprint2->setVisible(false);
+    ui->footprint3->setVisible(false);
 
     //Start Box2D
 
@@ -119,15 +125,32 @@ void MainMenuScene::on_newGameButton_clicked()
 //Method gained from this Stack overflow entry:
 //https://stackoverflow.com/questions/9261175/how-to-emit-a-signal-from-a-qpushbutton-when-the-mouse-hovers-over-it
 bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
+
     QPushButton* target = ui->newGameButton;
+    QPushButton* continueButton = ui->continueButton;
+
     if(obj == (QObject*)target){
-        if(e->type() == QEvent::Enter){
+        if(e->type() == QEvent::Enter) {
+
             ui->aMurder->setVisible(true);
+
         }else if(e->type() == QEvent::Leave){
+
             ui->aMurder->setVisible(false);
         }
     }
-    else{
+    else if (obj == (QObject*) continueButton)
+    {
+        if(e->type() == QEvent::Enter){
+
+            //QTimer::singleShot(500, this, SLOT(showFootprintSlot()));
+            QTimer::singleShot(500, this, [this] () {showFootprintSlot(ui->footprint1); });
+            QTimer::singleShot(1000, this, [this] () {showFootprintSlot(ui->footprint2); });
+            QTimer::singleShot(1500, this, [this] () {showFootprintSlot(ui->footprint3); });
+        }
+    }
+    else
+    {
         return QWidget::eventFilter(obj, e);
     }
 }
@@ -212,6 +235,10 @@ void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 pos
     ui->leaf2->setGeometry(position2.x, position2.y, ui->leaf2->width(),ui->leaf2->height());
     ui->leaf3->setGeometry(position3.x, position3.y, ui->leaf3->width(),ui->leaf3->height());
 
+}
+
+void MainMenuScene::showFootprintSlot(QLabel* footprint) {
+    footprint->setVisible(true);
 }
 
 

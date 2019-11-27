@@ -23,9 +23,6 @@ public:
     b2Body* body2;
     b2Body* body3;
 
-
-
-
 public: signals:
     void newPosition(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3);
 
@@ -34,6 +31,7 @@ private slots:
     void on_continueButton_clicked();
     void updateWorld();
     void changeGeometry(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3);
+    void showFootprintSlot(QLabel* footprint);
 
 
 
