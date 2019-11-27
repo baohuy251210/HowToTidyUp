@@ -15,6 +15,7 @@ class itemDialog : public QWidget
 public slots:
     void setEvidence(Evidence* evidence);
     void clearEvidenceSlot();
+    void hideDialogSlot();
 public:
     explicit itemDialog(QWidget *parent = nullptr);
     ~itemDialog();

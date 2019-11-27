@@ -17,6 +17,8 @@ void CleaningToolView::setModel(CleaningTool *tool){
 void CleaningToolView::enterEvent(QEvent* event){
     qDebug() << "enter event" << endl;
    // this->setPixmap(model->icon_selected);
+    this->setPixmap(model->icon_selected);
+    emit displayDescription(name);
 }
 
 void CleaningToolView::leaveEvent(QEvent* event){
@@ -24,6 +26,7 @@ void CleaningToolView::leaveEvent(QEvent* event){
     if (!this->model->isSelected){
       //  this->setPixmap(model->icon);
     }
+    emit hideDescription(name);
 }
 
 void CleaningToolView::mousePressEvent(QMouseEvent* event){

@@ -1,10 +1,6 @@
 #include "mainwindow.h"
-
 #include <QApplication>
-
-
 #include "Box2D/Box2D.h"
-
 #include <stdio.h>
 
 int main(int argc, char *argv[])
@@ -14,5 +10,4 @@ int main(int argc, char *argv[])
     w.setFixedSize(1024,768);
     w.show();
     return a.exec();
-
 }

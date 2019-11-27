@@ -14,16 +14,15 @@ signals:
     void updateDialogBoxSignal(Evidence*);
     void clearEvidenceSelections();
     void setSelected(EvidenceEnum);
-
+    void hideDialogSignal();
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);
-
+    void hideDialogSlot();
 public:
     Model(QObject *parent);
     ~Model();
     void eraseAll();
-    Tools selectedTool;
     EvidenceEnum selectedEvidence;
     Evidence* getEvidence(EvidenceEnum type);
     void addCleaningTool(Tools type, CleaningTool* evidence);
@@ -31,6 +30,8 @@ public:
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
+
+    Tools selectedTool;
 
 };
 

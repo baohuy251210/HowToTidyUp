@@ -14,7 +14,7 @@ Evidence::~Evidence(){
 
 }
 
-void Evidence::setStartValues(QVector<Tools> correctTools, QString newDescription){
+void Evidence::setStartValues(QVector<CleaningTool*> correctTools, QString newDescription){
     this->correctTools = correctTools;
     this->description = newDescription;
 }
@@ -49,4 +49,16 @@ QPixmap* Evidence::getIcon(){
     case SEMICLEAN:
         return &semiclean;
     }
+}
+
+void Evidence::setType(EvidenceEnum type){
+    this->type = type;
+}
+
+EvidenceEnum Evidence::getType(){
+    return this->type;
+}
+
+QList<CleaningTool*>* Evidence::getUsedTools(){
+    return &usedTools;
 }

@@ -24,6 +24,8 @@ private:
     Tools name;
 signals:
     void  toolClickedSignal(Tools);
+    void displayDescription(Tools);
+    void hideDescription(Tools);
 public slots:
 };
 

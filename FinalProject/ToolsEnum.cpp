@@ -2,7 +2,7 @@
 #define TOOLSENUM_CPP
 
 enum Tools{
-
+    EMPTY,
     GLOVE,
     WATER,
     NAILPOLISHREMOVER,

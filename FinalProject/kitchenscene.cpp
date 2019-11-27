@@ -8,13 +8,16 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     ui(new Ui::KitchenScene),
     model(model)
 {
-    ui->setupUi(this);\
+    ui->setupUi(this);
+
     InitializeWidgets();
     initializeTools();
     initializeEvidence();
 
     setupConnections();
     setupPixmaps();
+
+
 }
 
 KitchenScene::~KitchenScene()
@@ -23,12 +26,21 @@ KitchenScene::~KitchenScene()
 }
 
 void KitchenScene::InitializeWidgets(){
-    cleaningTools = ui->toolbarWidget;
-
+    toolbarWidget = ui->toolbarWidget;
 }
+
 void KitchenScene::setupConnections(){
+    connect(this, &IScene::hideDialogSignal, model, &Model::hideDialogSlot);
+    connect(model, &Model::hideDialogSignal, ui->evidenceDialog, &itemDialog::hideDialogSlot );
     connect(ui->knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
+
     connect(ui->toolbarWidget->glove, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->rag, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->bleach, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->water, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->oxiclean, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+    connect(ui->toolbarWidget->nailpolish_remover, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
+
     connect(model, &Model::clearEvidenceSelections, ui->evidenceDialog, &itemDialog::clearEvidenceSlot);
     connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
@@ -44,13 +56,13 @@ void KitchenScene::setupPixmaps(){
 }
 
 void KitchenScene::initializeTools(){
-    CleaningTool* glove = new CleaningTool("click on things for more info");
+    CleaningTool* glove = new CleaningTool("Glove: A convenient cleaning tool.  I can use it to find out more information about evidence.");
     glove->setSelected(true);
-    CleaningTool* rag = new CleaningTool("i'm a rag");
-    CleaningTool* bleach = new CleaningTool("i'm bleach");
-    CleaningTool* water = new CleaningTool("i'm water");
-    CleaningTool* oxiclean = new CleaningTool("I'm oxiclean!");
-    CleaningTool* nailPolishRemover = new CleaningTool("I'm nail polish remover");
+    CleaningTool* rag = new CleaningTool("Rag: An absorbent material good for cleaning up liquids and wiping down surfaces.");
+    CleaningTool* bleach = new CleaningTool("Bleach: A hydrogen peroxide based cleaner. Good for removing stains and eliminating odor.");
+    CleaningTool* water = new CleaningTool("Water: An old fashioned cleaning liquid that can still be useful on occasion.");
+    CleaningTool* oxiclean = new CleaningTool("OxiClean: A versitile stain remover containing an active ingredient known as sodium percarbonate. Known to cause hemoglobin proteins to degrade and no longer uptake oxygen.");
+    CleaningTool* nailPolishRemover = new CleaningTool("Nail Polish Remover: An organic solvent that can remove the lipids from non-porous substrates if used properly.");
 
     glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
     rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
@@ -74,17 +86,14 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->oxiclean->setModel(oxiclean);
     ui->toolbarWidget->nailpolish_remover->setModel(nailPolishRemover);
 
-
-
-
     model->addCleaningTool(RAG, rag);
     model->addCleaningTool(BLEACH, bleach);
     model->addCleaningTool(WATER, water);
     model->addCleaningTool(OXICLEAN, oxiclean);
     model->addCleaningTool(NAILPOLISHREMOVER, nailPolishRemover);
-}
 
-void KitchenScene::initializeEvidence(){
+
+
     Evidence* knife = new Evidence();
     knife->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),
                       QPixmap(":/art/interactables/knife_bloody_highlighted"),
@@ -94,8 +103,12 @@ void KitchenScene::initializeEvidence(){
                       QPixmap(":/art/interactables/knife_clean_highlighted") );
     ui->knifeLabel->setType(KNIFE);
     ui->knifeLabel->setModel(model->getEvidence(KNIFE));
-    knife->setStartValues({BLEACH, RAG, WATER}, "I'm a knife!");
+    knife->setStartValues({bleach, rag, water}, "I'm a knife!");
     model->addEvidence(KNIFE, knife);
+}
+
+void KitchenScene::initializeEvidence(){
+
 }
 
 void KitchenScene::unselectTool(){

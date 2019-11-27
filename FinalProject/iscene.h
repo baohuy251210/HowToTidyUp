@@ -25,11 +25,13 @@ public:
 signals:
     void changeScene(Scene sceneName);
     void addEvidence(Evidence* evidenceName);
+    void hideDialogSignal();
 public slots:
 
 private:
     /*Font database for the app*/
     QFontDatabase fontFamily;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // ISCENE_H

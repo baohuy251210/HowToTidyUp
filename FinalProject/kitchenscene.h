@@ -8,6 +8,7 @@
 #include <EvidenceEnum.cpp>
 #include <evidence.h>
 #include <model.h>
+#include <cleaningtoolview.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,7 +30,7 @@ public slots:
 
 private:
     Ui::KitchenScene *ui;
-    ToolbarWidget* cleaningTools;
+    ToolbarWidget* toolbarWidget;
     Model* model;
 
     void InitializeWidgets();
