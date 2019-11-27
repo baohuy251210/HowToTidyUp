@@ -214,9 +214,6 @@
    <property name="scaledContents">
     <bool>true</bool>
    </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
@@ -253,9 +250,6 @@
    <property name="scaledContents">
     <bool>true</bool>
    </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
@@ -288,9 +282,6 @@
    </property>
    <property name="textFormat">
     <enum>Qt::PlainText</enum>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -367,9 +358,6 @@
    <property name="scaledContents">
     <bool>true</bool>
    </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
@@ -387,10 +375,13 @@
     </rect>
    </property>
    <property name="font">
-   <font>
-    <pointsize>8</pointsize>
-   </font>
-  </property>
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(136, 138, 133);</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
    </property>

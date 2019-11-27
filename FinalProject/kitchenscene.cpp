@@ -61,8 +61,8 @@ void KitchenScene::initializeTools(){
     CleaningTool* rag = new CleaningTool("Rag: An absorbent material good for cleaning up liquids and wiping down surfaces.");
     CleaningTool* bleach = new CleaningTool("Bleach: A hydrogen peroxide based cleaner. Good for removing stains and eliminating odor.");
     CleaningTool* water = new CleaningTool("Water: An old fashioned cleaning liquid that can still be useful on occasion.");
-    CleaningTool* oxiclean = new CleaningTool("OxiClean: A versitile stain remover containing an active ingredient known as sodium percarbonate. Known to cause hemoglobin proteins to degrade and no longer uptake oxygen");
-    CleaningTool* nailPolishRemover = new CleaningTool("Nail Polish Remover: An organic solvent that can remove the lipids from non-porous substrates if used properly");
+    CleaningTool* oxiclean = new CleaningTool("OxiClean: A versitile stain remover containing an active ingredient known as sodium percarbonate. Known to cause hemoglobin proteins to degrade and no longer uptake oxygen.");
+    CleaningTool* nailPolishRemover = new CleaningTool("Nail Polish Remover: An organic solvent that can remove the lipids from non-porous substrates if used properly.");
 
     glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
     rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
