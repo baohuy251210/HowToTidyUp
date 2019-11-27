@@ -142,12 +142,14 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     }
     else if (obj == (QObject*) continueButton)
     {
-        if(e->type() == QEvent::Enter){
+        if(e->type() == QEvent::Enter){//change event to MouseButtonRelease to get click functionality
 
             //QTimer::singleShot(500, this, SLOT(showFootprintSlot()));
-            QTimer::singleShot(500, this, [this] () {showFootprintSlot(ui->footprint1); });
-            QTimer::singleShot(1000, this, [this] () {showFootprintSlot(ui->footprint2); });
-            QTimer::singleShot(1500, this, [this] () {showFootprintSlot(ui->footprint3); });
+            QTimer::singleShot(1, this, [this] () {showFootprintSlot(ui->footprint1); });
+            QTimer::singleShot(500, this, [this] () {showFootprintSlot(ui->footprint2); });
+            QTimer::singleShot(1000, this, [this] () {showFootprintSlot(ui->footprint3); });
+            //uncomment to change scene to kitchen at end of animation
+            //QTimer::singleShot(1500, this, [this] () {emit changeScene(KITCHEN); });
         }
     }
     else

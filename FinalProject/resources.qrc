@@ -37,6 +37,8 @@
         <file alias="leaf">Art/Effects/leaf_01.png</file>
         <file>Art/Effects/leaf rotate 1.png</file>
         <file>Art/Effects/leaf rotate 2.png</file>
+        <file>Art/Effects/bootPrintRight.png</file>
+        <file>Art/Effects/bootPrintLeft.png</file>
     </qresource>
     <qresource prefix="/introdata">
         <file alias="intro">IntroData/intro.json</file>
