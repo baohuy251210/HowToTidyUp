@@ -41,7 +41,7 @@ void Model::toolClickedSlot(Tools tool){
 void Model::evidenceClicked(EvidenceEnum evidence){
 
     if(selectedTool != GLOVE && selectedTool != EMPTY){
-        evidences[selectedEvidence]->addUsedTool(cleaningTools[selectedTool]);
+        evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
     }
 
     if (selectedEvidence == evidence){
@@ -54,9 +54,6 @@ void Model::evidenceClicked(EvidenceEnum evidence){
     if (selectedEvidence != NONE){
         evidences[selectedEvidence]->isSelected = false;
     } else {
-        if(selectedTool != GLOVE && selectedTool != EMPTY){
-            evidences[selectedEvidence]->addUsedTool(cleaningTools[selectedTool]);
-        }
         selectedEvidence = evidence;
         evidences[evidence]->isSelected = true;
         emit clearEvidenceSelections();
