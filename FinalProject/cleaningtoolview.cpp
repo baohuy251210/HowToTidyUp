@@ -15,35 +15,14 @@ void CleaningToolView::setModel(CleaningTool *tool){
 }
 
 void CleaningToolView::enterEvent(QEvent* event){
-    qDebug() << "enter event" << endl;
-   // this->setPixmap(model->icon_selected);
-    this->setPixmap(model->icon_selected);
     emit displayDescription(name);
 }
 
 void CleaningToolView::leaveEvent(QEvent* event){
-    qDebug() << "leave event" << endl;
-    if (!this->model->isSelected){
-      //  this->setPixmap(model->icon);
-    }
     emit hideDescription(name);
 }
 
 void CleaningToolView::mousePressEvent(QMouseEvent* event){
-    qDebug() << "click event" << endl;
-    if(event->button() == Qt::LeftButton && this->model->isSelected == false){
-        highlightTool();
-    }
-    else if (event->button() == Qt::LeftButton && this->model->isSelected == true) {
-        unhighlightTool();
-    }
-//    this->model->isSelected = !this->model->isSelected;
-//    if (this->model->isSelected){
-//        highlightTool();
-//    } else {
-//        this->setPixmap(model->icon);
-//    }
-
     emit toolClickedSignal(name);
 }
 
@@ -52,15 +31,30 @@ void CleaningToolView::setType(Tools type){
 }
 
 void CleaningToolView::highlightTool(){
-    this->setPixmap(model->icon_selected);
+    this->setPixmap(model->getIconHighlighted());
     this->model->isSelected = true;
 
-    QCursor cursor(model->icon);
+    QCursor cursor;
+    if(name == GLOVE){
+        cursor = QCursor(model->getCursor(), 87,26);
+    }else{
+        cursor = QCursor(model->getCursor(), 17, 18);
+    }
+
     QApplication::setOverrideCursor(cursor);
 }
 
+void CleaningToolView::clearSelectionSlot(){
+    unhighlightTool();
+}
+
 void CleaningToolView::unhighlightTool(){
-    this->setPixmap(model->icon);
+    this->setPixmap(model->getIcon());
     this->model->isSelected = false;
-    //QApplication::restoreOverrideCursor();
+}
+
+void CleaningToolView::setSelectedSlot(Tools tool){
+    if(this->name == tool){
+        highlightTool();
+    }
 }

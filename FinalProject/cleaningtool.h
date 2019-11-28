@@ -11,9 +11,9 @@ public:
     CleaningTool(QString description);
     void setSelected(bool);
     QPixmap getIcon();
-    void setPixmaps(QPixmap icon, QPixmap icon_selected);
-    QPixmap icon;
-    QPixmap icon_selected;
+    QPixmap getCursor();
+    QPixmap getIconHighlighted();
+    void setPixmaps(QPixmap icon, QPixmap icon_selected, QPixmap cursor);
     bool isSelected;
     QString description;
 
@@ -21,6 +21,9 @@ public:
     Tools getType();
 
 private:
+    QPixmap cursor;
+    QPixmap icon;
+    QPixmap icon_selected;
 
     Tools type;
 

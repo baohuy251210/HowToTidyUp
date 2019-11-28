@@ -35,6 +35,8 @@ void Model::addCleaningTool(Tools type, CleaningTool* tool){
 }
 
 void Model::toolClickedSlot(Tools tool){
+    emit clearToolSelections();
+    emit setSelectedTool(tool);
     selectedTool = tool;
 }
 
@@ -59,7 +61,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
     selectedEvidence = evidence;
     evidences[evidence]->isSelected = true;
     emit clearEvidenceSelections();
-    emit setSelected(evidence);
+    emit setSelectedEvidence(evidence);
     emit updateDialogBoxSignal(evidences[evidence]);
 
 }

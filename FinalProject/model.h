@@ -13,8 +13,10 @@ class Model : public QObject
 signals:
     void updateDialogBoxSignal(Evidence*);
     void clearEvidenceSelections();
-    void setSelected(EvidenceEnum);
+    void setSelectedTool(Tools);
+    void setSelectedEvidence(EvidenceEnum);
     void hideDialogSignal();
+    void clearToolSelections();
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);

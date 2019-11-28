@@ -17,7 +17,6 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     setupConnections();
     setupPixmaps();
 
-
 }
 
 KitchenScene::~KitchenScene()
@@ -41,8 +40,22 @@ void KitchenScene::setupConnections(){
     connect(ui->toolbarWidget->oxiclean, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
     connect(ui->toolbarWidget->nailpolish_remover, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
 
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->glove, &CleaningToolView::setSelectedSlot);
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->rag, &CleaningToolView::setSelectedSlot);
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->bleach, &CleaningToolView::setSelectedSlot);
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->water, &CleaningToolView::setSelectedSlot);
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->oxiclean, &CleaningToolView::setSelectedSlot);
+    connect(model, &Model::setSelectedTool, ui->toolbarWidget->nailpolish_remover, &CleaningToolView::setSelectedSlot);
+
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->glove, &CleaningToolView::clearSelectionSlot);
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->rag, &CleaningToolView::clearSelectionSlot);
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->bleach, &CleaningToolView::clearSelectionSlot);
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->water, &CleaningToolView::clearSelectionSlot);
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->oxiclean, &CleaningToolView::clearSelectionSlot);
+    connect(model, &Model::clearToolSelections, ui->toolbarWidget->nailpolish_remover, &CleaningToolView::clearSelectionSlot);
+
     connect(model, &Model::clearEvidenceSelections, ui->evidenceDialog, &itemDialog::clearEvidenceSlot);
-    connect(model, &Model::setSelected, ui->knifeLabel, &EvidenceView::setSelected);
+    connect(model, &Model::setSelectedEvidence, ui->knifeLabel, &EvidenceView::setSelected);
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
 }
 
@@ -64,12 +77,12 @@ void KitchenScene::initializeTools(){
     CleaningTool* oxiclean = new CleaningTool("OxiClean: A versitile stain remover containing an active ingredient known as sodium percarbonate. Known to cause hemoglobin proteins to degrade and no longer uptake oxygen.");
     CleaningTool* nailPolishRemover = new CleaningTool("Nail Polish Remover: An organic solvent that can remove the lipids from non-porous substrates if used properly.");
 
-    glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"));
-    rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag"));
-    bleach->setPixmaps(QPixmap(":/art/tools/bleach"),QPixmap(":/art/tools/bleach"));
-    water->setPixmaps(QPixmap(":/art/tools/water"),QPixmap(":/art/tools/water"));
-    oxiclean->setPixmaps(QPixmap(":/art/tools/oxiclean"), QPixmap(":/art/tools/oxiclean"));
-    nailPolishRemover->setPixmaps(QPixmap(":/art/tools/nailpolishremover"), QPixmap(":/art/tools/nailpolishremover"));
+    glove->setPixmaps(QPixmap(":/art/tools/glove"),QPixmap(":/art/tools/glove_highlighted"),QPixmap(":/art/cursor/glove_cursor"));
+    rag->setPixmaps(QPixmap(":/art/tools/rag"),QPixmap(":/art/tools/rag_highlighted"),QPixmap(":/art/cursor/rag_cursor"));
+    bleach->setPixmaps(QPixmap(":/art/tools/bleach"),QPixmap(":/art/tools/bleach_highlighted"),QPixmap(":/art/cursor/bleach_cursor"));
+    water->setPixmaps(QPixmap(":/art/tools/water"),QPixmap(":/art/tools/water_highlighted"),QPixmap(":/art/cursor/water_cursor"));
+    oxiclean->setPixmaps(QPixmap(":/art/tools/oxiclean"), QPixmap(":/art/tools/oxiclean_highlighted"),QPixmap(":/art/cursor/oxiclean_cursor"));
+    nailPolishRemover->setPixmaps(QPixmap(":/art/tools/nailpolishremover"), QPixmap(":/art/tools/nailpolishremover_highlighted"),QPixmap(":/art/cursor/nailpolishremover_cursor"));
 
     ui->toolbarWidget->glove->setType(GLOVE);
     ui->toolbarWidget->rag->setType(RAG);

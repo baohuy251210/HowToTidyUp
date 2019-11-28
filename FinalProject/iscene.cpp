@@ -30,5 +30,5 @@ void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString 
 }
 
 void IScene::mouseReleaseEvent(QMouseEvent *event){
-    emit hideDialogSignal();
+    //emit hideDialogSignal();
 }

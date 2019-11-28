@@ -23,10 +23,12 @@ public:
 private:
     Tools name;
 signals:
-    void  toolClickedSignal(Tools);
+    void toolClickedSignal(Tools);
     void displayDescription(Tools);
     void hideDescription(Tools);
 public slots:
+    void clearSelectionSlot();
+    void setSelectedSlot(Tools tool);
 };
 
 #endif // CLEANINGTOOLVIEW_H

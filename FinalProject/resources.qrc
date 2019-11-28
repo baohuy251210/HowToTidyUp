@@ -12,6 +12,17 @@
         <file alias="knife_clean">Art/Interactables/knife_clean_01.png</file>
         <file alias="knife_clean_highlighted">Art/Interactables/knife_clean_highlighted_01.png</file>
         <file alias="plate_broken">Art/Interactables/plate_broken_01.png</file>
+        <file alias="plate_clean_highlighted">Art/Interactables/plate_clean_highlighted_01.png</file>
+        <file alias="plate_broken_highlighted">Art/Interactables/plate_broken_highlighted_01.png</file>
+        <file alias="oily_handprint_highlighted">Art/Interactables/oily_handprint_highlighted_01.png</file>
+        <file alias="oily_handprint_highlighted">Art/Interactables/oily_handprint_clean_highlighted_01.png</file>
+        <file alias="oily_handprint_01">Art/Interactables/oily_handprint_01.png</file>
+        <file alias="empty">Art/Interactables/empty.png</file>
+        <file alias="blood_wall_clean_highlighted">Art/Interactables/blood_wall_clean_highlighted_01.png</file>
+        <file alias="blood_handprint_clean_highlighted">Art/Interactables/blood_handprint_clean_highlighted_01.png</file>
+        <file alias="blood_footprint_highlighted">Art/Interactables/blood_footprint_highlighted_01.png</file>
+        <file alias="blood_footprint_clean_highlighted">Art/Interactables/blood_footprint_clean_highlighted_01.png</file>
+        <file alias="blood_floor_clean_highlighted">Art/Interactables/blood_floor_clean_highlighted_01.png</file>
     </qresource>
     <qresource prefix="/art/backgrounds">
         <file alias="Endgame1">Art/Backgrounds/Endgame_BG_01.png</file>
@@ -30,8 +41,18 @@
         <file alias="rag">Art/Tools/tool_rag_01.png</file>
         <file alias="vinegar">Art/Tools/tool_vinegar_01.png</file>
         <file alias="oxiclean">Art/Tools/tool-oxiclean2.png</file>
-        <file alias="water">Art/Tools/tool-water-bucket.png</file>
         <file alias="glove_highlighted">Art/Tools/tool_glove_highlighted_01.png</file>
+        <file alias="bakingsoda_highlighted">Art/Tools/tool_bakingsoda_highlighted_01.png</file>
+        <file alias="borax_highlighted">Art/Tools/tool_borax_highlighted_01.png</file>
+        <file alias="lye_highlighted">Art/Tools/tool_lye_highlighted_01.png</file>
+        <file alias="nailpolishremover_highlighted">Art/Tools/tool_nailpolishremover_highlighted_01.png</file>
+        <file alias="oxiclean_highlighted">Art/Tools/tool_oxiclean_highlighted_01.png</file>
+        <file alias="pumice_highlighted">Art/Tools/tool_pumice_highlighted_01.png</file>
+        <file alias="rag_highlighted">Art/Tools/tool_rag_highlighted_01.png</file>
+        <file alias="vinegar_highlighted">Art/Tools/tool_vinegar_highlighted_01.png</file>
+        <file alias="water_highlighted">Art/Tools/tool_water_highlighted_01.png</file>
+        <file alias="water">Art/Tools/tool_water_01.png</file>
+        <file alias="bleach_highlighted">Art/Tools/tool_bleach_highlighted_01.png</file>
     </qresource>
     <qresource prefix="/art/effects">
         <file alias="leaf">Art/Effects/leaf_01.png</file>
@@ -54,5 +75,18 @@
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
+    </qresource>
+    <qresource prefix="/art/cursor">
+        <file alias="water_cursor">Art/Tools/tool_water_cursor_01.png</file>
+        <file alias="vinegar_cursor">Art/Tools/tool_vinegar_cursor_01.png</file>
+        <file alias="rag_cursor">Art/Tools/tool_rag_cursor_01.png</file>
+        <file alias="pumice_cursor">Art/Tools/tool_pumice_cursor_01.png</file>
+        <file alias="oxiclean_cursor">Art/Tools/tool_oxiclean_cursor_01.png</file>
+        <file alias="nailpolishremover_cursor">Art/Tools/tool_nailpolishremover_cursor_01.png</file>
+        <file alias="lye_cursor">Art/Tools/tool_lye_cursor_01.png</file>
+        <file alias="glove_cursor">Art/Tools/tool_glove_cursor_01.png</file>
+        <file alias="borax_cursor">Art/Tools/tool_borax_cursor01.png</file>
+        <file alias="bakingsoda_cursor">Art/Tools/tool_bakingsoda_cursor_01.png</file>
+        <file alias="bleach_cursor">Art/Tools/tool_bleach_cursor_01.png</file>
     </qresource>
 </RCC>
