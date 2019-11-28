@@ -3,7 +3,7 @@
 #include <kitchenscene.h>
 #include <QDebug>
 #include "Box2D/Box2D.h"
-
+#include <QResource>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
@@ -13,10 +13,11 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->setupUi(this);
     ui->maskLabel->setFixedSize(QSize(1024,768));
 
-    drawTextLabel(ui->nameLabel, 50,"SF Cartoonist Hand", "Bold Italic");
-    drawTextPushButton(ui->newGameButton, 40,"SF Cartoonist Hand");
-    drawTextPushButton(ui->continueButton, 40,"SF Cartoonist Hand");
+    drawTextLabel(ui->nameLabel, 65,"Hollows Free");
+    drawTextPushButton(ui->newGameButton, 50,"Hollows Free");
+    drawTextPushButton(ui->continueButton, 50,"Hollows Free");
 
+    startBackgroundMusic();
 
     fadeOpacity = 100; //percentage
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
@@ -107,6 +108,14 @@ MainMenuScene::~MainMenuScene()
     delete ui;
 }
 
+void MainMenuScene::startBackgroundMusic(){
+//    QResource musicfile(":/introdata/windsound.ogg");
+//    backgroundMusic.openFromMemory(musicfile.data(), musicfile.size());
+//    backgroundMusic.setVolume(80);
+//    backgroundMusic.play();
+//    backgroundMusic.setLoop(true);
+}
+
 void MainMenuScene::fadeWhiteFlash(){
     QString maskStyleSheet ="background-color: rgba(255, 255, 255, "+QString::number(fadeOpacity)+"%);";
     ui->maskLabel->setStyleSheet(maskStyleSheet);
@@ -120,7 +129,7 @@ void MainMenuScene::fadeWhiteFlash(){
 
 void MainMenuScene::on_newGameButton_clicked()
 {
-    emit changeScene(INTRO1);
+    emit changeScene(BEGIN);
 }
 
 //Method gained from this Stack overflow entry:

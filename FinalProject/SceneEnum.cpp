@@ -2,8 +2,8 @@
 #define SCENEENUM_CPP
 enum Scene{
     KITCHEN,
-    INTRO1,
-    INTRO2,
+    INTRO,
+    BEGIN,
     MAINMENU,
     ENDING1,
     ENDING2,

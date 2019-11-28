@@ -66,6 +66,7 @@ SOURCES += \
     EvidenceEnum.cpp \
     SceneEnum.cpp \
     ToolsEnum.cpp \
+    beginscene.cpp \
     cleaningtool.cpp \
     cleaningtoolview.cpp \
     endscene01.cpp \
@@ -131,6 +132,7 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+    beginscene.h \
     cleaningtool.h \
     cleaningtoolview.h \
     endscene01.h \
@@ -148,6 +150,7 @@ HEADERS += \
     toolbarwidget.h
 
 FORMS += \
+    beginscene.ui \
     endscene01.ui \
     endscene02.ui \
     introscene.ui \

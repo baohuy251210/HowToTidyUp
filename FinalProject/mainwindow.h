@@ -6,6 +6,7 @@
 #include "model.h"
 #include "ToolsEnum.cpp"
 #include "introscene.h"
+#include "beginscene.h"
 #include "kitchenscene.h"
 #include "SceneEnum.cpp"
 #include "mainmenuscene.h"
@@ -30,6 +31,7 @@ private:
     Ui::MainWindow *ui;
     IScene* currentScene;
     IntroScene * introScene;
+    BeginScene * beginScene;
     KitchenScene * kitchenScene;
     MainMenuScene * mainmenuScene;
     Model* model;
@@ -38,5 +40,6 @@ private:
     void initializeScenes();
     void setupConnections();
     sf::Music mainThemeMusic;
+    sf::Music overlayMusic;
 };
 #endif // MAINWINDOW_H

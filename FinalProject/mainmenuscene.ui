@@ -32,10 +32,10 @@
   <widget class="QPushButton" name="newGameButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>510</y>
-     <width>291</width>
-     <height>71</height>
+     <x>20</x>
+     <y>520</y>
+     <width>321</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="palette">
@@ -108,7 +108,7 @@
     <rect>
      <x>50</x>
      <y>20</y>
-     <width>481</width>
+     <width>621</width>
      <height>81</height>
     </rect>
    </property>
@@ -128,7 +128,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>50</y>
+     <y>60</y>
      <width>421</width>
      <height>181</height>
     </rect>
@@ -146,10 +146,10 @@
   <widget class="QPushButton" name="continueButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>570</y>
-     <width>291</width>
-     <height>71</height>
+     <x>10</x>
+     <y>590</y>
+     <width>301</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="palette">
@@ -314,13 +314,13 @@
   <zorder>nameLabel</zorder>
   <zorder>aMurder</zorder>
   <zorder>continueButton</zorder>
-  <zorder>maskLabel</zorder>
   <zorder>leaf1</zorder>
   <zorder>leaf2</zorder>
   <zorder>leaf3</zorder>
   <zorder>footprint1</zorder>
   <zorder>footprint2</zorder>
   <zorder>footprint3</zorder>
+  <zorder>maskLabel</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

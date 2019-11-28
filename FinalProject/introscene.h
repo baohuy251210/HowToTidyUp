@@ -24,15 +24,25 @@ protected:
 
 private:
     Ui::IntroScene *ui;
+
     IntroReader introReader;
-    QTimer *timer;
-    QTimer *delayTimer;
+    QTimer *fadeTimer;
+    QTimer *creditFadeTimer;
+    QTimer *logoTimer;
+    QTimer *textStartTimer;
     void renderDefaultBlack();
     void displayNextContext();
     void updateImage();
+    void displayLogo();
+    void zoomLogo();
+    void displayCredit();
     void fadeText();
     int fadeOpacity;
+    QSize logoSize;
     QString currentText;
+    bool isLogoDisplayed;
+    QPixmap logo;
+    QPixmap logoMask;
 };
 
 #endif // INTROSCENE_H

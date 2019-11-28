@@ -14,13 +14,14 @@ MainWindow::MainWindow(QWidget *parent)
     initializeModel();
     initializeScenes();
     startThemeMusic();
-    currentScene = mainmenuScene;
+    currentScene = introScene;
     setupConnections();
     ui->SceneContainer->addWidget(currentScene);
 }
 
 void MainWindow::initializeScenes(){
-    mainmenuScene = new MainMenuScene(this);
+    introScene = new IntroScene(this);
+    //    mainmenuScene = new MainMenuScene(this);
 }
 
 void MainWindow::setupConnections(){
@@ -42,13 +43,20 @@ void MainWindow::startThemeMusic(){
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
     mainThemeMusic.setVolume(100);
     mainThemeMusic.play();
+    mainThemeMusic.setLoop(true);
+    QResource overlayfile(":/introdata/windsound.ogg");
+    overlayMusic.openFromMemory(overlayfile.data(), overlayfile.size());
+    overlayMusic.setVolume(50);
+    overlayMusic.play();
+    overlayMusic.setLoop(true);
+
 }
 
 void MainWindow::ChangeScene(Scene sceneEnum){
     ui->SceneContainer->removeWidget(currentScene);
     delete currentScene;
     switch (sceneEnum){
-    case INTRO1:
+    case INTRO:
         introScene = new IntroScene(this);
         currentScene = introScene;
         break;
@@ -60,6 +68,9 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         mainmenuScene = new MainMenuScene(this);
         currentScene = mainmenuScene;
         break;
+    case BEGIN:
+        beginScene = new BeginScene(this);
+        currentScene = beginScene;
     default:
         break;
     }

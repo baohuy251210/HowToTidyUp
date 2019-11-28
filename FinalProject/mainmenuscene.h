@@ -5,7 +5,7 @@
 #include <iscene.h>
 #include <QTimer>
 #include "Box2D/Box2D.h"
-
+#include "SFML/Audio.hpp"
 
 namespace Ui {
 class MainMenuScene;
@@ -32,7 +32,7 @@ private slots:
     void updateWorld();
     void changeGeometry(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3);
     void showFootprintSlot(QLabel* footprint);
-
+    void startBackgroundMusic();
 
 
 
@@ -45,6 +45,7 @@ private:
     void fadeWhiteFlash();
     int fadeOpacity;
     QTimer * fadeTimer;
+    sf::Music backgroundMusic;
 };
 
 #endif // MAINMENUSCENE_H

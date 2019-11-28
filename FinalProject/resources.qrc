@@ -72,9 +72,14 @@
         <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
         <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
         <file alias="SF_Cartoonish_Hand_Bold">IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
+        <file>IntroData/Senary10_logo.png</file>
+        <file>windsound.ogg</file>
+        <file alias="begin">IntroData/begin.json</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
+        <file alias="Hollows Free">fonts/Hollows Free.ttf</file>
+        <file alias="Black Night">fonts/Black Night.ttf</file>
     </qresource>
     <qresource prefix="/art/cursor">
         <file alias="water_cursor">Art/Tools/tool_water_cursor_01.png</file>
@@ -89,4 +94,5 @@
         <file alias="bakingsoda_cursor">Art/Tools/tool_bakingsoda_cursor_01.png</file>
         <file alias="bleach_cursor">Art/Tools/tool_bleach_cursor_01.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

@@ -9,24 +9,38 @@
 #include <QDebug>
 #include <QResource>
 #include <QMouseEvent>
+#include <QPixmap>
 IntroScene::IntroScene(QWidget *parent) :
     IScene(parent),
     ui(new Ui::IntroScene)
 {
     ui->setupUi(this);
+    /*Logo*/
+    logo = QPixmap(":/introdata/IntroData/Senary10_logo.png");
+    ui->logoLbl->setFixedSize(1024, 768);
+    ui->logoLbl->setStyleSheet("background-color: rgb(15, 15, 15);");
+    isLogoDisplayed = false;
+    logoSize = QSize(10, 10);
+
     /*Read resources*/
     QFile file(":/introdata/intro");
     file.open(QIODevice::ReadOnly);
     QResource fontfile(":/introdata/SF_Cartoonist_Hand");
     QByteArray content = file.readAll();
     introReader.readFromFile(QJsonDocument().fromJson(content));
-    /*Timers*/
-    timer = new QTimer(this);
-    delayTimer = new QTimer(this);
-    connect(delayTimer, &QTimer::timeout, this, &IntroScene::displayNextContext);
-    connect(timer, &QTimer::timeout, this, &IntroScene::fadeText);
-    delayTimer->start(1);
     qDebug() << "constructor intro";
+    /*Timers*/
+    fadeTimer = new QTimer(this);
+    textStartTimer = new QTimer(this);
+    logoTimer=new QTimer(this);
+    creditFadeTimer = new QTimer(this);
+    fadeOpacity=100;
+    connect(textStartTimer, &QTimer::timeout, this, &IntroScene::displayNextContext);
+    connect(fadeTimer, &QTimer::timeout, this, &IntroScene::fadeText);
+    connect(logoTimer, &QTimer::timeout, this, &IntroScene::displayLogo);
+    connect(creditFadeTimer, &QTimer::timeout, this, &IntroScene::displayCredit);
+    logoTimer->start(1);
+    //    delayTimer->start(1);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -40,19 +54,58 @@ void IntroScene::renderDefaultBlack(){
     ui->sceneLbl->setStyleSheet("background-color: rgb(0, 0, 0);");
 }
 
+void IntroScene::displayLogo(){
+    if (logoSize.width() >= 500){
+        logoTimer->stop();
+        fadeOpacity = 5;
+        creditFadeTimer->start(1);
+    }
+    else {
+        logoTimer->setInterval(10);
+        zoomLogo();
+    }
+}
+
+void IntroScene::displayCredit(){
+    creditFadeTimer->setInterval(50);
+    if (fadeOpacity < 100){
+        drawTextLabel(ui->creditLbl, 55, "Black Night");
+        ui->creditLbl->setText("THE SENARY TEN\nPRESENTS");
+        ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
+        fadeOpacity += 1;
+    }
+    else {
+        textStartTimer->start(1000);
+        creditFadeTimer->stop();
+
+    }
+}
+
+void IntroScene::zoomLogo(){
+    logoSize.setWidth(logoSize.width()+2);
+    logoSize.setHeight(logoSize.height()+2);
+    if (logoSize.width() <=400){
+        ui->logoLbl->setPixmap(logo.scaled(logoSize, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoLbl->setAlignment(Qt::AlignCenter);
+    }
+    else isLogoDisplayed = true;
+}
+
 void IntroScene::displayNextContext(){
     if (introReader.reachEndOfText()){
-        delayTimer->stop();
-        timer->stop();
-        qDebug() << "intro done";
-        emit changeScene(KITCHEN);
+        textStartTimer->stop();
+        fadeTimer->stop();
+        emit changeScene(MAINMENU);
         return;
     }
-    else delayTimer->setInterval(5000);
+    else textStartTimer->setInterval(5000);
+    ui->logoLbl->setPixmap(QPixmap(0,0));
+    ui->logoLbl->setVisible(false);
+    ui->creditLbl->setVisible(false);
     renderDefaultBlack();
     fadeOpacity = 1;
     currentText = introReader.nextText();
-    timer->start(20);
+    fadeTimer->start(20);
 }
 
 void IntroScene::fadeText(){
@@ -64,13 +117,14 @@ void IntroScene::fadeText(){
         fadeOpacity++;
     }
     else {
-        timer->stop();
+        fadeTimer->stop();
     }
 }
 
 
 void IntroScene::mousePressEvent(QMouseEvent *event){
     if (event->button() == Qt::LeftButton){
-            displayNextContext();
-        }
+            if (isLogoDisplayed)
+                displayNextContext();
+            }
 }

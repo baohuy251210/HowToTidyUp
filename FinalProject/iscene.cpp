@@ -15,6 +15,9 @@ IScene::IScene(QWidget *parent) : QWidget(parent)
     fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC_Bold_Italic");
     fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC_Italic");
     fontFamily.addApplicationFont(":/art/fonts/Fiendish");
+    fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
+    fontFamily.addApplicationFont(":/art/fonts/Black Night");
+//    qDebug() << fontFamily.families();
 }
 
 void IScene::drawTextPushButton(QPushButton * pushBtn, int size, QString fontName,QString fontStyle){
@@ -24,6 +27,7 @@ void IScene::drawTextPushButton(QPushButton * pushBtn, int size, QString fontNam
 }
 
 void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString fontStyle){
+//    qDebug() << fontFamily.font("Fiendish", "", 10);
     appFont = fontFamily.font(fontName,fontStyle, size);
     appFont.setPointSize(size);
     textLbl->setFont(appFont);
