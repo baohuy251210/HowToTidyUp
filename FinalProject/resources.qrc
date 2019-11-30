@@ -94,5 +94,4 @@
         <file alias="bakingsoda_cursor">Art/Tools/tool_bakingsoda_cursor_01.png</file>
         <file alias="bleach_cursor">Art/Tools/tool_bleach_cursor_01.png</file>
     </qresource>
-    <qresource prefix="/"/>
 </RCC>

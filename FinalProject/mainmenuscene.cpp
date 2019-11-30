@@ -4,6 +4,10 @@
 #include <QDebug>
 #include "Box2D/Box2D.h"
 #include <QResource>
+#include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QFileInfo>
+#include<QNetworkProxyFactory>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
@@ -12,6 +16,25 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->maskLabel->setFixedSize(QSize(1024,768));
+
+    //Video widget test
+    QMediaPlayer* player = new QMediaPlayer;
+    QVideoWidget* vw = new QVideoWidget;
+    player->setVideoOutput(vw);
+
+//    QUrl url = QUrl::fromLocalFile("fingerprints");
+//    QUrl baseUrl = QUrl("");
+//    QUrl fixed = baseUrl.resolved(url);
+
+//    player->setMedia(url);
+
+//    QString a = QFileInfo("fingerprints").absoluteFilePath();
+//    QUrl url = QUrl::fromLocalFile(a);
+//    player->setMedia(url);
+
+//    vw->setGeometry(100,100,300,400);
+//    vw->show();
+//    player->play();
 
     drawTextLabel(ui->nameLabel, 65,"Hollows Free");
     drawTextPushButton(ui->newGameButton, 50,"Hollows Free");
@@ -33,14 +56,14 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
    // connect(this, &MainMenuScene::showFootprint, this, &MainMenuScene::showFootprintSlot);
 
     ui->continueButton->installEventFilter(this);
-   /*
+
     ui->footprint1->setVisible(false);
     ui->footprint2->setVisible(false);
     ui->footprint3->setVisible(false);
-    */
+
     //Start Box2D
 
-    // Define the ground body.
+//    // Define the ground body.
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0.0f, 0.0f);
 
