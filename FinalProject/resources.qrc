@@ -63,15 +63,15 @@
     </qresource>
     <qresource prefix="/introdata">
         <file alias="intro">IntroData/intro.json</file>
-        <file alias="SF_Cartoonish_Hand">IntroData/SF_Cartoonist_Hand.ttf</file>
+        <file alias="SF_Cartoonist_Hand">IntroData/SF_Cartoonist_Hand.ttf</file>
         <file alias="theme">IntroData/theme.ogg</file>
-        <file alias="SF_Cartoonish_Hand_SC_Italic">IntroData/SF_Cartoonist_Hand_SC_Italic.ttf</file>
+        <file alias="SF_Cartoonist_Hand_SC_Italic">IntroData/SF_Cartoonist_Hand_SC_Italic.ttf</file>
         <file alias="SF_Cartoonist_Hand_SC_Bold_Italic">IntroData/SF_Cartoonist_Hand_SC_Bold_Italic.ttf</file>
         <file alias="SF_Cartoonist_Hand_SC_Bold">IntroData/SF_Cartoonist_Hand_SC_Bold.ttf</file>
-        <file alias="SF_Cartoonish_Hand_SC">IntroData/SF_Cartoonist_Hand_SC.ttf</file>
-        <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
-        <file alias="SF_Cartoonish_Hand_Italic">IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
-        <file alias="SF_Cartoonish_Hand_Bold">IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
+        <file alias="SF_Cartoonist_Hand_SC">IntroData/SF_Cartoonist_Hand_SC.ttf</file>
+        <file alias="SF_Cartoonist_Hand_Italic">IntroData/SF_Cartoonist_Hand_Italic.ttf</file>
+        <file alias="SF_Cartoonist_Hand_Italic">IntroData/SF_Cartoonist_Hand_Bold_Italic.ttf</file>
+        <file alias="SF_Cartoonist_Hand_Bold">IntroData/SF_Cartoonist_Hand_Bold.ttf</file>
         <file>IntroData/Senary10_logo.png</file>
         <file>windsound.ogg</file>
         <file alias="begin">IntroData/begin.json</file>
