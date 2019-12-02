@@ -32,6 +32,7 @@ public slots:
 
 private:
     Ui::KitchenScene *ui;
+    QHash<EvidenceEnum, EvidenceView*> evidenceLabels;
     ToolbarWidget* toolbarWidget;
     EvidenceView* knifeLabel;
     EvidenceView* bloodFloorLabel;

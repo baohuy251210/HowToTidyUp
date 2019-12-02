@@ -3,5 +3,10 @@
       "It's a riddle, but it can be solved.",
       "It's complex, but it's human.",
       "The question is not only why did\n       the killer do it,\nbut why did the killer do it this way?"
-    ]
+  ],
+  "delays": [
+    4000,
+    4000,
+    4000
+  ]
 }

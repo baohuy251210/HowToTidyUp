@@ -2,10 +2,11 @@
 #include "ui_itemdialog.h"
 
 itemDialog::itemDialog(QWidget *parent) :
-    QWidget(parent),
+    IScene(parent),
     ui(new Ui::itemDialog)
 {
     ui->setupUi(this);
+    this->hide();
 }
 
 itemDialog::~itemDialog()
@@ -14,8 +15,10 @@ itemDialog::~itemDialog()
 }
 
 void itemDialog::setEvidence(Evidence* evidence){
+    clearEvidenceSlot();
     this->show();
     ui->itemDescription->setText(evidence->description);
+    drawTextLabel(ui->itemDescription, 18, "SF Cartoonist Hand");
     ui->itemPicture->setPixmap(*evidence->getIcon());
 
     QList<CleaningTool*>* usedTools = evidence->getUsedTools();

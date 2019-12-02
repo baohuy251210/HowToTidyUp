@@ -68,52 +68,6 @@ void KitchenScene::setupConnections(){
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
 }
 
-void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
-    switch(selectedEvidence) {
-    case KNIFE:
-        knifeLabel->unhighlightEvidence();
-        break;
-    case BLOOD_TILE:
-        bloodFloorLabel->unhighlightEvidence();
-        break;
-    case BLOOD_WALL_WOOD:
-        bloodWallLabel->unhighlightEvidence();
-        break;
-    case BLOOD_FOOTPRINT:
-        bloodFootprintsLabel->unhighlightEvidence();
-        break;
-    case BROKEN_PLATE:
-        brokenPlateLabel->unhighlightEvidence();
-        break;
-    case FINGERPRINT_GLASS:
-        oilyHandLabel->unhighlightEvidence();
-        break;
-    }
-
-}
-
-void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
-    switch(selectedEvidence) {
-    case KNIFE:
-        knifeLabel->highlightEvidence();
-        break;
-    case BLOOD_TILE:
-        bloodFloorLabel->highlightEvidence();
-        break;
-    case BLOOD_WALL_WOOD:
-        bloodWallLabel->highlightEvidence();
-        break;
-    case BLOOD_FOOTPRINT:
-        bloodFootprintsLabel->highlightEvidence();
-        break;
-    case BROKEN_PLATE:
-        brokenPlateLabel->highlightEvidence();
-        break;
-    case FINGERPRINT_GLASS:
-        oilyHandLabel->highlightEvidence();
-        break;
-    }
-}
 
 void KitchenScene::setupPixmaps(){
 
@@ -142,6 +96,13 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->oxiclean->setType(OXICLEAN);
     ui->toolbarWidget->nailpolish_remover->setType(NAILPOLISHREMOVER);
 
+    glove->setType(GLOVE);
+    rag->setType(RAG);
+    bleach->setType(BLEACH);
+    water->setType(WATER);
+    oxiclean->setType(OXICLEAN);
+    nailPolishRemover->setType(NAILPOLISHREMOVER);
+
     ui->toolbarWidget->glove->setModel(glove);
     ui->toolbarWidget->glove->highlightTool();
     ui->toolbarWidget->rag->setModel(rag);
@@ -166,9 +127,10 @@ void KitchenScene::initializeTools(){
                       QPixmap(":/art/interactables/knife_clean"),
                       QPixmap(":/art/interactables/knife_clean_highlighted") );
     knifeLabel->setType(KNIFE);
+    evidenceLabels.insert(KNIFE, knifeLabel);
     model->addEvidence(KNIFE, knife);
     knifeLabel->setModel(model->getEvidence(KNIFE));
-    knife->setStartValues({bleach, rag, water}, "I'm a knife!");
+    knife->setStartValues({water, bleach, rag}, "Bloody knife.");
 
     // initialize blood stain on floor
     Evidence* bloodFloor = new Evidence();
@@ -179,9 +141,10 @@ void KitchenScene::initializeTools(){
                            QPixmap(),
                            QPixmap(":/art/interactables/blood_floor_clean_highlighted"));
     bloodFloorLabel->setType(BLOOD_TILE);
+    evidenceLabels.insert(BLOOD_TILE, bloodFloorLabel);
     model->addEvidence(BLOOD_TILE, bloodFloor);
     bloodFloorLabel->setModel(model->getEvidence(BLOOD_TILE));
-    bloodFloor->setStartValues({bleach, rag, water}, "Bloody stain on the floor");
+    bloodFloor->setStartValues({bleach, oxiclean, rag}, "Bloody stain on the floor");
 
     // initialize oily handprint
     Evidence* handprint = new Evidence();
@@ -192,9 +155,10 @@ void KitchenScene::initializeTools(){
                            QPixmap(),
                            QPixmap(":/art/interactables/oily_handprint_clean_highlighted"));
     oilyHandLabel->setType(FINGERPRINT_GLASS);
+    evidenceLabels.insert(FINGERPRINT_GLASS, oilyHandLabel);
     model->addEvidence(FINGERPRINT_GLASS, handprint);
     oilyHandLabel->setModel(model->getEvidence(FINGERPRINT_GLASS));
-    handprint->setStartValues({bleach, rag, water}, "Oily handprint on glass");
+    handprint->setStartValues({nailPolishRemover, water, rag}, "Oily handprint on glass");
 
     // initialize broken plate
     Evidence* brokenPlate = new Evidence();
@@ -205,9 +169,10 @@ void KitchenScene::initializeTools(){
                            QPixmap(),
                            QPixmap(":/art/interactables/plate_clean_highlighted"));
     brokenPlateLabel->setType(BROKEN_PLATE);
+    evidenceLabels.insert(BROKEN_PLATE, brokenPlateLabel);
     model->addEvidence(BROKEN_PLATE, brokenPlate);
     brokenPlateLabel->setModel(model->getEvidence(BROKEN_PLATE));
-    brokenPlate->setStartValues({bleach, rag, water}, "Broken plate");
+    brokenPlate->setStartValues({bleach, rag, rag}, "Broken plate");
 
     // initialize bloody footprints
     Evidence* bloodyFootprints = new Evidence();
@@ -218,11 +183,12 @@ void KitchenScene::initializeTools(){
                            QPixmap(),
                            QPixmap(":/art/interactables/blood_footprint_clean_highlighted"));
     bloodFootprintsLabel->setType(BLOOD_FOOTPRINT);
+    evidenceLabels.insert(BLOOD_FOOTPRINT, bloodFootprintsLabel);
     model->addEvidence(BLOOD_FOOTPRINT, bloodyFootprints);
     bloodFootprintsLabel->setModel(model->getEvidence(BLOOD_FOOTPRINT));
-    bloodyFootprints->setStartValues({bleach, rag, water}, "Bloody footprints on floor");
+    bloodyFootprints->setStartValues({bleach, oxiclean, rag}, "Bloody footprints on floor");
 
-    // initialize bloody footprints
+    // initialize bloody wall
     Evidence* bloodyWall = new Evidence();
     bloodyWall->setPixmaps(QPixmap(":/art/interactables/blood_wall"),
                            QPixmap(":/art/interactables/blood_wall_highlighted"),
@@ -231,9 +197,10 @@ void KitchenScene::initializeTools(){
                            QPixmap(),
                            QPixmap(":/art/interactables/blood_wall_clean_highlighted"));
     bloodWallLabel->setType(BLOOD_WALL_WOOD);
+    evidenceLabels.insert(BLOOD_WALL_WOOD, bloodWallLabel);
     model->addEvidence(BLOOD_WALL_WOOD, bloodyWall);
     bloodWallLabel->setModel(model->getEvidence(BLOOD_WALL_WOOD));
-    bloodyWall->setStartValues({bleach, rag, water}, "Blood splatter on wooden wall");
+    bloodyWall->setStartValues({bleach, oxiclean, rag}, "Blood splatter on wooden wall");
 
 }
 
@@ -248,4 +215,14 @@ void KitchenScene::initializeEvidence(){
 
 void KitchenScene::unselectTool(){
 
+}
+
+
+void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
+    evidenceLabels[selectedEvidence]->unhighlightEvidence();
+
+}
+
+void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
+    evidenceLabels[selectedEvidence]->highlightEvidence();
 }

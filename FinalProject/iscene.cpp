@@ -6,7 +6,7 @@
 IScene::IScene(QWidget *parent) : QWidget(parent)
 {
     fontFamily.removeAllApplicationFonts();
-    fontFamily.addApplicationFont(":/introdata/SF_Cartoonish_Hand");
+    fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand");
     fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold");
     fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold_Italic");
     fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Italic");
@@ -17,6 +17,7 @@ IScene::IScene(QWidget *parent) : QWidget(parent)
     fontFamily.addApplicationFont(":/art/fonts/Fiendish");
     fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
     fontFamily.addApplicationFont(":/art/fonts/Black Night");
+//    qDebug() << fontFamily.bold("SF Cartoonist Hand", "Bold");
 //    qDebug() << fontFamily.families();
 }
 

@@ -138,10 +138,10 @@
   <widget class="EvidenceView" name="bloodFootprintLabel">
    <property name="geometry">
     <rect>
-     <x>382</x>
-     <y>462</y>
+     <x>360</x>
+     <y>510</y>
      <width>391</width>
-     <height>331</height>
+     <height>261</height>
     </rect>
    </property>
    <property name="text">

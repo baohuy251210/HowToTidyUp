@@ -90,6 +90,25 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="continueLbl">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>680</y>
+     <width>241</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(240, 60, 60);</string>
+   </property>
+   <property name="text">
+    <string>TAP TO CONTINUE</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

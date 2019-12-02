@@ -21,24 +21,27 @@ IntroScene::IntroScene(QWidget *parent) :
     ui->logoLbl->setStyleSheet("background-color: rgb(15, 15, 15);");
     isLogoDisplayed = false;
     logoSize = QSize(10, 10);
-
+    drawTextLabel(ui->continueLbl, 15, "SF Cartoonist Hand", "Italic");
+    ui->continueLbl->hide();
     /*Read resources*/
     QFile file(":/introdata/intro");
     file.open(QIODevice::ReadOnly);
     QResource fontfile(":/introdata/SF_Cartoonist_Hand");
     QByteArray content = file.readAll();
     introReader.readFromFile(QJsonDocument().fromJson(content));
-    qDebug() << "constructor intro";
     /*Timers*/
     fadeTimer = new QTimer(this);
     textStartTimer = new QTimer(this);
     logoTimer=new QTimer(this);
     creditFadeTimer = new QTimer(this);
+    flashContinueTimer = new QTimer(this);
     fadeOpacity=100;
     connect(textStartTimer, &QTimer::timeout, this, &IntroScene::displayNextContext);
     connect(fadeTimer, &QTimer::timeout, this, &IntroScene::fadeText);
     connect(logoTimer, &QTimer::timeout, this, &IntroScene::displayLogo);
     connect(creditFadeTimer, &QTimer::timeout, this, &IntroScene::displayCredit);
+    connect(flashContinueTimer, &QTimer::timeout, this, &IntroScene::flashContinueLabel);
+    flashContinueTimer->start(500);
     logoTimer->start(1);
     //    delayTimer->start(1);
     /*inits*/
@@ -50,6 +53,15 @@ IntroScene::~IntroScene()
     delete ui;
 }
 
+void IntroScene::flashContinueLabel(){
+    if (ui->continueLbl->styleSheet() == "color: rgb(250, 80, 80)"){
+        ui->continueLbl->setStyleSheet("color: rgb(200, 200, 200)");
+    }
+    else {
+         ui->continueLbl->setStyleSheet("color: rgb(250, 80, 80)");
+    }
+}
+
 void IntroScene::renderDefaultBlack(){
     ui->sceneLbl->setStyleSheet("background-color: rgb(0, 0, 0);");
 }
@@ -59,6 +71,8 @@ void IntroScene::displayLogo(){
         logoTimer->stop();
         fadeOpacity = 5;
         creditFadeTimer->start(1);
+        isLogoDisplayed = true;
+
     }
     else {
         logoTimer->setInterval(10);
@@ -72,10 +86,14 @@ void IntroScene::displayCredit(){
         drawTextLabel(ui->creditLbl, 55, "Black Night");
         ui->creditLbl->setText("THE SENARY TEN\nPRESENTS");
         ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
+      //  ui->continueLbl->setStyleSheet("color: rgba(250, 80, 80,"+QString::number(fadeOpacity)+"%);");
         fadeOpacity += 1;
     }
     else {
         textStartTimer->start(1000);
+        ui->continueLbl->show();
+        ui->continueLbl->setStyleSheet("color: rgb(250, 80, 80)");
+
         creditFadeTimer->stop();
 
     }
@@ -98,7 +116,8 @@ void IntroScene::displayNextContext(){
         emit changeScene(MAINMENU);
         return;
     }
-    else textStartTimer->setInterval(5000);
+    else textStartTimer->setInterval(introReader.nextMsDelay());
+    ui->continueLbl->show();
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);

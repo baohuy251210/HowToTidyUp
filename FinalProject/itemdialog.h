@@ -4,12 +4,12 @@
 #include <QWidget>
 #include <ToolsEnum.cpp>
 #include <evidence.h>
-
+#include <iscene.h>
 namespace Ui {
 class itemDialog;
 }
 
-class itemDialog : public QWidget
+class itemDialog : public IScene
 {
     Q_OBJECT
 public slots:
@@ -24,6 +24,7 @@ public:
 
 private:
     Ui::itemDialog *ui;
+    void setupTextFonts();
 };
 
 #endif // ITEMDIALOG_H
