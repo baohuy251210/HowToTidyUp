@@ -54,7 +54,7 @@
     <rect>
      <x>710</x>
      <y>220</y>
-     <width>201</width>
+     <width>211</width>
      <height>61</height>
     </rect>
    </property>
@@ -63,6 +63,95 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/interactables/knife_bloody</pixmap>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="bloodFloorLabel">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>420</y>
+     <width>441</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/blood_floor</pixmap>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="oilyHandLabel">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>30</y>
+     <width>101</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/oily_handprint_01</pixmap>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="plateLabel">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>190</y>
+     <width>181</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/plate_broken</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="bloodWallLabel">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>290</y>
+     <width>191</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/blood_wall</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="bloodFootprintLabel">
+   <property name="geometry">
+    <rect>
+     <x>382</x>
+     <y>462</y>
+     <width>391</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/blood_footprint</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

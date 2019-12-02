@@ -31,13 +31,6 @@ void EvidenceView::leaveEvent ( QEvent * event )
 
 void EvidenceView::mouseReleaseEvent ( QMouseEvent * event )
 {
-    this->model->isSelected = !this->model->isSelected;
-    if (this->model->isSelected){
-        highlightEvidence();
-    } else {
-        unhighlightEvidence();
-    }
-
     emit clickedSignal(name);
 }
 

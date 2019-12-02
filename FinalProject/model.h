@@ -17,6 +17,7 @@ signals:
     void setSelectedEvidence(EvidenceEnum);
     void hideDialogSignal();
     void clearToolSelections();
+    void deselectEvidence(EvidenceEnum);
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);

@@ -9,6 +9,7 @@
 #include <evidence.h>
 #include <model.h>
 #include <cleaningtoolview.h>
+#include <evidenceview.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,12 +26,19 @@ public:
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
 public slots:
-    void evidenceClickedSlot(EvidenceEnum);
+    void deselectEvidenceSlot(EvidenceEnum);
+    void setSelectedEvidenceSlot(EvidenceEnum);
     void unselectTool();
 
 private:
     Ui::KitchenScene *ui;
     ToolbarWidget* toolbarWidget;
+    EvidenceView* knifeLabel;
+    EvidenceView* bloodFloorLabel;
+    EvidenceView* oilyHandLabel;
+    EvidenceView* bloodFootprintsLabel;
+    EvidenceView* brokenPlateLabel;
+    EvidenceView* bloodWallLabel;
     Model* model;
 
     void InitializeWidgets();
