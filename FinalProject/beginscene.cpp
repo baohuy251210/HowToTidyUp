@@ -2,6 +2,7 @@
 #include "ui_beginscene.h"
 #include "introreader.h"
 #include "mainmenuscene.h"
+#include <cstdlib>
 #include <QTimer>
 #include <QImage>
 #include <QFileDialog>
@@ -54,6 +55,16 @@ BeginScene::~BeginScene()
 
 
 void BeginScene::flashContinueLabel(){
+    int roll;
+    int min = 1; // the min number a die can roll is 1
+    int max = 6;// this->dieSize; // the max value is the die size
+    roll = rand() % (max - min + 1) + min;
+    if (roll == 1 || roll == 3){
+        drawTextLabel(ui->continueLbl, 17,"Hollows Free");
+    }
+    else {
+        drawTextLabel(ui->continueLbl, 15, "SF Cartoonist Hand", "Italic");
+    }
     if (ui->continueLbl->styleSheet() == "color: rgb(250, 80, 80)"){
         ui->continueLbl->setStyleSheet("color: rgb(200, 200, 200)");
     }
@@ -61,6 +72,9 @@ void BeginScene::flashContinueLabel(){
          ui->continueLbl->setStyleSheet("color: rgb(250, 80, 80)");
     }
 }
+
+/**/
+
 
 
 void BeginScene::renderDefaultBlack(){

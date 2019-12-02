@@ -100,10 +100,10 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(240, 60, 60);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
-    <string>TAP TO CONTINUE</string>
+    <string/>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

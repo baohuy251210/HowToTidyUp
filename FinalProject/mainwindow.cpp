@@ -53,10 +53,10 @@ void MainWindow::startThemeMusic(){
 void MainWindow::startInGameMusic(){
     QResource musicfile(":/introdata/theme2");
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
-    mainThemeMusic.setVolume(10);
+    mainThemeMusic.setVolume(7);
     mainThemeMusic.play();
     mainThemeMusic.setLoop(true);
-    overlayMusic.setVolume(10);
+    overlayMusic.setVolume(2);
 }
 
 
@@ -72,7 +72,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
         overlayMusic.setVolume(1);
-        mainThemeMusic.setVolume(2);
+        mainThemeMusic.setVolume(5);
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);
