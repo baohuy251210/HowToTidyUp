@@ -91,6 +91,13 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->oxiclean->setType(OXICLEAN);
     ui->toolbarWidget->nailpolish_remover->setType(NAILPOLISHREMOVER);
 
+    glove->setType(GLOVE);
+    rag->setType(RAG);
+    bleach->setType(BLEACH);
+    water->setType(WATER);
+    oxiclean->setType(OXICLEAN);
+    nailPolishRemover->setType(NAILPOLISHREMOVER);
+
     ui->toolbarWidget->glove->setModel(glove);
     ui->toolbarWidget->glove->highlightTool();
     ui->toolbarWidget->rag->setModel(rag);
@@ -104,8 +111,6 @@ void KitchenScene::initializeTools(){
     model->addCleaningTool(WATER, water);
     model->addCleaningTool(OXICLEAN, oxiclean);
     model->addCleaningTool(NAILPOLISHREMOVER, nailPolishRemover);
-
-
 
     Evidence* knife = new Evidence();
     knife->setPixmaps(QPixmap(":/art/interactables/knife_bloody"),

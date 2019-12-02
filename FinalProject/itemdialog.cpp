@@ -14,6 +14,7 @@ itemDialog::~itemDialog()
 }
 
 void itemDialog::setEvidence(Evidence* evidence){
+    clearEvidenceSlot();
     this->show();
     ui->itemDescription->setText(evidence->description);
     ui->itemPicture->setPixmap(*evidence->getIcon());

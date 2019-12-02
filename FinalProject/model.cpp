@@ -1,7 +1,7 @@
 #include "model.h"
 #include <QDebug>
 #include <EvidenceEnum.cpp>
-
+#include <QTimer>
 
 Model::Model(QObject * parent) :
     QObject(parent),
@@ -42,7 +42,7 @@ void Model::toolClickedSlot(Tools tool){
 
 void Model::evidenceClicked(EvidenceEnum evidence){
 
-    if(selectedTool != GLOVE && selectedTool != EMPTY && !evidences[evidence]->usedTools.contains(cleaningTools[selectedTool])){
+    if(selectedTool != GLOVE && selectedTool != EMPTY){
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
     }
 
@@ -60,7 +60,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 
     selectedEvidence = evidence;
     evidences[evidence]->isSelected = true;
-    emit clearEvidenceSelections();
+    //emit clearEvidenceSelections();
     emit setSelectedEvidence(evidence);
     emit updateDialogBoxSignal(evidences[evidence]);
 
