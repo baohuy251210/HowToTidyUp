@@ -15,7 +15,7 @@
         <file alias="plate_clean_highlighted">Art/Interactables/plate_clean_highlighted_01.png</file>
         <file alias="plate_broken_highlighted">Art/Interactables/plate_broken_highlighted_01.png</file>
         <file alias="oily_handprint_highlighted">Art/Interactables/oily_handprint_highlighted_01.png</file>
-        <file alias="oily_handprint_highlighted">Art/Interactables/oily_handprint_clean_highlighted_01.png</file>
+        <file alias="oily_handprint_clean_highlighted">Art/Interactables/oily_handprint_clean_highlighted_01.png</file>
         <file alias="oily_handprint_01">Art/Interactables/oily_handprint_01.png</file>
         <file alias="empty">Art/Interactables/empty.png</file>
         <file alias="blood_wall_clean_highlighted">Art/Interactables/blood_wall_clean_highlighted_01.png</file>

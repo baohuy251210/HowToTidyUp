@@ -5,7 +5,7 @@ enum EvidenceEnum{
     KNIFE,
     BLOOD_TILE,
     BLOOD_WALL_WOOD,
-    BLOOD_GLASS,
+    BLOOD_FOOTPRINT,
     BROKEN_PLATE,
     HAIR,
     FINGERPRINT_GLASS,

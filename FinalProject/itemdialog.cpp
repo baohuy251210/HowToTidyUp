@@ -6,6 +6,7 @@ itemDialog::itemDialog(QWidget *parent) :
     ui(new Ui::itemDialog)
 {
     ui->setupUi(this);
+    this->hide();
 }
 
 itemDialog::~itemDialog()
