@@ -28,7 +28,6 @@ BeginScene::BeginScene(QWidget *parent) :
     QResource fontfile(":/introdata/SF_Cartoonist_Hand");
     QByteArray content = file.readAll();
     introReader.readFromFile(QJsonDocument().fromJson(content));
-    qDebug() << "constructor intro";
     /*Timers*/
     fadeTimer = new QTimer(this);
     textStartTimer = new QTimer(this);
@@ -39,9 +38,7 @@ BeginScene::BeginScene(QWidget *parent) :
     connect(fadeTimer, &QTimer::timeout, this, &BeginScene::fadeText);
     connect(logoTimer, &QTimer::timeout, this, &BeginScene::displayLogo);
     connect(creditFadeTimer, &QTimer::timeout, this, &BeginScene::displayCredit);
-//    creditFadeTimer->start(1);
-     logoTimer->start(1);
-    //    delayTimer->start(1);
+    logoTimer->start(1);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -60,6 +57,7 @@ void BeginScene::displayLogo(){
         logoTimer->stop();
         fadeOpacity = 5;
         creditFadeTimer->start(1);
+        isLogoDisplayed=true;
     }
     else {
         logoTimer->setInterval(50);
