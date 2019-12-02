@@ -3,7 +3,7 @@
 #include "ToolsEnum.cpp"
 
 ToolbarWidget::ToolbarWidget(QWidget *parent) :
-    QWidget(parent),
+    IScene(parent),
     ui(new Ui::ToolbarWidget)
 {
     ui->setupUi(this);
@@ -22,7 +22,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent) :
     ui->waterBucketPopup->setVisible(false);
     ui->ragPopup->setVisible(false);
     ui->nailPolishRemoverPopup->setVisible(false);
-
+    setupTextFonts();
     setupConnections();
 
 }
@@ -43,7 +43,8 @@ void ToolbarWidget::displayDescriptionSlot(Tools tool){
     switch(tool){
     case GLOVE:
         ui->glovePopup->setText(glove->model->description);
-        ui->glovePopup->setVisible(true);
+        ui->glovePopup->hide();
+        ui->glovePopup->show();
         break;
     case WATER:
         ui->waterBucketPopup->setText(water->model->description);
@@ -94,6 +95,15 @@ void ToolbarWidget::hideDescriptionSlot(Tools tool){
     }
 
 
+}
+
+void ToolbarWidget::setupTextFonts(){
+    drawTextLabel(ui->glovePopup, 16, "SF Cartoonist Hand");
+    drawTextLabel(ui->waterBucketPopup, 16, "SF Cartoonist Hand");
+    drawTextLabel(ui->nailPolishRemoverPopup, 16, "SF Cartoonist Hand");
+    drawTextLabel(ui->bleachPopup, 16, "SF Cartoonist Hand");
+    drawTextLabel(ui->ragPopup, 16, "SF Cartoonist Hand");
+    drawTextLabel(ui->oxicleanPopup, 16, "SF Cartoonist Hand");
 }
 
 void ToolbarWidget::setupConnections(){

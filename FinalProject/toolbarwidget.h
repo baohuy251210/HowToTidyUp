@@ -5,12 +5,12 @@
 #include "ToolsEnum.cpp"
 #include "cleaningtoolview.h"
 #include "model.h"
-
+#include "iscene.h"
 namespace Ui {
 class ToolbarWidget;
 }
 
-class ToolbarWidget : public QWidget
+class ToolbarWidget : public IScene
 {
     Q_OBJECT
 
@@ -37,7 +37,7 @@ public slots:
 
 private:
     void setupConnections();
-
+    void setupTextFonts();
     Model* model;
 };
 

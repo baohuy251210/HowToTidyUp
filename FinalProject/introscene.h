@@ -30,6 +30,8 @@ private:
     QTimer *creditFadeTimer;
     QTimer *logoTimer;
     QTimer *textStartTimer;
+    QTimer *flashContinueTimer;
+    void flashContinueLabel();
     void renderDefaultBlack();
     void displayNextContext();
     void updateImage();
