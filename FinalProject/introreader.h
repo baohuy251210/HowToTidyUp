@@ -9,10 +9,13 @@ public:
     IntroReader();
     void readFromFile(QJsonDocument input);
     QVector<QString> paragraphs;
+    QVector<int> delays;
     int paragraphDisplayIndex;
+    int delayDisplayIndex;
     bool reachEndOfText();
     QString musicFile;
     QString nextText();
+    int nextMsDelay();
 };
 
 #endif // INTROREADER_H

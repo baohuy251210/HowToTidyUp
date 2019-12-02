@@ -21,7 +21,8 @@ BeginScene::BeginScene(QWidget *parent) :
     ui->logoLbl->setStyleSheet("background-color: rgb(15, 15, 15);");
     isLogoDisplayed = false;
     logoSize = QSize(10, 10);
-
+    drawTextLabel(ui->continueLbl, 15, "SF Cartoonist Hand", "Italic");
+    ui->continueLbl->hide();
     /*Read resources*/
     QFile file(":/introdata/begin");
     file.open(QIODevice::ReadOnly);
@@ -33,12 +34,15 @@ BeginScene::BeginScene(QWidget *parent) :
     textStartTimer = new QTimer(this);
     logoTimer=new QTimer(this);
     creditFadeTimer = new QTimer(this);
+    flashContinueTimer = new QTimer(this);
     fadeOpacity=100;
     connect(textStartTimer, &QTimer::timeout, this, &BeginScene::displayNextContext);
     connect(fadeTimer, &QTimer::timeout, this, &BeginScene::fadeText);
     connect(logoTimer, &QTimer::timeout, this, &BeginScene::displayLogo);
     connect(creditFadeTimer, &QTimer::timeout, this, &BeginScene::displayCredit);
-    logoTimer->start(1);
+    connect(flashContinueTimer, &QTimer::timeout, this, &BeginScene::flashContinueLabel);
+    flashContinueTimer->start(500);
+    logoTimer->start(2);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -47,6 +51,17 @@ BeginScene::~BeginScene()
 {
     delete ui;
 }
+
+
+void BeginScene::flashContinueLabel(){
+    if (ui->continueLbl->styleSheet() == "color: rgb(250, 80, 80)"){
+        ui->continueLbl->setStyleSheet("color: rgb(200, 200, 200)");
+    }
+    else {
+         ui->continueLbl->setStyleSheet("color: rgb(250, 80, 80)");
+    }
+}
+
 
 void BeginScene::renderDefaultBlack(){
     ui->sceneLbl->setStyleSheet("background-color: rgb(0, 0, 0);");
@@ -75,6 +90,7 @@ void BeginScene::displayCredit(){
     }
     else {
         textStartTimer->start(2000);
+        ui->continueLbl->show();
         ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
         ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
         creditFadeTimer->stop();
@@ -89,8 +105,6 @@ void BeginScene::zoomLogo(){
         drawTextLabel(ui->logoLbl, logoSize.width(),"Hollows Free");
         ui->logoLbl->setText("HOW TO TIDY UP");
         ui->logoLbl->setStyleSheet("background-color: black;color: rgb(240, 240, 240);");
-//        ui->logoLbl->setPixmap(logo.scaled(logoSize, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-//        ui->logoLbl->setAlignment(Qt::AlignCenter);
     }
     else isLogoDisplayed = true;
 }
@@ -102,13 +116,19 @@ void BeginScene::displayNextContext(){
         emit changeScene(KITCHEN);
         return;
     }
-    else textStartTimer->setInterval(5000);
+    else textStartTimer->setInterval(introReader.nextMsDelay());
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);
     renderDefaultBlack();
     fadeOpacity = 1;
     currentText = introReader.nextText();
+    if (currentText == "..."){
+        playCrimeEffects();
+    }
+    if (currentText == "10:30AM"){
+        playWakeEffects();
+    }
     fadeTimer->start(20);
 }
 
@@ -125,6 +145,27 @@ void BeginScene::fadeText(){
     }
 }
 
+void BeginScene::playCrimeEffects(){
+    QResource fxDragFile(":/soundeffects/dragoverwood2");
+    QResource fxStabFile(":/soundeffects/knifestab");
+    fxDrag.openFromMemory(fxDragFile.data(), fxDragFile.size());
+    fxStab.openFromMemory(fxStabFile.data(), fxStabFile.size());
+    fxDrag.setVolume(100);
+    fxStab.setVolume(40);
+    fxStab.setLoop(false);
+    fxDrag.setLoop(false);
+    fxStab.play();
+    fxDrag.play();
+}
+void BeginScene::playWakeEffects(){
+    fxStab.stop();
+    fxDrag.stop();
+    QResource fxYawnFile(":/soundeffects/maleyawn");
+    fxYawn.openFromMemory(fxYawnFile.data(), fxYawnFile.size());
+    fxYawn.setVolume(10);
+    fxYawn.setLoop(false);
+    fxYawn.play();
+}
 
 void BeginScene::mousePressEvent(QMouseEvent *event){
     if (event->button() == Qt::LeftButton){

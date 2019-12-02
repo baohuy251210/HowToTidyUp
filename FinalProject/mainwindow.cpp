@@ -51,9 +51,9 @@ void MainWindow::startThemeMusic(){
     overlayMusic.setLoop(true);
 }
 void MainWindow::startInGameMusic(){
-    QResource musicfile(":/introdata/jazzpiano");
+    QResource musicfile(":/introdata/theme2");
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
-    mainThemeMusic.setVolume(30);
+    mainThemeMusic.setVolume(10);
     mainThemeMusic.play();
     mainThemeMusic.setLoop(true);
     overlayMusic.setVolume(10);
@@ -70,8 +70,9 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         break;
     case KITCHEN:
         kitchenScene = new KitchenScene(this, model);
-        startInGameMusic();
         currentScene = kitchenScene;
+        overlayMusic.setVolume(1);
+        mainThemeMusic.setVolume(2);
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);
@@ -79,6 +80,8 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         break;
     case BEGIN:
         beginScene = new BeginScene(this);
+        startInGameMusic();
+//        mainThemeMusic.setVolume(1);
         currentScene = beginScene;
     default:
         break;

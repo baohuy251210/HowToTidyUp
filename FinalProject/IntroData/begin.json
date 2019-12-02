@@ -1,6 +1,22 @@
 {
   "paragraphs":[
-      "NOVEMBER 27th",
-      "THE DAY BEFORE THANKSGIVING..."
-    ]
+      "NOVEMBER 28th\nTHE DAY BEFORE THANKSGIVING...",
+      "...",
+      "10:30AM",
+      "Seems like a nice day to get prepared",
+      "!!!!",
+      "WHAT HAPPENED??!!!",
+      "WHY IS THERE BLOOD\n ALL OVER THE KITCHEN!!!",
+      "DON'T MATTER WHO DID THIS\nI NEED TO CLEAN THIS UP BEFORE THE GUESTS COME!!"
+  ],
+  "delays":[
+      4000,
+      10000,
+      2000,
+      2000,
+      3000,
+      3000,
+      3000,
+      4000
+  ]
 }

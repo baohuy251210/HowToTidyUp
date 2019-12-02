@@ -29,7 +29,6 @@ IntroScene::IntroScene(QWidget *parent) :
     QResource fontfile(":/introdata/SF_Cartoonist_Hand");
     QByteArray content = file.readAll();
     introReader.readFromFile(QJsonDocument().fromJson(content));
-    qDebug() << "constructor intro";
     /*Timers*/
     fadeTimer = new QTimer(this);
     textStartTimer = new QTimer(this);
@@ -117,7 +116,7 @@ void IntroScene::displayNextContext(){
         emit changeScene(MAINMENU);
         return;
     }
-    else textStartTimer->setInterval(5000);
+    else textStartTimer->setInterval(introReader.nextMsDelay());
     ui->continueLbl->show();
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);

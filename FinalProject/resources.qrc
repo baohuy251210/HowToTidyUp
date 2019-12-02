@@ -76,6 +76,7 @@
         <file>windsound.ogg</file>
         <file alias="begin">IntroData/begin.json</file>
         <file alias="jazzpiano">IntroData/bensound-thejazzpiano.ogg</file>
+        <file alias="theme2">IntroData/theme2.ogg</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
@@ -94,5 +95,11 @@
         <file alias="borax_cursor">Art/Tools/tool_borax_cursor01.png</file>
         <file alias="bakingsoda_cursor">Art/Tools/tool_bakingsoda_cursor_01.png</file>
         <file alias="bleach_cursor">Art/Tools/tool_bleach_cursor_01.png</file>
+    </qresource>
+    <qresource prefix="/soundeffects">
+        <file alias="maleyawn">soundeffects/maleyawn.ogg</file>
+        <file alias="knifestab">soundeffects/knifestab.ogg</file>
+        <file alias="dragoverwood">soundeffects/dragoverwood.ogg</file>
+        <file alias="dragoverwood2">soundeffects/dragoverwood2.wav</file>
     </qresource>
 </RCC>

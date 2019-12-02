@@ -5,6 +5,7 @@
 #include <iscene.h>
 #include <QTimer>
 #include "introreader.h"
+#include "SFML/Audio.hpp"
 namespace Ui {
 class BeginScene;
 }
@@ -30,12 +31,16 @@ private:
     QTimer *creditFadeTimer;
     QTimer *logoTimer;
     QTimer *textStartTimer;
+    QTimer *flashContinueTimer;
     void renderDefaultBlack();
     void displayNextContext();
+    void flashContinueLabel();
     void updateImage();
     void displayLogo();
     void zoomLogo();
     void displayCredit();
+    void playCrimeEffects();
+    void playWakeEffects();
     void fadeText();
     int fadeOpacity;
     QSize logoSize;
@@ -43,6 +48,9 @@ private:
     bool isLogoDisplayed;
     QPixmap logo;
     QPixmap logoMask;
+    sf::Music fxStab;
+    sf::Music fxDrag;
+    sf::Music fxYawn;
 };
 
 #endif // BEGINSCENE_H
