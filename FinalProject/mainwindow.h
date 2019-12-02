@@ -36,6 +36,7 @@ private:
     MainMenuScene * mainmenuScene;
     Model* model;
     void startThemeMusic();
+    void startInGameMusic();
     void initializeModel();
     void initializeScenes();
     void setupConnections();

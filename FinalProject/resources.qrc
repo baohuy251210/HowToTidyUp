@@ -75,6 +75,7 @@
         <file>IntroData/Senary10_logo.png</file>
         <file>windsound.ogg</file>
         <file alias="begin">IntroData/begin.json</file>
+        <file alias="jazzpiano">IntroData/bensound-thejazzpiano.ogg</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
