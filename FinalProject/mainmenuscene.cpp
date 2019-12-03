@@ -405,7 +405,7 @@ void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 pos
 
 void MainMenuScene::showFootprintSlot(QLabel* footprint) {
     footprint->raise();
-    qDebug() << "?";
+    //qDebug() << "?";
     footprint->setVisible(true);
 }
 
