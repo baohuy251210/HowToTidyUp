@@ -25,7 +25,6 @@ public:
     ~KitchenScene();
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
-    void exitButtonClickedSlot();
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
@@ -33,6 +32,7 @@ public slots:
 
 private slots:
     void on_exitButton_clicked();
+
 
 private:
     Ui::KitchenScene *ui;

@@ -28,8 +28,7 @@ void KitchenScene::InitializeWidgets(){
     toolbarWidget = ui->toolbarWidget;
     ui->toolbarWidget->raise();
     ui->evidenceDialog->raise();
-   ui->exitButton->setAutoRaise(false);
-   ui->exitButton->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
+    ui->exitButton->setAutoRaise(false);
 }
 
 void KitchenScene::setupConnections(){
@@ -231,5 +230,6 @@ void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
 
 void KitchenScene::on_exitButton_clicked()
 {
+    emit changeScene(ENDING);
 
 }
