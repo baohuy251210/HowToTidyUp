@@ -7,7 +7,6 @@ Model::Model(QObject * parent) :
     QObject(parent),
     selectedEvidence(EvidenceEnum::NONE),
     selectedTool(GLOVE){
-
 }
 
 Model::~Model(){
@@ -90,11 +89,14 @@ double Model::getFinalScorePercentage(){
     return score;
 }
 
-
+double Model::getEvidenceScorePercentage(EvidenceEnum evidence){
+    return evidencesScore[evidence];
+}
 
 Evidence* Model::getEvidence(EvidenceEnum type){
     return evidences[type];
 }
+
 
 void Model::hideDialogSlot(){
     emit hideDialogSignal();

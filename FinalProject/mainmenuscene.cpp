@@ -147,9 +147,9 @@ void MainMenuScene::initializeBox2D(){
         hlayout->addWidget(leafLabels.last());
 //        leafLabels.last()->hide();
     }
-    for (int i = 0; i < leafLabels.size();i++){
-        leafLabels[i] ->hide();
-    }
+//    for (int i = 0; i < leafLabels.size();i++){
+//        leafLabels[i] ->hide();
+//    }
 //    qDebug() <<"leaflbls:"<<leafLabels.size();
 //    setLayout(hlayout);
 
@@ -236,6 +236,9 @@ void MainMenuScene::initializeBox2D(){
     for (int i = 0 ; i < leafLabels.size(); i++){
         leafBodies[i]->CreateFixture(&fixtureDefs[i%numLeaves]);
     }
+    updateWorld();
+    updateWorld();
+    updateWorld();
     updateWorld();
     updateWorld();
 //    updateLeafTimer->start(30);
@@ -386,7 +389,7 @@ void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 pos
 //        leafLabels[i]->hide();
         leafLabels[i]->setGeometry(positions[i].x, positions[i].y, leafLabels[i]->width(), leafLabels[i]->height());
    //r qDebug() << "positions[" << i << "]:" << positions[i].x << positions[i].y;
-        leafLabels[i]->show();
+        //leafLabels[i]->show();
     }
 }
 
