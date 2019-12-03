@@ -57,7 +57,7 @@ void Evidence::setType(EvidenceEnum type){
 
 int Evidence::getCorrectUsedTools(){
     int correctNumber = 0;
-    for (int i = 0; i < usedTools.size(), i < correctTools.size(); i++){
+    for (int i = 0; i < usedTools.size();i++){
         if (usedTools[i] == correctTools[i]){
             correctNumber++;
         }

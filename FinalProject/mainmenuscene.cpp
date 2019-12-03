@@ -309,8 +309,8 @@ void MainMenuScene::updateWorld(){
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
     float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 15;
-    int32 positionIterations = 6;
+    int32 velocityIterations = 12;
+    int32 positionIterations = 4;
 
 
     // Now print the position and angle of the body.

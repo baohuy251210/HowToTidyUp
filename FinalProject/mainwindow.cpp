@@ -76,6 +76,8 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);
+        mainThemeMusic.setVolume(50);
+        overlayMusic.setVolume(20);
         currentScene = mainmenuScene;
         break;
     case BEGIN:
