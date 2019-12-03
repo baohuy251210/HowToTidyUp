@@ -7,6 +7,7 @@
 #include <QMediaPlayer>
 #include <QVideoWidget>
 #include <QFileInfo>
+#include <QHBoxLayout>
 #include<QNetworkProxyFactory>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
@@ -40,7 +41,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     drawTextPushButton(ui->newGameButton, 50,"Hollows Free");
     drawTextPushButton(ui->continueButton, 50,"Hollows Free");
 
-    startBackgroundMusic();
+
 
     fadeOpacity = 100; //percentage
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
@@ -61,7 +62,68 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->footprint2->setVisible(false);
     ui->footprint3->setVisible(false);
 
+    srand(time(0));
+    //Init Box2d
+    numLeaves = 15;
+    hlayout = new QHBoxLayout();
+    setLayout(hlayout);
+    initializeBox2D();
+
+    replayLeafTimer = new QTimer(this);
+    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);    
+    connect(replayLeafTimer, &QTimer::timeout, this, &MainMenuScene::initializeBox2D);
+    QTimer::singleShot(0,this, &MainMenuScene::updateWorld);
+    replayLeafTimer->start(5000);
+
+}
+
+
+
+MainMenuScene::~MainMenuScene()
+{
+    delete ui;
+}
+
+
+void MainMenuScene::initializeBox2D(){
     //Start Box2D
+    //initialize labels:
+//    leafBodies.clear();
+//    numLeaves+=3;
+//    leafLabels.clear();
+    if (leafLabels.size() >45){
+        for (int i = 0; i < leafLabels.size(); i++)
+            delete leafLabels[i];
+        leafLabels.clear();
+        leafBodies.clear();
+    }
+//    hlayout->addWidget(ui->leaf1);
+//    hlayout->addWidget(ui->leaf2);
+//    hlayout->addWidget(ui->leaf3);
+    int currentLblsSize = leafLabels.size();
+    for (int i = 0; i<numLeaves; i+=3){
+        leafLabels.push_back(new QLabel());
+        leafLabels.last()->setPixmap(*ui->leaf1->pixmap());
+        leafLabels.last()->setFixedSize(ui->leaf1->size());
+        hlayout->addWidget(leafLabels.last());
+//        leafLabels.last()->hide();
+
+        leafLabels.push_back(new QLabel());
+        leafLabels.last()->setPixmap(*ui->leaf2->pixmap());
+        leafLabels.last()->setFixedSize(ui->leaf2->size());
+        hlayout->addWidget(leafLabels.last());
+//        leafLabels.last()->hide();
+
+        leafLabels.push_back(new QLabel());
+        leafLabels.last()->setPixmap(*ui->leaf3->pixmap());
+        leafLabels.last()->setFixedSize(ui->leaf3->size());
+        hlayout->addWidget(leafLabels.last());
+//        leafLabels.last()->hide();
+    }
+    this->hlayout->update();
+//    qDebug() <<"leaflbls:"<<leafLabels.size();
+//    setLayout(hlayout);
+
 
 //    // Define the ground body.
     b2BodyDef groundBodyDef;
@@ -80,21 +142,43 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
-
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     b2BodyDef bodyDef2, bodyDef3;
+    QVector<b2BodyDef> leafBodiesDef;
     bodyDef.type = bodyDef2.type = bodyDef3.type = b2_dynamicBody;
+    for (int i = 0; i < leafLabels.size(); i++){
+        b2BodyDef newbodyDef;
+        newbodyDef.type = b2_dynamicBody;
+        leafBodiesDef.push_back(newbodyDef);
+    }
+
+
+    //init position
     bodyDef.position.Set(900.0f, 50.0f);
     bodyDef2.position.Set(950.0f, 60.0f);
     bodyDef3.position.Set(700.0f, 100.0f);
     bodyDef3.linearVelocity = bodyDef2.linearVelocity = bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
     bodyDef3.angularVelocity = bodyDef2.angularVelocity = bodyDef.angularVelocity = 0.0f;
 
+    for (int i = 0; i < leafBodiesDef.size(); i++){
+        int rollx, rolly;
+        int min = 700; // the min number a die can roll is 1
+        int max = 950;// this->dieSize; // the max value is the die size
+        rollx = rand() % (max - min + 1) + min;
+        rolly = rand() % (150 - 20 + 1) + 20;
+        leafBodiesDef[i].position.Set(rollx, rolly);
+        leafBodiesDef[i].linearVelocity = b2Vec2(0.0f, 0.0f);
+        leafBodiesDef[i].angularVelocity = 0.0f;
+    }
+
+
     body = world.CreateBody(&bodyDef);
     body2 = world.CreateBody(&bodyDef2);
     body3 = world.CreateBody(&bodyDef3);
-
+    for (int i = 0; i < numLeaves; i++){
+        leafBodies.push_back(world.CreateBody(&leafBodiesDef[i]));
+    }
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
     dynamicBox.SetAsBox(1.0f, 1.0f);
@@ -103,7 +187,13 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     b2FixtureDef fixtureDef;
     b2FixtureDef fixtureDef2, fixtureDef3;
     fixtureDef3.shape = fixtureDef2.shape = fixtureDef.shape = &dynamicBox;
-
+    QVector<b2FixtureDef> fixtureDefs;
+    for (int i = 0; i < numLeaves; i++){
+         b2FixtureDef newfixtureDef;
+         newfixtureDef.shape = &dynamicBox;
+        fixtureDefs.push_back(newfixtureDef);
+        fixtureDefs[i].density = 1.0f;
+    }
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDef3.density = fixtureDef2.density = fixtureDef.density = 1.0f;
 
@@ -116,27 +206,10 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     body2->CreateFixture(&fixtureDef2);
     body3->CreateFixture(&fixtureDef3);
 
+    for (int i = 0 ; i < leafLabels.size(); i++){
+        leafBodies[i]->CreateFixture(&fixtureDefs[i%numLeaves]);
+    }
 
-    srand(time(0));
-
-    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);    
-
-    QTimer::singleShot(30,this, &MainMenuScene::updateWorld);
-
-
-}
-
-MainMenuScene::~MainMenuScene()
-{
-    delete ui;
-}
-
-void MainMenuScene::startBackgroundMusic(){
-//    QResource musicfile(":/introdata/windsound.ogg");
-//    backgroundMusic.openFromMemory(musicfile.data(), musicfile.size());
-//    backgroundMusic.setVolume(80);
-//    backgroundMusic.play();
-//    backgroundMusic.setLoop(true);
 }
 
 void MainMenuScene::fadeWhiteFlash(){
@@ -201,13 +274,17 @@ void MainMenuScene::updateWorld(){
     static int direction = 1;
     static int direction1 = 1;
     static int direction2 = 1;
-    updates ++;
+    static QVector<int> directions;
+    for (int i = 0; i < numLeaves; i++){
+        directions.push_back(1);
+    }
+    updates++;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
     float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 6;
+    int32 velocityIterations = 10;
     int32 positionIterations = 2;
 
 
@@ -215,6 +292,11 @@ void MainMenuScene::updateWorld(){
     b2Vec2 position = body->GetWorldCenter();
     b2Vec2 position2 = body2->GetWorldCenter();
     b2Vec2 position3 = body3->GetWorldCenter();
+    QVector<b2Vec2> positions(leafLabels.size());
+    for (int i = 0; i < positions.size(); i++){
+        positions[i]= leafBodies[i]->GetWorldCenter();
+       // qDebug() << "positions[" << i << "]:" << positions[i].x << positions[i].y;
+    }
 
     //qDebug() << "Position X: " << position.x << " Y: " << position.y;
 
@@ -222,17 +304,32 @@ void MainMenuScene::updateWorld(){
     //Idea gained here:
     //https://www.youtube.com/watch?v=bJJbQIoJeFc
     //https://natureofcode.com/book/chapter-5-physics-libraries/#chapter05_section12
-    int frc = rand() % 5000;
+    int frc = rand() % 4000;
     if(updates % 15 == 0) {
         direction = rand() % 2;
         direction1 = rand() % 2;
         direction2 = rand() % 2;
+        for (int i = 0; i < directions.size(); i++){
+            directions[i] = rand() % 2;
+         //   qDebug() << "directions[" << i << "]:" << directions[i];
+        }
     }
     //qDebug() << "Frc: " << frc << " dir: " << direction;
 
     b2Vec2 force(direction?frc:-frc, 500.0f);
     b2Vec2 force2(direction1?frc:-frc, 100.0f);
     b2Vec2 force3(direction2?frc:-frc, 250.0f);
+    QVector<b2Vec2> forces(leafLabels.size());
+    for (int i = 0; i < forces.size(); i++){
+        int roll1;
+        int min = 100; // the min number a die can roll is 1
+        int max = 500;// this->dieSize; // the max value is the die size
+        roll1 = rand() % (max - min + 1) + min;
+//        qDebug() << roll1;
+        b2Vec2 tempForce(directions[i]?frc:-frc,  float(roll1));
+        forces[i] = tempForce;
+    }
+
 
     //body->SetAwake(true);
     if(updates % 7 == 0){
@@ -245,11 +342,15 @@ void MainMenuScene::updateWorld(){
 
     }
 
+//    if (leafLabels.size() == 30)
+//        qDebug() << "?" << leafBodies.size() << forces.size();
+
     body->ApplyForce(force, body->GetWorldCenter(), true);
     body2->ApplyForce(force2, body2->GetWorldCenter(), true);
     body3->ApplyForce(force3, body3->GetWorldCenter(), true);
-
-
+    for (int i = 0; i < leafLabels.size(); i++){
+        leafBodies[i]->ApplyForce(forces[i], leafBodies[i]->GetWorldCenter(), true);
+    }
 
     // Instruct the world to perform a single step of simulation.
     // It is generally best to keep the time step and iterations fixed.
@@ -257,7 +358,7 @@ void MainMenuScene::updateWorld(){
 
     //float32 angle = body->GetAngle();
 
-    emit(newPosition(position, position2, position3));
+    emit(newPosition(position, position2, position3, positions));
 
 
     QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
@@ -265,11 +366,16 @@ void MainMenuScene::updateWorld(){
 
 }
 
-void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 position3){
-    ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
-    ui->leaf2->setGeometry(position2.x, position2.y, ui->leaf2->width(),ui->leaf2->height());
-    ui->leaf3->setGeometry(position3.x, position3.y, ui->leaf3->width(),ui->leaf3->height());
-
+void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 position3, QVector<b2Vec2> positions){
+   // ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
+  //  ui->leaf2->setGeometry(position2.x, position2.y, ui->leaf2->width(),ui->leaf2->height());
+  //  ui->leaf3->setGeometry(position3.x, position3.y, ui->leaf3->width(),ui->leaf3->height());
+    for (int i = 0; i < positions.size(); i++){
+//        leafLabels[i]->hide();
+        leafLabels[i]->setGeometry(positions[i].x, positions[i].y, leafLabels[i]->width(), leafLabels[i]->height());
+   //r qDebug() << "positions[" << i << "]:" << positions[i].x << positions[i].y;
+        leafLabels[i]->show();
+    }
 }
 
 void MainMenuScene::showFootprintSlot(QLabel* footprint) {
