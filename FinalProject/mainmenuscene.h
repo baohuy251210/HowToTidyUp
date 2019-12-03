@@ -43,6 +43,8 @@ protected:
 private:
     Ui::MainMenuScene *ui;
     QTimer * replayLeafTimer;
+    QTimer * updateLeafTimer;
+    bool isLastLeavesRow;
     int numLeaves;
     void fadeWhiteFlash();
     void initializeBox2D();

@@ -67,13 +67,17 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     numLeaves = 15;
     hlayout = new QHBoxLayout();
     setLayout(hlayout);
-    initializeBox2D();
+    isLastLeavesRow = false;
+
 
     replayLeafTimer = new QTimer(this);
-    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);    
+    updateLeafTimer = new QTimer(this);
+    initializeBox2D();
+    connect(this, &MainMenuScene::newPosition, this, &MainMenuScene::changeGeometry);
     connect(replayLeafTimer, &QTimer::timeout, this, &MainMenuScene::initializeBox2D);
-    QTimer::singleShot(0,this, &MainMenuScene::updateWorld);
-    replayLeafTimer->start(5000);
+    connect(updateLeafTimer, &QTimer::timeout, this ,&MainMenuScene::updateWorld);
+    updateLeafTimer->start(30);
+    replayLeafTimer->start(7000);
 
 }
 
@@ -91,12 +95,29 @@ void MainMenuScene::initializeBox2D(){
 //    leafBodies.clear();
 //    numLeaves+=3;
 //    leafLabels.clear();
-    if (leafLabels.size() >45){
+    if (isLastLeavesRow){
+//        updateLeafTimer->stop();
+//        qDebug() << "init";
+        isLastLeavesRow = true;
         for (int i = 0; i < leafLabels.size(); i++)
             delete leafLabels[i];
         leafLabels.clear();
         leafBodies.clear();
     }
+
+    if (leafLabels.size() >45){
+        replayLeafTimer->setInterval(13000);
+        isLastLeavesRow = true;
+        return;
+    }
+    else{
+        if (!updateLeafTimer->isActive()){
+            updateLeafTimer->start(30);
+        }
+        isLastLeavesRow=false;
+    }
+
+
 //    hlayout->addWidget(ui->leaf1);
 //    hlayout->addWidget(ui->leaf2);
 //    hlayout->addWidget(ui->leaf3);
@@ -120,7 +141,9 @@ void MainMenuScene::initializeBox2D(){
         hlayout->addWidget(leafLabels.last());
 //        leafLabels.last()->hide();
     }
-    this->hlayout->update();
+    for (int i = 0; i < leafLabels.size();i++){
+        leafLabels[i] ->hide();
+    }
 //    qDebug() <<"leaflbls:"<<leafLabels.size();
 //    setLayout(hlayout);
 
@@ -171,8 +194,6 @@ void MainMenuScene::initializeBox2D(){
         leafBodiesDef[i].linearVelocity = b2Vec2(0.0f, 0.0f);
         leafBodiesDef[i].angularVelocity = 0.0f;
     }
-
-
     body = world.CreateBody(&bodyDef);
     body2 = world.CreateBody(&bodyDef2);
     body3 = world.CreateBody(&bodyDef3);
@@ -209,7 +230,11 @@ void MainMenuScene::initializeBox2D(){
     for (int i = 0 ; i < leafLabels.size(); i++){
         leafBodies[i]->CreateFixture(&fixtureDefs[i%numLeaves]);
     }
-
+    updateWorld();
+    updateWorld();
+//    updateLeafTimer->start(30);
+//    qDebug() << "?";
+//    updateWorld();
 }
 
 void MainMenuScene::fadeWhiteFlash(){
@@ -220,7 +245,6 @@ void MainMenuScene::fadeWhiteFlash(){
         fadeTimer->stop();
         ui->maskLabel->setVisible(false);
     }
-
 }
 
 void MainMenuScene::on_newGameButton_clicked()
@@ -250,9 +274,9 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
         if(e->type() == QEvent::Enter){//change event to MouseButtonRelease to get click functionality
 
             //QTimer::singleShot(500, this, SLOT(showFootprintSlot()));
-            QTimer::singleShot(1, this, [this] () {showFootprintSlot(ui->footprint1); });
-            QTimer::singleShot(500, this, [this] () {showFootprintSlot(ui->footprint2); });
-            QTimer::singleShot(1000, this, [this] () {showFootprintSlot(ui->footprint3); });
+            QTimer::singleShot(1, this, [this] () {ui->footprint1->raise(); showFootprintSlot(ui->footprint1); });
+            QTimer::singleShot(500, this, [this] () {ui->footprint2->raise(); showFootprintSlot(ui->footprint2); });
+            QTimer::singleShot(1000, this, [this] () {ui->footprint3->raise(); showFootprintSlot(ui->footprint3); });
             //uncomment to change scene to kitchen at end of animation
             //QTimer::singleShot(1500, this, [this] () {emit changeScene(KITCHEN); });
         }
@@ -270,6 +294,7 @@ void MainMenuScene::on_continueButton_clicked()
 
 void MainMenuScene::updateWorld(){
 
+
     static int updates = 0;
     static int direction = 1;
     static int direction1 = 1;
@@ -284,8 +309,8 @@ void MainMenuScene::updateWorld(){
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
     float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 10;
-    int32 positionIterations = 2;
+    int32 velocityIterations = 15;
+    int32 positionIterations = 6;
 
 
     // Now print the position and angle of the body.
@@ -361,7 +386,7 @@ void MainMenuScene::updateWorld(){
     emit(newPosition(position, position2, position3, positions));
 
 
-    QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
+//    QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
     //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
 }
@@ -379,6 +404,8 @@ void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 pos
 }
 
 void MainMenuScene::showFootprintSlot(QLabel* footprint) {
+    footprint->raise();
+    qDebug() << "?";
     footprint->setVisible(true);
 }
 
