@@ -223,9 +223,9 @@ void MainMenuScene::initializeBox2D(){
 
     //fixtureDef.restitution = 0.9f;
     // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
-    body2->CreateFixture(&fixtureDef2);
-    body3->CreateFixture(&fixtureDef3);
+//    body->CreateFixture(&fixtureDef);
+//    body2->CreateFixture(&fixtureDef2);
+//    body3->CreateFixture(&fixtureDef3);
 
     for (int i = 0 ; i < leafLabels.size(); i++){
         leafBodies[i]->CreateFixture(&fixtureDefs[i%numLeaves]);
@@ -341,9 +341,6 @@ void MainMenuScene::updateWorld(){
     }
     //qDebug() << "Frc: " << frc << " dir: " << direction;
 
-    b2Vec2 force(direction?frc:-frc, 500.0f);
-    b2Vec2 force2(direction1?frc:-frc, 100.0f);
-    b2Vec2 force3(direction2?frc:-frc, 250.0f);
     QVector<b2Vec2> forces(leafLabels.size());
     for (int i = 0; i < forces.size(); i++){
         int roll1;
@@ -356,23 +353,10 @@ void MainMenuScene::updateWorld(){
     }
 
 
-    //body->SetAwake(true);
-    if(updates % 7 == 0){
-
-    }
-    else if(updates % 5 == 0){
-
-    }
-    else if (updates % 9 == 0) {
-
-    }
 
 //    if (leafLabels.size() == 30)
 //        qDebug() << "?" << leafBodies.size() << forces.size();
 
-    body->ApplyForce(force, body->GetWorldCenter(), true);
-    body2->ApplyForce(force2, body2->GetWorldCenter(), true);
-    body3->ApplyForce(force3, body3->GetWorldCenter(), true);
     for (int i = 0; i < leafLabels.size(); i++){
         leafBodies[i]->ApplyForce(forces[i], leafBodies[i]->GetWorldCenter(), true);
     }
@@ -392,9 +376,6 @@ void MainMenuScene::updateWorld(){
 }
 
 void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 position3, QVector<b2Vec2> positions){
-   // ui->leaf1->setGeometry(position.x, position.y, ui->leaf1->width(),ui->leaf1->height());
-  //  ui->leaf2->setGeometry(position2.x, position2.y, ui->leaf2->width(),ui->leaf2->height());
-  //  ui->leaf3->setGeometry(position3.x, position3.y, ui->leaf3->width(),ui->leaf3->height());
     for (int i = 0; i < positions.size(); i++){
 //        leafLabels[i]->hide();
         leafLabels[i]->setGeometry(positions[i].x, positions[i].y, leafLabels[i]->width(), leafLabels[i]->height());
