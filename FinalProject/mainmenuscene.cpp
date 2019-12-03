@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include<QNetworkProxyFactory>
+#include <QSound>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
@@ -79,6 +80,11 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     updateLeafTimer->start(30);
     replayLeafTimer->start(7000);
 
+    //add snow crunching sounds from resource paths
+    soundCount = 0;
+    soundFiles = {":/soundeffects/soundeffects/BootCrunchA.wav",
+                  ":/soundeffects/soundeffects/BootCrunchB.wav",
+                  ":/soundeffects/soundeffects/BootCrunchC.wav"};
 }
 
 
@@ -275,8 +281,8 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
 
             //QTimer::singleShot(500, this, SLOT(showFootprintSlot()));
             QTimer::singleShot(1, this, [this] () {ui->footprint1->raise(); showFootprintSlot(ui->footprint1); });
-            QTimer::singleShot(500, this, [this] () {ui->footprint2->raise(); showFootprintSlot(ui->footprint2); });
-            QTimer::singleShot(1000, this, [this] () {ui->footprint3->raise(); showFootprintSlot(ui->footprint3); });
+            QTimer::singleShot(750, this, [this] () {ui->footprint2->raise(); showFootprintSlot(ui->footprint2); });
+            QTimer::singleShot(1500, this, [this] () {ui->footprint3->raise(); showFootprintSlot(ui->footprint3); });
             //uncomment to change scene to kitchen at end of animation
             //QTimer::singleShot(1500, this, [this] () {emit changeScene(KITCHEN); });
         }
@@ -387,7 +393,15 @@ void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 pos
 void MainMenuScene::showFootprintSlot(QLabel* footprint) {
     footprint->raise();
     //qDebug() << "?";
+    playNextSnowCrunchSound();
     footprint->setVisible(true);
+}
+
+void MainMenuScene::playNextSnowCrunchSound(){
+    if(soundCount < 3){
+        QSound::play(soundFiles[soundCount]);
+        soundCount++;
+    }
 }
 
 

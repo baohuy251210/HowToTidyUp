@@ -25,6 +25,8 @@ public:
     QVector<b2Body*> leafBodies;
     QVector<QLabel*> leafLabels;
     QHBoxLayout * hlayout;
+    QVector<QString> soundFiles;
+
 public: signals:
     void newPosition(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3, QVector<b2Vec2>);
 
@@ -34,6 +36,7 @@ private slots:
     void updateWorld();
     void changeGeometry(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3, QVector<b2Vec2>);
     void showFootprintSlot(QLabel* footprint);
+    void playNextSnowCrunchSound();
 
 
 
@@ -51,6 +54,8 @@ private:
     int fadeOpacity;
     QTimer * fadeTimer;
     sf::Music backgroundMusic;
+    int soundCount;
+
 };
 
 #endif // MAINMENUSCENE_H

@@ -101,5 +101,8 @@
         <file alias="knifestab">soundeffects/knifestab.ogg</file>
         <file alias="dragoverwood">soundeffects/dragoverwood.ogg</file>
         <file alias="dragoverwood2">soundeffects/dragoverwood2.wav</file>
+        <file>soundeffects/BootCrunchA.wav</file>
+        <file>soundeffects/BootCrunchB.wav</file>
+        <file>soundeffects/BootCrunchC.wav</file>
     </qresource>
 </RCC>
