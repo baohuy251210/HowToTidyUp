@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>599</width>
-    <height>396</height>
+    <height>431</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,29 +16,38 @@
   <widget class="QLabel" name="bgLabel">
    <property name="geometry">
     <rect>
-     <x>13</x>
-     <y>256</y>
-     <width>561</width>
-     <height>121</height>
+     <x>21</x>
+     <y>255</y>
+     <width>531</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(136, 138, 133);</string>
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
    </property>
+   <property name="lineWidth">
+    <number>0</number>
+   </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/ui/toolbar</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>19</x>
      <y>260</y>
      <width>531</width>
      <height>91</height>
