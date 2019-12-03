@@ -89,10 +89,14 @@ double Model::getFinalScorePercentage(){
     return score;
 }
 
+double Model::getEvidenceScorePercentage(EvidenceEnum evidence){
+    return evidencesScore[evidence];
+}
 
 Evidence* Model::getEvidence(EvidenceEnum type){
     return evidences[type];
 }
+
 
 void Model::hideDialogSlot(){
     emit hideDialogSignal();
