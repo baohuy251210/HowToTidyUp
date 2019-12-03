@@ -33,19 +33,19 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>420</y>
+     <y>399</y>
      <width>571</width>
-     <height>341</height>
+     <height>371</height>
     </rect>
    </property>
   </widget>
   <widget class="itemDialog" name="evidenceDialog" native="true">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>540</y>
-     <width>561</width>
-     <height>221</height>
+     <x>600</x>
+     <y>510</y>
+     <width>411</width>
+     <height>251</height>
     </rect>
    </property>
   </widget>
