@@ -28,6 +28,7 @@ void Model::eraseAll(){
 
 void Model::addEvidence(EvidenceEnum type, Evidence* evidence){
     evidences.insert(type, evidence);
+    evidencesScore.insert(type, 0);
 }
 
 void Model::addCleaningTool(Tools type, CleaningTool* tool){
@@ -41,12 +42,13 @@ void Model::toolClickedSlot(Tools tool){
 }
 
 void Model::evidenceClicked(EvidenceEnum evidence){
-
+    //if an evidence selected with an actual cleaning supply (not GLOVE)
     if(selectedTool != GLOVE && selectedTool != EMPTY){
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
         emit updateDialogBoxSignal(evidences[evidence]);
+        updateScore(evidence);
     }
-
+    //if the user click the same current evidence using GLOVE
     if (selectedEvidence == evidence && selectedTool == GLOVE){
         evidences[evidence]->isSelected = false;
         selectedEvidence = NONE;
@@ -55,7 +57,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         emit deselectEvidence(evidence);
         return;
     }
-
+    //GLOVE + other evidence:
     else if (selectedTool == GLOVE){
         if (selectedEvidence != NONE){
             evidences[selectedEvidence]->isSelected = false;
@@ -67,11 +69,22 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
         return;
-
     }
-
-
 }
+
+
+void Model::updateScore(EvidenceEnum evidence){
+    evidencesScore[evidence]=
+            double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
+}
+int Model::getFinalScorePercentage(){
+    int score = 0;
+    int numEvidences = evidences.keys().size();
+    double eachEvidencePercent = double(100)/numEvidences;
+    return 0;
+}
+
+
 
 Evidence* Model::getEvidence(EvidenceEnum type){
     return evidences[type];
@@ -79,4 +92,11 @@ Evidence* Model::getEvidence(EvidenceEnum type){
 
 void Model::hideDialogSlot(){
     emit hideDialogSignal();
+}
+
+void Model::saveGameState(QString fileName){
+
+}
+void Model::loadGameState(QString fileName){
+
 }

@@ -36,11 +36,14 @@ public:
     void setType(EvidenceEnum type);
     bool isSelected;
     QList<CleaningTool*>* getUsedTools();
+    int getCorrectUsedTools();
+    int getCorrectToolsSize();
 private:
      void nothing();
     QVector<CleaningTool*> correctTools;
     EvidenceEnum type;
     CleanState cleanState;
+    /*Scoring*/
 
 };
 

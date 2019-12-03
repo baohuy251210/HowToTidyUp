@@ -33,6 +33,11 @@ public:
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
+    QHash<EvidenceEnum, double> evidencesScore;
+    void updateScore(EvidenceEnum);
+    int getFinalScorePercentage();
+    void saveGameState(QString fileName);
+    void loadGameState(QString fileName);
 
     Tools selectedTool;
 

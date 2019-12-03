@@ -55,6 +55,19 @@ void Evidence::setType(EvidenceEnum type){
     this->type = type;
 }
 
+int Evidence::getCorrectUsedTools(){
+    int correctNumber = 0;
+    for (int i = 0; i < usedTools.size(), i < correctTools.size(); i++){
+        if (usedTools[i] == correctTools[i]){
+            correctNumber++;
+        }
+    }
+    return (correctNumber);
+}
+int Evidence::getCorrectToolsSize(){
+    return correctTools.size();
+}
+
 EvidenceEnum Evidence::getType(){
     return this->type;
 }
