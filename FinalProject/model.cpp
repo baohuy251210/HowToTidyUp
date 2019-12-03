@@ -7,7 +7,6 @@ Model::Model(QObject * parent) :
     QObject(parent),
     selectedEvidence(EvidenceEnum::NONE),
     selectedTool(GLOVE){
-
 }
 
 Model::~Model(){
@@ -89,7 +88,6 @@ double Model::getFinalScorePercentage(){
     }
     return score;
 }
-
 
 
 Evidence* Model::getEvidence(EvidenceEnum type){
