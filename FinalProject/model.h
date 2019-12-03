@@ -35,7 +35,7 @@ private:
     QHash<Tools, CleaningTool*> cleaningTools;
     QHash<EvidenceEnum, double> evidencesScore;
     void updateScore(EvidenceEnum);
-    int getFinalScorePercentage();
+    double getFinalScorePercentage();
     void saveGameState(QString fileName);
     void loadGameState(QString fileName);
 

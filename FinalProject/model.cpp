@@ -76,12 +76,18 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 void Model::updateScore(EvidenceEnum evidence){
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
+    qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
 }
-int Model::getFinalScorePercentage(){
-    int score = 0;
+double Model::getFinalScorePercentage(){
+    double score = 0;
     int numEvidences = evidences.keys().size();
     double eachEvidencePercent = double(100)/numEvidences;
-    return 0;
+    for (EvidenceEnum e: evidencesScore.keys()){
+        qDebug()<<e << " : "<<evidencesScore[e];
+        /*66.67 percent of 20 is gonna be 66.67*20/100*/
+        score += evidencesScore[e]*100.0*eachEvidencePercent/100.0;
+    }
+    return score;
 }
 
 
