@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1018</width>
     <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>How To Tidy Up A Murder</string>
+   <string>How To Tidy Up</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
