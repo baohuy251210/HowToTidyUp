@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QResource>
 #include <SFML/Audio.hpp>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow){
@@ -83,8 +84,13 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     case BEGIN:
         beginScene = new BeginScene(this);
         startInGameMusic();
-//        mainThemeMusic.setVolume(1);
         currentScene = beginScene;
+        break;
+    case ENDING:
+        endScene = new EndScene01(this, model);
+        startInGameMusic();
+        currentScene = endScene;
+        break;
     default:
         break;
     }
