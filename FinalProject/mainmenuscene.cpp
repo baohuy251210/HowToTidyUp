@@ -312,7 +312,6 @@ void MainMenuScene::changeGeometry(QVector<b2Vec2> positions){
 
 void MainMenuScene::showFootprintSlot(QLabel* footprint) {
     footprint->raise();
-    //qDebug() << "?";
     playNextSnowCrunchSound();
     footprint->setVisible(true);
 }

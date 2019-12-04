@@ -3,8 +3,9 @@
 
 EndScene01::EndScene01(QWidget *parent, Model* model) :
     IScene(parent),
-    model(model),
-    ui(new Ui::EndScene01)
+    ui(new Ui::EndScene01),
+    model(model)
+
 {
     ui->setupUi(this);
 

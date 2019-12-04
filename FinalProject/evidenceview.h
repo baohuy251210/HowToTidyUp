@@ -32,6 +32,7 @@ private:
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
     void mouseReleaseEvent(QMouseEvent *ev) override;
+    void bloodDrip();
 
 signals:
     void clickedSignal(EvidenceEnum name);

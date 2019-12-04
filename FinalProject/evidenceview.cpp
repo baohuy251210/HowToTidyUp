@@ -1,8 +1,9 @@
 #include "evidenceview.h"
+#include "Box2D/Box2D.h"
 
 EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
-    cleanState(DIRTY),
     name(EvidenceEnum::NONE),
+    cleanState(DIRTY),
     isSelected(false)
 {
 
@@ -18,6 +19,7 @@ void EvidenceView::setType(EvidenceEnum type){
 
 void EvidenceView::enterEvent ( QEvent * event )
 {
+
     highlightEvidence();
 }
 
@@ -76,4 +78,10 @@ void EvidenceView::setSelected(EvidenceEnum evidence){
 
 void EvidenceView::clearSelection(){
     this->isSelected = false;
+}
+
+void EvidenceView::bloodDrip(){
+//intialize a world, QLable vector, and some set amount of drops.
+//essentially call the same code that we use to drop the leaves down, minus the position changes
+//current issue: getting the location of the item in question so that it only falls from that particular one.
 }
