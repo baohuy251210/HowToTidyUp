@@ -30,6 +30,7 @@ public:
 
     QList<CleaningTool*> usedTools;
     QString description;
+    QString educationalURL;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
     QPixmap* getIcon();
     EvidenceEnum getType();

@@ -18,6 +18,7 @@ signals:
     void hideDialogSignal();
     void clearToolSelections();
     void deselectEvidence(EvidenceEnum);
+    void updateEducationalPopupSignal(Evidence*);
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);

@@ -10,6 +10,7 @@
 #include <model.h>
 #include <cleaningtoolview.h>
 #include <evidenceview.h>
+#include <educationalpopup.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

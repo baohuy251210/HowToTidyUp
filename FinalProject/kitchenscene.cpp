@@ -2,6 +2,7 @@
 #include "ui_kitchenscene.h"
 #include "ToolsEnum.cpp"
 #include <evidenceview.h>
+#include <educationalpopup.h>
 #include <QDebug>
 
 KitchenScene::KitchenScene(QWidget *parent, Model* model) :
@@ -28,11 +29,15 @@ void KitchenScene::InitializeWidgets(){
     toolbarWidget = ui->toolbarWidget;
     ui->toolbarWidget->raise();
     ui->evidenceDialog->raise();
+    ui->educationalPopup->raise();
+
+
 }
 
 void KitchenScene::setupConnections(){
     connect(this, &IScene::hideDialogSignal, model, &Model::hideDialogSlot);
     connect(model, &Model::hideDialogSignal, ui->evidenceDialog, &itemDialog::hideDialogSlot );
+    connect(model, &Model::hideDialogSignal, ui->educationalPopup, &educationalpopup::hideEducationalDialogSlot );
     connect(knifeLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(bloodFloorLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(oilyHandLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
@@ -66,6 +71,9 @@ void KitchenScene::setupConnections(){
     connect(model, &Model::deselectEvidence, this, &KitchenScene::deselectEvidenceSlot);
     connect(model, &Model::setSelectedEvidence, this, &KitchenScene::setSelectedEvidenceSlot);
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
+
+    connect(model, &Model::updateEducationalPopupSignal, ui->educationalPopup, &educationalpopup::evidenceClickedURLChange);
+
 }
 
 
@@ -131,6 +139,7 @@ void KitchenScene::initializeTools(){
     model->addEvidence(KNIFE, knife);
     knifeLabel->setModel(model->getEvidence(KNIFE));
     knife->setStartValues({water, bleach, rag}, "Bloody knife.");
+    knife->educationalURL = "http://www.google.com";
 
     // initialize blood stain on floor
     Evidence* bloodFloor = new Evidence();
@@ -145,6 +154,8 @@ void KitchenScene::initializeTools(){
     model->addEvidence(BLOOD_TILE, bloodFloor);
     bloodFloorLabel->setModel(model->getEvidence(BLOOD_TILE));
     bloodFloor->setStartValues({bleach, oxiclean, rag}, "Bloody stain on the floor");
+    bloodFloor->educationalURL = "http://www.google.com";
+
 
     // initialize oily handprint
     Evidence* handprint = new Evidence();
@@ -159,6 +170,8 @@ void KitchenScene::initializeTools(){
     model->addEvidence(FINGERPRINT_GLASS, handprint);
     oilyHandLabel->setModel(model->getEvidence(FINGERPRINT_GLASS));
     handprint->setStartValues({nailPolishRemover, water, rag}, "Oily handprint on glass");
+    handprint->educationalURL = "http://www.google.com";
+
 
     // initialize broken plate
     Evidence* brokenPlate = new Evidence();
@@ -173,6 +186,8 @@ void KitchenScene::initializeTools(){
     model->addEvidence(BROKEN_PLATE, brokenPlate);
     brokenPlateLabel->setModel(model->getEvidence(BROKEN_PLATE));
     brokenPlate->setStartValues({bleach, rag, rag}, "Broken plate");
+    brokenPlate->educationalURL = "http://www.google.com";
+
 
     // initialize bloody footprints
     Evidence* bloodyFootprints = new Evidence();
@@ -187,6 +202,8 @@ void KitchenScene::initializeTools(){
     model->addEvidence(BLOOD_FOOTPRINT, bloodyFootprints);
     bloodFootprintsLabel->setModel(model->getEvidence(BLOOD_FOOTPRINT));
     bloodyFootprints->setStartValues({bleach, oxiclean, rag}, "Bloody footprints on floor");
+    bloodyFootprints->educationalURL = "http://www.google.com";
+
 
     // initialize bloody wall
     Evidence* bloodyWall = new Evidence();
@@ -201,6 +218,7 @@ void KitchenScene::initializeTools(){
     model->addEvidence(BLOOD_WALL_WOOD, bloodyWall);
     bloodWallLabel->setModel(model->getEvidence(BLOOD_WALL_WOOD));
     bloodyWall->setStartValues({bleach, oxiclean, rag}, "Blood splatter on wooden wall");
+    bloodyWall->educationalURL = "http://www.google.com";
 
 }
 

@@ -73,6 +73,7 @@ SOURCES += \
     beginscene.cpp \
     cleaningtool.cpp \
     cleaningtoolview.cpp \
+    educationalpopup.cpp \
     endscene01.cpp \
     endscene02.cpp \
     evidence.cpp \
@@ -139,6 +140,7 @@ HEADERS += \
     beginscene.h \
     cleaningtool.h \
     cleaningtoolview.h \
+    educationalpopup.h \
     endscene01.h \
     endscene02.h \
     evidence.h \
@@ -155,6 +157,7 @@ HEADERS += \
 
 FORMS += \
     beginscene.ui \
+    educationalpopup.ui \
     endscene01.ui \
     endscene02.ui \
     introscene.ui \

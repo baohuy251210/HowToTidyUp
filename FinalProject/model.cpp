@@ -45,6 +45,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
     if(selectedTool != GLOVE && selectedTool != EMPTY){
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
         emit updateDialogBoxSignal(evidences[evidence]);
+        emit updateEducationalPopupSignal(evidences[evidence]);
         updateScore(evidence);
     }
     //if the user click the same current evidence using GLOVE
@@ -67,6 +68,8 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         emit clearEvidenceSelections();
         emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
+        emit updateEducationalPopupSignal(evidences[evidence]);
+
         return;
     }
 }

@@ -154,6 +154,16 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="educationalpopup" name="educationalPopup" native="true">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>380</y>
+     <width>221</width>
+     <height>151</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -172,6 +182,12 @@
    <class>EvidenceView</class>
    <extends>QLabel</extends>
    <header>evidenceview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>educationalpopup</class>
+   <extends>QWidget</extends>
+   <header>educationalpopup.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
