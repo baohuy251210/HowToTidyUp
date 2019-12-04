@@ -17,8 +17,6 @@ IScene::IScene(QWidget *parent) : QWidget(parent)
     fontFamily.addApplicationFont(":/art/fonts/Fiendish");
     fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
     fontFamily.addApplicationFont(":/art/fonts/Black Night");
-//    qDebug() << fontFamily.bold("SF Cartoonist Hand", "Bold");
-//    qDebug() << fontFamily.families();
 }
 
 void IScene::drawTextPushButton(QPushButton * pushBtn, int size, QString fontName,QString fontStyle){

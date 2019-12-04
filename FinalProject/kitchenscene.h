@@ -44,6 +44,7 @@ private:
     EvidenceView* bloodFootprintsLabel;
     EvidenceView* brokenPlateLabel;
     EvidenceView* bloodWallLabel;
+    EvidenceView* gunpowderWallLabel;
     Model* model;
 
     void InitializeWidgets();

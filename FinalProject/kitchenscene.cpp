@@ -38,8 +38,8 @@ void KitchenScene::setupConnections(){
     connect(bloodFloorLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(oilyHandLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(bloodFootprintsLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
-    connect(brokenPlateLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
     connect(bloodWallLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
+    connect(gunpowderWallLabel, &EvidenceView::clickedSignal, model, &Model::evidenceClicked);
 
 
     connect(ui->toolbarWidget->glove, &CleaningToolView::toolClickedSignal, model, &Model::toolClickedSlot);
@@ -112,6 +112,7 @@ void KitchenScene::initializeTools(){
     ui->toolbarWidget->oxiclean->setModel(oxiclean);
     ui->toolbarWidget->nailpolish_remover->setModel(nailPolishRemover);
 
+    model->addCleaningTool(GLOVE, glove);
     model->addCleaningTool(RAG, rag);
     model->addCleaningTool(BLEACH, bleach);
     model->addCleaningTool(WATER, water);
@@ -131,7 +132,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(KNIFE, knifeLabel);
     model->addEvidence(KNIFE, knife);
     knifeLabel->setModel(model->getEvidence(KNIFE));
-    knife->setStartValues({water, bleach, rag}, "Bloody knife.");
+    knife->setStartValues({water, bleach, rag}, "Bloody stainless-steel knife.");
 
     // initialize blood stain on floor
     Evidence* bloodFloor = new Evidence();
@@ -161,20 +162,6 @@ void KitchenScene::initializeTools(){
     oilyHandLabel->setModel(model->getEvidence(FINGERPRINT_GLASS));
     handprint->setStartValues({nailPolishRemover, water, rag}, "Oily handprint on glass");
 
-    // initialize broken plate
-    Evidence* brokenPlate = new Evidence();
-    brokenPlate->setPixmaps(QPixmap(":/art/interactables/plate_broken"),
-                           QPixmap(":/art/interactables/plate_broken_highlighted"),
-                           QPixmap(),
-                           QPixmap(":/art/interactables/plate_clean_highlighted"),
-                           QPixmap(),
-                           QPixmap(":/art/interactables/plate_clean_highlighted"));
-    brokenPlateLabel->setType(BROKEN_PLATE);
-    evidenceLabels.insert(BROKEN_PLATE, brokenPlateLabel);
-    model->addEvidence(BROKEN_PLATE, brokenPlate);
-    brokenPlateLabel->setModel(model->getEvidence(BROKEN_PLATE));
-    brokenPlate->setStartValues({bleach, rag, rag}, "Broken plate");
-
     // initialize bloody footprints
     Evidence* bloodyFootprints = new Evidence();
     bloodyFootprints->setPixmaps(QPixmap(":/art/interactables/blood_footprint"),
@@ -203,6 +190,20 @@ void KitchenScene::initializeTools(){
     bloodWallLabel->setModel(model->getEvidence(BLOOD_WALL_WOOD));
     bloodyWall->setStartValues({bleach, oxiclean, rag}, "Blood splatter on wooden wall");
 
+    // initialize gunpowder residue
+    Evidence* gunpowderWall = new Evidence();
+    gunpowderWall->setPixmaps(QPixmap(":/art/interactables/gunpowder_wall_01"),
+                           QPixmap(":/art/interactables/gunpowder_wall_highlighted_01"),
+                           QPixmap(),
+                           QPixmap(":/art/interactables/gunpowder_wall_clean_highlighted_01"),
+                           QPixmap(),
+                           QPixmap(":/art/interactables/gunpowder_wall_clean_highlighted_01"));
+    gunpowderWallLabel->setType(GUNPOWDER_WALL);
+    evidenceLabels.insert(GUNPOWDER_WALL, gunpowderWallLabel);
+    model->addEvidence(GUNPOWDER_WALL, gunpowderWall);
+    gunpowderWallLabel->setModel(model->getEvidence(GUNPOWDER_WALL));
+    gunpowderWall->setStartValues({rag, water, nailPolishRemover}, "Gunpowder on painted wood and ceramic.");
+
 }
 
 void KitchenScene::initializeEvidence(){
@@ -210,8 +211,8 @@ void KitchenScene::initializeEvidence(){
     bloodFloorLabel = ui->bloodFloorLabel;
     oilyHandLabel = ui->oilyHandLabel;
     bloodFootprintsLabel = ui->bloodFootprintLabel;
-    brokenPlateLabel = ui->plateLabel;
     bloodWallLabel = ui->bloodWallLabel;
+    gunpowderWallLabel = ui->gunpowderLabel;
 }
 
 void KitchenScene::unselectTool(){
