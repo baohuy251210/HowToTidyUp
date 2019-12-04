@@ -6,24 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>40</width>
+    <height>39</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QPushButton" name="lightbulb">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>120</y>
-     <width>51</width>
-     <height>51</height>
+     <x>0</x>
+     <y>0</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/art/interactables/infoiconwhite)
+</string>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
    </property>
   </widget>
  </widget>

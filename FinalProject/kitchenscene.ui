@@ -157,10 +157,10 @@
   <widget class="educationalpopup" name="educationalPopup" native="true">
    <property name="geometry">
     <rect>
-     <x>790</x>
-     <y>380</y>
-     <width>221</width>
-     <height>151</height>
+     <x>970</x>
+     <y>490</y>
+     <width>51</width>
+     <height>41</height>
     </rect>
    </property>
   </widget>

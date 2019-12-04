@@ -23,6 +23,7 @@
         <file alias="blood_footprint_highlighted">Art/Interactables/blood_footprint_highlighted_01.png</file>
         <file alias="blood_footprint_clean_highlighted">Art/Interactables/blood_footprint_clean_highlighted_01.png</file>
         <file alias="blood_floor_clean_highlighted">Art/Interactables/blood_floor_clean_highlighted_01.png</file>
+        <file alias="infoiconwhite">Art/Interactables/infoiconwhite.png</file>
     </qresource>
     <qresource prefix="/art/backgrounds">
         <file alias="Endgame1">Art/Backgrounds/Endgame_BG_01.png</file>
