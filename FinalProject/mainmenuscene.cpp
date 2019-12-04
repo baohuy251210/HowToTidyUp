@@ -294,6 +294,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     {
         return QWidget::eventFilter(obj, e);
     }
+    updateWorld();
 }
 
 void MainMenuScene::on_continueButton_clicked()
