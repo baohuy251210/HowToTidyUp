@@ -5,7 +5,6 @@ enum Scene{
     INTRO,
     BEGIN,
     MAINMENU,
-    ENDING1,
-    ENDING2,
+    ENDING,
 };
 #endif

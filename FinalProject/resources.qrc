@@ -24,6 +24,8 @@
         <file alias="blood_footprint_clean_highlighted">Art/Interactables/blood_footprint_clean_highlighted_01.png</file>
         <file alias="blood_floor_clean_highlighted">Art/Interactables/blood_floor_clean_highlighted_01.png</file>
         <file alias="infoiconwhite">Art/Interactables/infoiconwhite.png</file>
+        <file alias="exit_button">Art/Interactables/icons8-emergency-exit-48.png</file>
+
     </qresource>
     <qresource prefix="/art/backgrounds">
         <file alias="Endgame1">Art/Backgrounds/Endgame_BG_01.png</file>
@@ -105,5 +107,9 @@
         <file>soundeffects/BootCrunchA.wav</file>
         <file>soundeffects/BootCrunchB.wav</file>
         <file>soundeffects/BootCrunchC.wav</file>
+    </qresource>
+    <qresource prefix="/art/ui">
+        <file alias="toolbar">Art/UI/toolbar_01.png</file>
+        <file alias="item_dialog">Art/UI/item_dialog_01.png</file>
     </qresource>
 </RCC>

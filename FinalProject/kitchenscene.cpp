@@ -30,7 +30,7 @@ void KitchenScene::InitializeWidgets(){
     ui->toolbarWidget->raise();
     ui->evidenceDialog->raise();
     ui->educationalPopup->raise();
-
+    ui->exitButton->setAutoRaise(false);
 
 }
 
@@ -243,4 +243,10 @@ void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
 
 void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
     evidenceLabels[selectedEvidence]->highlightEvidence();
+}
+
+void KitchenScene::on_exitButton_clicked()
+{
+    emit changeScene(ENDING);
+
 }
