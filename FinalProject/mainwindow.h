@@ -6,6 +6,7 @@
 #include "model.h"
 #include "ToolsEnum.cpp"
 #include "introscene.h"
+#include "endscene01.h"
 #include "beginscene.h"
 #include "kitchenscene.h"
 #include "SceneEnum.cpp"
@@ -34,6 +35,8 @@ private:
     BeginScene * beginScene;
     KitchenScene * kitchenScene;
     MainMenuScene * mainmenuScene;
+    EndScene01 * endScene;
+
     Model* model;
     void startThemeMusic();
     void startInGameMusic();

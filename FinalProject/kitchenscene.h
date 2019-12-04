@@ -30,6 +30,10 @@ public slots:
     void setSelectedEvidenceSlot(EvidenceEnum);
     void unselectTool();
 
+private slots:
+    void on_exitButton_clicked();
+
+
 private:
     Ui::KitchenScene *ui;
     QHash<EvidenceEnum, EvidenceView*> evidenceLabels;

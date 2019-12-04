@@ -30,12 +30,13 @@ public:
     Evidence* getEvidence(EvidenceEnum type);
     void addCleaningTool(Tools type, CleaningTool* evidence);
     void addEvidence(EvidenceEnum type, Evidence* evidence);
+    double getFinalScorePercentage();
+    double getEvidenceScorePercentage(EvidenceEnum evidence);
 private:
     QHash<EvidenceEnum, Evidence*> evidences;
     QHash<Tools, CleaningTool*> cleaningTools;
     QHash<EvidenceEnum, double> evidencesScore;
     void updateScore(EvidenceEnum);
-    double getFinalScorePercentage();
     void saveGameState(QString fileName);
     void loadGameState(QString fileName);
 
