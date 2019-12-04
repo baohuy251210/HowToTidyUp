@@ -96,7 +96,7 @@ void MainMenuScene::initializeBox2D(){
         isLastLeavesRow=false;
     }
 
-    int currentLblsSize = leafLabels.size();
+   // int currentLblsSize = leafLabels.size();
     for (int i = 0; i<numLeaves; i+=3){
         leafLabels.push_back(new QLabel());
         leafLabels.last()->setPixmap(*ui->leaf1->pixmap());
@@ -133,9 +133,7 @@ void MainMenuScene::initializeBox2D(){
     groundBody->CreateFixture(&groundBox, 0.0f);
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
-    b2BodyDef bodyDef2, bodyDef3;
     QVector<b2BodyDef> leafBodiesDef;
-    bodyDef.type = bodyDef2.type = bodyDef3.type = b2_dynamicBody;
     for (int i = 0; i < leafLabels.size(); i++){
         b2BodyDef newbodyDef;
         newbodyDef.type = b2_dynamicBody;
@@ -144,11 +142,6 @@ void MainMenuScene::initializeBox2D(){
 
 
     //init position
-    bodyDef.position.Set(900.0f, 50.0f);
-    bodyDef2.position.Set(950.0f, 60.0f);
-    bodyDef3.position.Set(700.0f, 100.0f);
-    bodyDef3.linearVelocity = bodyDef2.linearVelocity = bodyDef.linearVelocity = b2Vec2(0.0f, 0.0f);
-    bodyDef3.angularVelocity = bodyDef2.angularVelocity = bodyDef.angularVelocity = 0.0f;
 
     for (int i = 0; i < leafBodiesDef.size(); i++){
         int rollx, rolly;
@@ -160,9 +153,7 @@ void MainMenuScene::initializeBox2D(){
         leafBodiesDef[i].linearVelocity = b2Vec2(0.0f, 0.0f);
         leafBodiesDef[i].angularVelocity = 0.0f;
     }
-    body = world.CreateBody(&bodyDef);
-    body2 = world.CreateBody(&bodyDef2);
-    body3 = world.CreateBody(&bodyDef3);
+
     for (int i = 0; i < numLeaves; i++){
         leafBodies.push_back(world.CreateBody(&leafBodiesDef[i]));
     }
@@ -171,9 +162,6 @@ void MainMenuScene::initializeBox2D(){
     dynamicBox.SetAsBox(1.0f, 1.0f);
 
     // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    b2FixtureDef fixtureDef2, fixtureDef3;
-    fixtureDef3.shape = fixtureDef2.shape = fixtureDef.shape = &dynamicBox;
     QVector<b2FixtureDef> fixtureDefs;
     for (int i = 0; i < numLeaves; i++){
          b2FixtureDef newfixtureDef;
@@ -182,16 +170,6 @@ void MainMenuScene::initializeBox2D(){
         fixtureDefs[i].density = 1.0f;
     }
     // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef3.density = fixtureDef2.density = fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    //fixtureDef.friction = 0.3f;
-
-    //fixtureDef.restitution = 0.9f;
-    // Add the shape to the body.
-//    body->CreateFixture(&fixtureDef);
-//    body2->CreateFixture(&fixtureDef2);
-//    body3->CreateFixture(&fixtureDef3);
 
     for (int i = 0 ; i < leafLabels.size(); i++){
         leafBodies[i]->CreateFixture(&fixtureDefs[i%numLeaves]);
@@ -201,9 +179,6 @@ void MainMenuScene::initializeBox2D(){
     updateWorld();
     updateWorld();
     updateWorld();
-//    updateLeafTimer->start(30);
-//    qDebug() << "?";
-//    updateWorld();
 }
 
 void MainMenuScene::fadeWhiteFlash(){
@@ -255,6 +230,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
         return QWidget::eventFilter(obj, e);
     }
     updateWorld();
+
 }
 
 void MainMenuScene::on_continueButton_clicked()
@@ -266,9 +242,6 @@ void MainMenuScene::updateWorld(){
 
 
     static int updates = 0;
-    static int direction = 1;
-    static int direction1 = 1;
-    static int direction2 = 1;
     static QVector<int> directions;
     for (int i = 0; i < numLeaves; i++){
         directions.push_back(1);
@@ -282,51 +255,40 @@ void MainMenuScene::updateWorld(){
     int32 velocityIterations = 12;
     int32 positionIterations = 4;
 
-
-    // Now print the position and angle of the body.
-    b2Vec2 position = body->GetWorldCenter();
-    b2Vec2 position2 = body2->GetWorldCenter();
-    b2Vec2 position3 = body3->GetWorldCenter();
+    //get the position of each leaf, to determine where to apply force.
     QVector<b2Vec2> positions(leafLabels.size());
     for (int i = 0; i < positions.size(); i++){
         positions[i]= leafBodies[i]->GetWorldCenter();
-       // qDebug() << "positions[" << i << "]:" << positions[i].x << positions[i].y;
     }
 
-    //qDebug() << "Position X: " << position.x << " Y: " << position.y;
 
     //Experimenting with apply force
     //Idea gained here:
     //https://www.youtube.com/watch?v=bJJbQIoJeFc
     //https://natureofcode.com/book/chapter-5-physics-libraries/#chapter05_section12
+
     int frc = rand() % 4000;
+    //We update the direction every quarter second.
     if(updates % 15 == 0) {
-        direction = rand() % 2;
-        direction1 = rand() % 2;
-        direction2 = rand() % 2;
         for (int i = 0; i < directions.size(); i++){
+            //each leaf is given a direction, either 0,1 or in other words left/right.
             directions[i] = rand() % 2;
-         //   qDebug() << "directions[" << i << "]:" << directions[i];
         }
     }
-    //qDebug() << "Frc: " << frc << " dir: " << direction;
 
+    //determine the force and direction of the force that will be applied to each leaf.
     QVector<b2Vec2> forces(leafLabels.size());
     for (int i = 0; i < forces.size(); i++){
         int roll1;
         int min = 100; // the min number a die can roll is 1
         int max = 500;// this->dieSize; // the max value is the die size
         roll1 = rand() % (max - min + 1) + min;
-//        qDebug() << roll1;
         b2Vec2 tempForce(directions[i]?frc:-frc,  float(roll1));
         forces[i] = tempForce;
     }
 
 
-
-//    if (leafLabels.size() == 30)
-//        qDebug() << "?" << leafBodies.size() << forces.size();
-
+    //apply the forces to each leaf
     for (int i = 0; i < leafLabels.size(); i++){
         leafBodies[i]->ApplyForce(forces[i], leafBodies[i]->GetWorldCenter(), true);
     }
@@ -335,21 +297,15 @@ void MainMenuScene::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world.Step(timeStep, velocityIterations, positionIterations);
 
-    //float32 angle = body->GetAngle();
-
-    emit(newPosition(position, position2, position3, positions));
-
-
-//    QTimer::singleShot(30, this, &MainMenuScene::updateWorld);
-    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+    //Tell the leaves where to go.
+    emit(newPosition(positions));
 
 }
 
-void MainMenuScene::changeGeometry(b2Vec2 position, b2Vec2 position2, b2Vec2 position3, QVector<b2Vec2> positions){
+void MainMenuScene::changeGeometry(QVector<b2Vec2> positions){
     for (int i = 0; i < positions.size(); i++){
 //        leafLabels[i]->hide();
         leafLabels[i]->setGeometry(positions[i].x, positions[i].y, leafLabels[i]->width(), leafLabels[i]->height());
-   //r qDebug() << "positions[" << i << "]:" << positions[i].x << positions[i].y;
         //leafLabels[i]->show();
     }
 }

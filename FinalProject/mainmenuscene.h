@@ -19,22 +19,19 @@ public:
     explicit MainMenuScene(QWidget *parent = nullptr);
     ~MainMenuScene();
     b2World world;
-    b2Body* body;
-    b2Body* body2;
-    b2Body* body3;
     QVector<b2Body*> leafBodies;
     QVector<QLabel*> leafLabels;
     QHBoxLayout * hlayout;
     QVector<QString> soundFiles;
 
 public: signals:
-    void newPosition(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3, QVector<b2Vec2>);
+    void newPosition(QVector<b2Vec2>);
 
 private slots:
     void on_newGameButton_clicked();
     void on_continueButton_clicked();
     void updateWorld();
-    void changeGeometry(b2Vec2 vector, b2Vec2 vector2, b2Vec2 vector3, QVector<b2Vec2>);
+    void changeGeometry(QVector<b2Vec2>);
     void showFootprintSlot(QLabel* footprint);
     void playNextSnowCrunchSound();
 
