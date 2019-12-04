@@ -9,5 +9,6 @@ enum EvidenceEnum{
     BROKEN_PLATE,
     HAIR,
     FINGERPRINT_GLASS,
+    GUNPOWDER_WALL
 };
 #endif

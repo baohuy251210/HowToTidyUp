@@ -21,7 +21,9 @@ private slots:
     void on_continueButton_clicked();
 
 private:
+    void updateScore();
     Ui::EndScene01 *ui;
+    Model* model;
 };
 
 #endif // ENDSCENE01_H

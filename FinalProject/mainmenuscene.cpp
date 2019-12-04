@@ -24,26 +24,6 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     QVideoWidget* vw = new QVideoWidget;
     player->setVideoOutput(vw);
 
-//    QUrl url = QUrl::fromLocalFile("fingerprints");
-//    QUrl baseUrl = QUrl("");
-//    QUrl fixed = baseUrl.resolved(url);
-
-//    player->setMedia(url);
-
-//    QString a = QFileInfo("fingerprints").absoluteFilePath();
-//    QUrl url = QUrl::fromLocalFile(a);
-//    player->setMedia(url);
-
-//    vw->setGeometry(100,100,300,400);
-//    vw->show();
-//    player->play();
-
-    drawTextLabel(ui->nameLabel, 65,"Hollows Free");
-    drawTextPushButton(ui->newGameButton, 50,"Hollows Free");
-    drawTextPushButton(ui->continueButton, 50,"Hollows Free");
-
-
-
     fadeOpacity = 100; //percentage
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
     fadeTimer = new QTimer(this);
@@ -54,8 +34,6 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->newGameButton->installEventFilter(this);
     ui->aMurder->setVisible(false);
     drawTextLabel(ui->aMurder, 50, "Fiendish", "Italic");
-
-   // connect(this, &MainMenuScene::showFootprint, this, &MainMenuScene::showFootprintSlot);
 
     ui->continueButton->installEventFilter(this);
 
@@ -98,12 +76,7 @@ MainMenuScene::~MainMenuScene()
 void MainMenuScene::initializeBox2D(){
     //Start Box2D
     //initialize labels:
-//    leafBodies.clear();
-//    numLeaves+=3;
-//    leafLabels.clear();
     if (isLastLeavesRow){
-//        updateLeafTimer->stop();
-//        qDebug() << "init";
         isLastLeavesRow = true;
         for (int i = 0; i < leafLabels.size(); i++)
             delete leafLabels[i];
@@ -123,36 +96,23 @@ void MainMenuScene::initializeBox2D(){
         isLastLeavesRow=false;
     }
 
-
-//    hlayout->addWidget(ui->leaf1);
-//    hlayout->addWidget(ui->leaf2);
-//    hlayout->addWidget(ui->leaf3);
     int currentLblsSize = leafLabels.size();
     for (int i = 0; i<numLeaves; i+=3){
         leafLabels.push_back(new QLabel());
         leafLabels.last()->setPixmap(*ui->leaf1->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf1->size());
         hlayout->addWidget(leafLabels.last());
-//        leafLabels.last()->hide();
 
         leafLabels.push_back(new QLabel());
         leafLabels.last()->setPixmap(*ui->leaf2->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf2->size());
         hlayout->addWidget(leafLabels.last());
-//        leafLabels.last()->hide();
 
         leafLabels.push_back(new QLabel());
         leafLabels.last()->setPixmap(*ui->leaf3->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf3->size());
         hlayout->addWidget(leafLabels.last());
-//        leafLabels.last()->hide();
     }
-//    for (int i = 0; i < leafLabels.size();i++){
-//        leafLabels[i] ->hide();
-//    }
-//    qDebug() <<"leaflbls:"<<leafLabels.size();
-//    setLayout(hlayout);
-
 
 //    // Define the ground body.
     b2BodyDef groundBodyDef;

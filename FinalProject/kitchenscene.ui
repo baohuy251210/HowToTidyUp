@@ -68,10 +68,10 @@
   <widget class="EvidenceView" name="bloodFloorLabel">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>380</x>
      <y>420</y>
-     <width>441</width>
-     <height>171</height>
+     <width>461</width>
+     <height>161</height>
     </rect>
    </property>
    <property name="text">
@@ -79,6 +79,9 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/interactables/blood_floor</pixmap>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="EvidenceView" name="oilyHandLabel">
@@ -95,25 +98,6 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/art/interactables/oily_handprint_01</pixmap>
-   </property>
-  </widget>
-  <widget class="EvidenceView" name="plateLabel">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>190</y>
-     <width>181</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="resources.qrc">:/art/interactables/plate_broken</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>false</bool>
    </property>
   </widget>
   <widget class="EvidenceView" name="bloodWallLabel">
@@ -135,12 +119,50 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QToolButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/art/interactables/exit_button);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="EvidenceView" name="gunpowderLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>270</y>
+     <width>281</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/interactables/gunpowder_wall_01</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
   <widget class="EvidenceView" name="bloodFootprintLabel">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>510</y>
-     <width>391</width>
+     <x>260</x>
+     <y>480</y>
+     <width>371</width>
      <height>261</height>
     </rect>
    </property>
@@ -183,6 +205,16 @@
     <string/>
    </property>
   </widget>
+  <zorder>bgLabel</zorder>
+  <zorder>evidenceDialog</zorder>
+  <zorder>knifeLabel</zorder>
+  <zorder>bloodFloorLabel</zorder>
+  <zorder>oilyHandLabel</zorder>
+  <zorder>bloodWallLabel</zorder>
+  <zorder>exitButton</zorder>
+  <zorder>gunpowderLabel</zorder>
+  <zorder>bloodFootprintLabel</zorder>
+  <zorder>toolbarWidget</zorder>
  </widget>
  <customwidgets>
   <customwidget>

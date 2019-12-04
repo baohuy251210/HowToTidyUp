@@ -45,7 +45,7 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(136, 138, 133);</string>
+    <string notr="true"/>
    </property>
    <widget class="QPushButton" name="continueButton">
     <property name="geometry">
@@ -97,6 +97,9 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignHCenter|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -495,7 +498,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="floorBloodImage">
+        <widget class="QLabel" name="bloodFloorImage">
          <property name="maximumSize">
           <size>
            <width>64</width>
@@ -517,7 +520,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="floorBloodPercentLabel">
+        <widget class="QLabel" name="bloodFloorPercentLabel">
          <property name="font">
           <font>
            <pointsize>20</pointsize>
@@ -532,7 +535,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="floorBloodLabel">
+        <widget class="QLabel" name="bloodFloorLabel">
          <property name="font">
           <font>
            <pointsize>20</pointsize>
@@ -574,7 +577,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="TBD">
+        <widget class="QLabel" name="gunpowderWallImage">
          <property name="maximumSize">
           <size>
            <width>64</width>
@@ -588,7 +591,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="resources.qrc">:/art/interactables/knife_clean</pixmap>
+          <pixmap resource="resources.qrc">:/art/interactables/gunpowder_wall_01</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -596,7 +599,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="TBD2">
+        <widget class="QLabel" name="gunpowderWallPercentLabel">
          <property name="font">
           <font>
            <pointsize>20</pointsize>
@@ -611,7 +614,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="TBD3">
+        <widget class="QLabel" name="gunpowderWallLabel">
          <property name="font">
           <font>
            <pointsize>20</pointsize>
@@ -640,6 +643,34 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QLabel" name="scoreBackgroundLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>-10</y>
+     <width>531</width>
+     <height>811</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(136, 138, 133);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="lineWidth">
+    <number>6</number>
+   </property>
+   <property name="midLineWidth">
+    <number>2</number>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>bgLabel</zorder>
+  <zorder>scoreBackgroundLabel</zorder>
+  <zorder>endingStatsWidget</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

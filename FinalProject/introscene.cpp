@@ -43,7 +43,6 @@ IntroScene::IntroScene(QWidget *parent) :
     connect(flashContinueTimer, &QTimer::timeout, this, &IntroScene::flashContinueLabel);
     flashContinueTimer->start(400);
     logoTimer->start(1);
-    //    delayTimer->start(1);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -55,7 +54,6 @@ IntroScene::~IntroScene()
 
 void IntroScene::flashContinueLabel(){
     ui->continueLbl->setText("TAP TO CONTINUE");
-//    ui->continueLbl->setText("<font color=\"blue\">Hello</font> <font color=\"red\">World</font><font color=\"green\">!</font>");
     if (ui->continueLbl->styleSheet() == "color: rgb(250, 80, 80)"){
         ui->continueLbl->setStyleSheet("color: rgb(200, 200, 200)");
     }
@@ -88,7 +86,6 @@ void IntroScene::displayCredit(){
         drawTextLabel(ui->creditLbl, 55, "Black Night");
         ui->creditLbl->setText("THE SENARY TEN\nPRESENTS");
         ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
-      //  ui->continueLbl->setStyleSheet("color: rgba(250, 80, 80,"+QString::number(fadeOpacity)+"%);");
         fadeOpacity += 1;
     }
     else {

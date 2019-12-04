@@ -93,7 +93,7 @@ double Model::getFinalScorePercentage(){
 }
 
 double Model::getEvidenceScorePercentage(EvidenceEnum evidence){
-    return evidencesScore[evidence];
+    return evidencesScore[evidence] * 100;
 }
 
 Evidence* Model::getEvidence(EvidenceEnum type){
