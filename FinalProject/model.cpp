@@ -86,6 +86,8 @@ void Model::updateScore(EvidenceEnum evidence){
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
     qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
+    //Save the file whenever update score (kinda make sense right :] )
+    saveGameState("save01.json");
 }
 double Model::getFinalScorePercentage(){
     double score = 0;
@@ -112,9 +114,62 @@ void Model::hideDialogSlot(){
     emit hideDialogSignal();
 }
 
+
+/**SAVE/LOAD WORK:*/
+/*need a dictionary for Enum*/
+
+QHash<EvidenceEnum, QString> mapEnumString;
+QHash<QString, EvidenceEnum> mapStringEnum;
+QHash<Tools, QString> mapToolsString;
+QHash<QString, Tools> mapStringTools;
+
+/*save QHash<evidenceEnum, evidence*  */
+//save cleaning tools <Tools, Cleaning Tool *
+//save evidences Score  <Evidence Enum, double>
+/*selectec tool and selected Evidence are probably not needed*/
 void Model::saveGameState(QString fileName){
 
 }
+/*Perhaps load the evidences, cleaning tools back-end ?
+* evidences Score -> easy to load.
+* cleaning Tools -> easy-medium load -> need function to update the cleaning Tool
+* evidences -> medium-hard load -> need functions to update the Evidences.
+*/
 void Model::loadGameState(QString fileName){
+}
 
+void initDictionaries(){
+    mapEnumString.insert(NONE, "NONE");
+    mapEnumString.insert(KNIFE, "KNIFE");
+    mapEnumString.insert(BLOOD_TILE, "BLOOD_TILE");
+    mapEnumString.insert(BLOOD_WALL_WOOD, "BLOOD_WALL_WOOD");
+    mapEnumString.insert(BLOOD_FOOTPRINT, "BLOOD_FOOTPRINT");
+    mapEnumString.insert(HAIR, "HAIR");
+    mapEnumString.insert(FINGERPRINT_GLASS, "FINGERPRINT_GLASS");
+    mapEnumString.insert(GUNPOWDER_WALL, "GUNPOWDER_WALL");
+
+    mapStringEnum.insert("NONE", NONE);
+    mapStringEnum.insert("KNIFE", KNIFE);
+    mapStringEnum.insert("BLOOD_TILE", BLOOD_TILE);
+    mapStringEnum.insert("BLOOD_WALL_WOOD", BLOOD_WALL_WOOD);
+    mapStringEnum.insert("BLOOD_FOOTPRINT", BLOOD_FOOTPRINT);
+    mapStringEnum.insert("HAIR", HAIR);
+    mapStringEnum.insert("FINGERPRINT_GLASS", FINGERPRINT_GLASS);
+    mapStringEnum.insert("GUNPOWDER_WALL", GUNPOWDER_WALL);
+
+    mapToolsString.insert(EMPTY, "EMPTY");
+    mapToolsString.insert(GLOVE, "GLOVE");
+    mapToolsString.insert(WATER, "WATER");
+    mapToolsString.insert(NAILPOLISHREMOVER, "NAILPOLISHREMOVER");
+    mapToolsString.insert(BLEACH, "BLEACH");
+    mapToolsString.insert(RAG, "RAG");
+    mapToolsString.insert(OXICLEAN, "OXICLEAN");
+
+    mapStringTools.insert("EMPTY", EMPTY);
+    mapStringTools.insert("GLOVE", GLOVE);
+    mapStringTools.insert("WATER", WATER);
+    mapStringTools.insert("NAILPOLISHREMOVER", NAILPOLISHREMOVER);
+    mapStringTools.insert("BLEACH", BLEACH);
+    mapStringTools.insert("RAG", RAG);
+    mapStringTools.insert("OXICLEAN", OXICLEAN);
 }
