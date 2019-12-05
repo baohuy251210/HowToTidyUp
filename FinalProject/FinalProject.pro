@@ -79,6 +79,7 @@ SOURCES += \
     evidence.cpp \
     evidencemaskview.cpp \
     evidenceview.cpp \
+    exitdialog.cpp \
     introreader.cpp \
     introscene.cpp \
     iscene.cpp \
@@ -147,6 +148,7 @@ HEADERS += \
     evidence.h \
     evidencemaskview.h \
     evidenceview.h \
+    exitdialog.h \
     introreader.h \
     introscene.h \
     iscene.h \
@@ -162,6 +164,7 @@ FORMS += \
     educationalpopup.ui \
     endscene01.ui \
     endscene02.ui \
+    exitdialog.ui \
     introscene.ui \
     itemdialog.ui \
     kitchenscene.ui \

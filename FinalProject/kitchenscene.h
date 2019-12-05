@@ -12,6 +12,7 @@
 #include <evidenceview.h>
 #include <educationalpopup.h>
 #include <evidencemaskview.h>
+#include <exitdialog.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,7 +34,7 @@ public slots:
     void unselectTool();
 
 private slots:
-    void on_exitButton_clicked();
+    void exitSceneSlot();
 
 
 private:
@@ -47,6 +48,7 @@ private:
     EvidenceView* brokenPlateLabel;
     EvidenceView* bloodWallLabel;
     EvidenceView* gunpowderWallLabel;
+    ExitDialog* exitDialog;
     Model* model;
     void InitializeWidgets();
     void setupConnections();
