@@ -3,6 +3,7 @@
 #include "ToolsEnum.cpp"
 #include <evidenceview.h>
 #include <educationalpopup.h>
+#include <exitdialog.h>
 #include <QDebug>
 
 KitchenScene::KitchenScene(QWidget *parent, Model* model) :
@@ -35,6 +36,10 @@ void KitchenScene::InitializeWidgets(){
     ui->educationalPopup->raise();
 
     ui->exitButton->setAutoRaise(false);
+    exitDialog = new ExitDialog(this);
+    exitDialog->setWindowTitle("");
+
+
 
 }
 
@@ -77,6 +82,7 @@ void KitchenScene::setupConnections(){
     connect(model, &Model::updateDialogBoxSignal, ui->evidenceDialog, &itemDialog::setEvidence);
 
     connect(model, &Model::updateEducationalPopupSignal, ui->educationalPopup, &educationalpopup::evidenceClickedURLChange);
+    connect(exitDialog, SIGNAL(exitSceneSignal()), this, SLOT(exitSceneSlot()));
 
     /*Popup Overlay attempt */
     //BLOOD FOOTPRINT MASK:
@@ -87,6 +93,8 @@ void KitchenScene::setupConnections(){
     connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::enterMaskSignal, bloodFloorLabel, &EvidenceView::enterEventFromMask);
     connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::leaveMaskSignal, bloodFloorLabel, &EvidenceView::leaveEventFromMask);
     connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::clickedMaskSignal, bloodFloorLabel, &EvidenceView::clickedSignal);
+
+    connect(ui->exitButton, SIGNAL(clicked()), exitDialog, SLOT(exec()));
 }
 
 
@@ -264,8 +272,6 @@ void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
     evidenceLabels[selectedEvidence]->highlightEvidence();
 }
 
-void KitchenScene::on_exitButton_clicked()
-{
+void KitchenScene::exitSceneSlot(){
     emit changeScene(ENDING);
-
 }
