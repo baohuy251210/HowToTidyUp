@@ -66,6 +66,8 @@ void ToolbarWidget::displayDescriptionSlot(Tools tool){
         ui->oxicleanPopup->setText(oxiclean->model->description);
         ui->oxicleanPopup->setVisible(true);
         break;
+    case EMPTY:
+        break;
 
     }
 
@@ -90,6 +92,8 @@ void ToolbarWidget::hideDescriptionSlot(Tools tool){
         break;
     case OXICLEAN:
         ui->oxicleanPopup->setVisible(false);
+        break;
+    case EMPTY:
         break;
 
     }

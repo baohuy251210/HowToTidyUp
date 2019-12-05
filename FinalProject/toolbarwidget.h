@@ -24,8 +24,8 @@ public:
     CleaningToolView* water;
     CleaningToolView* bleach;
     CleaningToolView* nailpolish_remover;
-    CleaningToolView* lye;
-    CleaningToolView* borax;
+//    CleaningToolView* lye;
+//    CleaningToolView* borax;
     CleaningToolView* oxiclean;
     CleaningToolView* rag;
     Ui::ToolbarWidget *ui;

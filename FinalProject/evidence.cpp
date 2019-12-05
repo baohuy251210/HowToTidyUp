@@ -41,6 +41,9 @@ void Evidence::setPixmaps(QPixmap dirty,
 }
 
 QPixmap* Evidence::getIcon(){
+    //we should only have three states.
+    assert(cleanState == CLEAN || cleanState == DIRTY
+           || cleanState == SEMICLEAN);
     switch(cleanState){
     case CLEAN:
         return &clean;

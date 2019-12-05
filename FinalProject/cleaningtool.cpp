@@ -1,7 +1,7 @@
 #include "cleaningtool.h"
 
 CleaningTool::CleaningTool(QString description)
-    : description(description), isSelected(false)
+    : isSelected(false), description(description)
 {
 
 }

@@ -41,7 +41,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->footprint2->setVisible(false);
     ui->footprint3->setVisible(false);
 
-    srand(time(0));
+    srand(time(nullptr));
     //Init Box2d
     numLeaves = 15;
     hlayout = new QHBoxLayout();
@@ -203,7 +203,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     QPushButton* target = ui->newGameButton;
     QPushButton* continueButton = ui->continueButton;
 
-    if(obj == (QObject*)target){
+    if(obj == dynamic_cast<QObject*>(target)){
         if(e->type() == QEvent::Enter) {
 
             ui->aMurder->setVisible(true);
@@ -213,7 +213,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
             ui->aMurder->setVisible(false);
         }
     }
-    else if (obj == (QObject*) continueButton)
+    else if (obj == dynamic_cast<QObject*>(continueButton))
     {
         if(e->type() == QEvent::Enter){//change event to MouseButtonRelease to get click functionality
 
@@ -230,7 +230,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
         return QWidget::eventFilter(obj, e);
     }
     updateWorld();
-
+   return QWidget::eventFilter(obj, e);
 }
 
 void MainMenuScene::on_continueButton_clicked()
