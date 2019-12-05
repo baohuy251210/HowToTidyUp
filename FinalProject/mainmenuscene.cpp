@@ -46,8 +46,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     srand(time(nullptr));
     //Init Box2d
     numLeaves = 15;
-    hlayout = new QHBoxLayout();
-    setLayout(hlayout);
+//    setLayout(hlayout);
     isLastLeavesRow = false;
 
 
@@ -58,7 +57,7 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     connect(replayLeafTimer, &QTimer::timeout, this, &MainMenuScene::initializeBox2D);
     connect(updateLeafTimer, &QTimer::timeout, this ,&MainMenuScene::updateWorld);
     updateLeafTimer->start(30);
-    replayLeafTimer->start(7000);
+    replayLeafTimer->start(5000);
 
     //add snow crunching sounds from resource paths
     soundCount = 0;
@@ -97,23 +96,25 @@ void MainMenuScene::initializeBox2D(){
         }
         isLastLeavesRow=false;
     }
-
    // int currentLblsSize = leafLabels.size();
     for (int i = 0; i<numLeaves; i+=3){
-        leafLabels.push_back(new QLabel());
+        leafLabels.push_back(new QLabel(this));
         leafLabels.last()->setPixmap(*ui->leaf1->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf1->size());
-        hlayout->addWidget(leafLabels.last());
+        leafLabels.last()->show();
+//        hlayout->addWidget(leafLabels.last());
 
-        leafLabels.push_back(new QLabel());
+        leafLabels.push_back(new QLabel(this));
         leafLabels.last()->setPixmap(*ui->leaf2->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf2->size());
-        hlayout->addWidget(leafLabels.last());
+        leafLabels.last()->show();
+//        hlayout->addWidget(leafLabels.last());
 
-        leafLabels.push_back(new QLabel());
+        leafLabels.push_back(new QLabel(this));
         leafLabels.last()->setPixmap(*ui->leaf3->pixmap());
         leafLabels.last()->setFixedSize(ui->leaf3->size());
-        hlayout->addWidget(leafLabels.last());
+        leafLabels.last()->show();
+//        hlayout->addWidget(leafLabels.last());
     }
 
 //    // Define the ground body.
@@ -231,7 +232,7 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
     {
         return QWidget::eventFilter(obj, e);
     }
-    updateWorld();
+//    updateWorld();
    return QWidget::eventFilter(obj, e);
 }
 

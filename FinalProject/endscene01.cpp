@@ -13,6 +13,11 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
     QApplication::setOverrideCursor(cursor);
 
     updateScore();
+    QList<QLabel *> list = this->findChildren<QLabel *>();
+    foreach(QLabel *Lbl, list)
+    {
+      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+    }
 }
 
 void EndScene01::updateScore(){

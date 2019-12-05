@@ -187,7 +187,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -269,7 +269,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -348,7 +348,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -427,7 +427,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -506,7 +506,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -585,7 +585,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 87, 83);</string>
+          <string notr="true">background-color: rgb(212, 209, 185, 30%);</string>
          </property>
          <property name="text">
           <string/>
@@ -653,7 +653,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(136, 138, 133);</string>
+    <string notr="true">background-color: rgba(50,50,50, 95)</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>

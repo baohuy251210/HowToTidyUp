@@ -21,7 +21,6 @@ public:
     b2World world;
     QVector<b2Body*> leafBodies;
     QVector<QLabel*> leafLabels;
-    QHBoxLayout * hlayout;
     QVector<QString> soundFiles;
 
 public: signals:

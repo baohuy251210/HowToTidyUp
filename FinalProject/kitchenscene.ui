@@ -238,6 +238,25 @@ color: rgb(243, 243, 243);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="endLabel">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>20</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(46, 52, 54);</string>
+   </property>
+   <property name="text">
+    <string>END?</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>educationalPopup</zorder>
   <zorder>exitButton</zorder>
   <zorder>bgLabel</zorder>
@@ -251,6 +270,7 @@ color: rgb(243, 243, 243);</string>
   <zorder>bloodFootprintLabel</zorder>
   <zorder>toolbarWidget</zorder>
   <zorder>bloodFloorMaskLabel</zorder>
+  <zorder>endLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
