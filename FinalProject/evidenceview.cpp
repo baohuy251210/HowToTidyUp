@@ -42,7 +42,7 @@ void EvidenceView::leaveEvent ( QEvent * event )
 }
 void EvidenceView::leaveEventFromMask(){
     if (!this->model->isSelected){
-        qDebug() << "leaveEventFromMask::"<<this->model->getType();
+//        qDebug() << "leaveEventFromMask::"<<this->model->getType();
         unhighlightEvidence();
     }
 }
@@ -66,7 +66,7 @@ void EvidenceView::highlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty_highlighted);
-        qDebug() << name << " " << "dirty enter";
+//        qDebug() << name << " " << "dirty enter";
         break;
     }
 }
@@ -81,7 +81,7 @@ void EvidenceView::unhighlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty);
-        qDebug() << name << " " << "dirty leave";
+//        qDebug() << name << " " << "dirty leave";
         break;
     }
 }

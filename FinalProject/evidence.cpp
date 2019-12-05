@@ -78,3 +78,10 @@ EvidenceEnum Evidence::getType(){
 QList<CleaningTool*>* Evidence::getUsedTools(){
     return &usedTools;
 }
+QVector<CleaningTool> Evidence::getUsedToolsVector(){
+    QVector<CleaningTool> usedToolsVector;
+    for (int i = 0; i < usedTools.size();i++){
+        usedToolsVector.push_back(*usedTools[i]);
+    }
+    return usedToolsVector;
+}

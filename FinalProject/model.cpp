@@ -2,11 +2,14 @@
 #include <QDebug>
 #include <EvidenceEnum.cpp>
 #include <QTimer>
-
+#include <QFile>
 Model::Model(QObject * parent) :
     QObject(parent),
     selectedEvidence(EvidenceEnum::NONE),
     selectedTool(GLOVE){
+
+    initDictionaries();
+
 }
 
 Model::~Model(){
@@ -87,7 +90,7 @@ void Model::updateScore(EvidenceEnum evidence){
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
     qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
     //Save the file whenever update score (kinda make sense right :] )
-    saveGameState("save01.json");
+    saveGameState(QApplication::applicationDirPath()+"/save01.json");
 }
 double Model::getFinalScorePercentage(){
     double score = 0;
@@ -118,17 +121,69 @@ void Model::hideDialogSlot(){
 /**SAVE/LOAD WORK:*/
 /*need a dictionary for Enum*/
 
-QHash<EvidenceEnum, QString> mapEnumString;
-QHash<QString, EvidenceEnum> mapStringEnum;
-QHash<Tools, QString> mapToolsString;
-QHash<QString, Tools> mapStringTools;
 
 /*save QHash<evidenceEnum, evidence*  */
 //save cleaning tools <Tools, Cleaning Tool *
 //save evidences Score  <Evidence Enum, double>
 /*selectec tool and selected Evidence are probably not needed*/
 void Model::saveGameState(QString fileName){
+    qDebug()<<"saveGame::fileName"<<fileName;
+    if (fileName.isEmpty()){
+        qDebug() << "saveGame::file empty";
+        return;
+    }
 
+    QFile file(fileName);
+    if (file.isOpen()){
+        file.close();
+    }
+
+    qDebug()<<"saveGame::exists? :"<<file.openMode();
+    qDebug() << "saveGame::file permissions:"<<file.permissions();
+    if (!file.open(QIODevice::WriteOnly)){
+        qDebug() << "saveGame::not able to write";
+        return;
+    }
+
+    /*Start json:*/
+    QJsonObject fileObj;
+    //write evidences score:
+    QJsonObject evidenceOrderObj;
+    EvidenceEnum orderEvi[] = {NONE, KNIFE, BLOOD_TILE,
+                            BLOOD_WALL_WOOD, BLOOD_FOOTPRINT,
+                           HAIR, FINGERPRINT_GLASS,
+                           GUNPOWDER_WALL};
+    QJsonObject scoreObj;
+    QJsonArray scoreArray;
+    for (EvidenceEnum orderEnum: orderEvi){
+        scoreArray.append(evidencesScore[orderEnum]);
+    }
+    fileObj["scores"] = scoreArray;
+    qDebug()<<"saveGame::scores gate done";
+
+    //Save evidence
+    QJsonArray evidenceArray;
+    for (EvidenceEnum e: orderEvi){
+       if  (evidences.find(e) == evidences.end())
+           continue;
+       QList<CleaningTool*>usedToolsList = *evidences[e]->getUsedTools();
+       QJsonArray usedToolsArray;
+       for (CleaningTool *iterTool : usedToolsList){
+            QString ToolString = mapToolsString[iterTool->getType()];
+            qDebug() << "inSaveGame::"<<ToolString;
+           usedToolsArray.append(ToolString);
+       }
+       evidenceArray.append(usedToolsArray);
+    }
+
+    //get evidences by
+    fileObj["usedToolsMap:"] = evidenceArray;
+
+    /*finalize*/
+    QJsonDocument jsonDoc(fileObj);
+    qDebug() << "saveGame::evidenceArray done";
+    file.write(jsonDoc.toJson(QJsonDocument::Compact));
+    qDebug() << "saveGame::done ";
 }
 /*Perhaps load the evidences, cleaning tools back-end ?
 * evidences Score -> easy to load.
@@ -138,7 +193,7 @@ void Model::saveGameState(QString fileName){
 void Model::loadGameState(QString fileName){
 }
 
-void initDictionaries(){
+void Model::initDictionaries(){
     mapEnumString.insert(NONE, "NONE");
     mapEnumString.insert(KNIFE, "KNIFE");
     mapEnumString.insert(BLOOD_TILE, "BLOOD_TILE");

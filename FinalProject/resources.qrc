@@ -114,4 +114,7 @@
         <file>Art/UI/toolbar_01.png</file>
         <file>Art/UI/item_dialog_01.png</file>
     </qresource>
+    <qresource prefix="/save">
+        <file alias="save01">save/save01.json</file>
+    </qresource>
 </RCC>

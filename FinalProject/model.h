@@ -4,9 +4,12 @@
 #include <cleaningtool.h>
 #include <ToolsEnum.cpp>
 #include <EvidenceEnum.cpp>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QObject>
 #include <QHash>
-
+#include <QJsonArray>
+#include <QApplication>
 class Model : public QObject
 {
     Q_OBJECT
@@ -38,10 +41,17 @@ private:
     QHash<Tools, CleaningTool*> cleaningTools;
     QHash<EvidenceEnum, double> evidencesScore;
     void updateScore(EvidenceEnum);
+    Tools selectedTool;
+
     void saveGameState(QString fileName);
     void loadGameState(QString fileName);
+    QHash<EvidenceEnum, QString> mapEnumString;
+    QHash<QString, EvidenceEnum> mapStringEnum;
+    QHash<Tools, QString> mapToolsString;
+    QHash<QString, Tools> mapStringTools;
+    void initDictionaries();
 
-    Tools selectedTool;
+
 
 };
 
