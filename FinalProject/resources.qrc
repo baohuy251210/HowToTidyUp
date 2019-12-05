@@ -111,7 +111,7 @@
         <file>soundeffects/BootCrunchC.wav</file>
     </qresource>
     <qresource prefix="/art/ui">
-        <file alias="toolbar">Art/UI/toolbar_01.png</file>
-        <file alias="item_dialog">Art/UI/item_dialog_01.png</file>
+        <file>Art/UI/toolbar_01.png</file>
+        <file>Art/UI/item_dialog_01.png</file>
     </qresource>
 </RCC>
