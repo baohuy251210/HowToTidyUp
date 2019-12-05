@@ -34,7 +34,9 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui->newGameButton->installEventFilter(this);
     ui->aMurder->setVisible(false);
     drawTextLabel(ui->aMurder, 50, "Fiendish", "Italic");
-
+    drawTextLabel(ui->nameLabel, 45, "SF Cartoonist Hand SC", "Bold");
+    drawTextPushButton(ui->newGameButton, 40, "SF Cartoonist Hand", "Bold");
+    drawTextPushButton(ui->continueButton, 40, "SF Cartoonist Hand", "Bold");
     ui->continueButton->installEventFilter(this);
 
     ui->footprint1->setVisible(false);

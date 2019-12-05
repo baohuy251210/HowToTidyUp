@@ -1,6 +1,6 @@
 #include "evidenceview.h"
 #include "Box2D/Box2D.h"
-
+#include <QDebug>
 EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
     name(EvidenceEnum::NONE),
     cleanState(DIRTY),
@@ -19,20 +19,40 @@ void EvidenceView::setType(EvidenceEnum type){
 
 void EvidenceView::enterEvent ( QEvent * event )
 {
+    //remove for only bloodtile/footprint display
+    if (name == BLOOD_TILE || name == BLOOD_FOOTPRINT) {
+        return;
+    }
+    highlightEvidence();
+}
 
+void EvidenceView::enterEventFromMask(){
     highlightEvidence();
 }
 
 void EvidenceView::leaveEvent ( QEvent * event )
 {
+    //remove for only bloodtile/footprint display
+    if (name == BLOOD_TILE || name == BLOOD_FOOTPRINT) {
+        return;
+    }
     if (!this->model->isSelected){
         unhighlightEvidence();
     }
-
+}
+void EvidenceView::leaveEventFromMask(){
+    if (!this->model->isSelected){
+        qDebug() << "leaveEventFromMask::"<<this->model->getType();
+        unhighlightEvidence();
+    }
 }
 
 void EvidenceView::mouseReleaseEvent ( QMouseEvent * event )
 {
+    //override bloodtile/footprint display
+    if (name == BLOOD_TILE || name == BLOOD_FOOTPRINT) {
+        return;
+    }
     emit clickedSignal(name);
 }
 
@@ -46,6 +66,7 @@ void EvidenceView::highlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty_highlighted);
+        qDebug() << name << " " << "dirty enter";
         break;
     }
 }
@@ -60,6 +81,7 @@ void EvidenceView::unhighlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty);
+        qDebug() << name << " " << "dirty leave";
         break;
     }
 }

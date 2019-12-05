@@ -38,6 +38,22 @@
      <height>371</height>
     </rect>
    </property>
+   <widget class="EvidenceMaskView" name="bloodFootprintMaskLabel">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>130</y>
+      <width>191</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(136, 138, 133, 0%);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="itemDialog" name="evidenceDialog" native="true">
    <property name="geometry">
@@ -163,7 +179,7 @@
      <x>260</x>
      <y>480</y>
      <width>371</width>
-     <height>261</height>
+     <height>281</height>
     </rect>
    </property>
    <property name="text">
@@ -205,6 +221,25 @@
     <string/>
    </property>
   </widget>
+  <widget class="EvidenceMaskView" name="bloodFloorMaskLabel">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>400</y>
+     <width>301</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(136, 138, 133, 0%);
+color: rgb(243, 243, 243);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>educationalPopup</zorder>
+  <zorder>exitButton</zorder>
   <zorder>bgLabel</zorder>
   <zorder>evidenceDialog</zorder>
   <zorder>knifeLabel</zorder>
@@ -215,6 +250,7 @@
   <zorder>gunpowderLabel</zorder>
   <zorder>bloodFootprintLabel</zorder>
   <zorder>toolbarWidget</zorder>
+  <zorder>bloodFloorMaskLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -239,6 +275,11 @@
    <extends>QWidget</extends>
    <header>educationalpopup.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>EvidenceMaskView</class>
+   <extends>QLabel</extends>
+   <header>evidencemaskview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -43,7 +43,14 @@ void Model::toolClickedSlot(Tools tool){
 void Model::evidenceClicked(EvidenceEnum evidence){
     //if an evidence selected with an actual cleaning supply (not GLOVE)
     if(selectedTool != GLOVE && selectedTool != EMPTY){
+        if (selectedEvidence != NONE){
+            evidences[selectedEvidence]->isSelected = false;
+            emit deselectEvidence(selectedEvidence);
+        }
+        selectedEvidence = evidence;
+        evidences[evidence]->isSelected = true;
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
+        emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
         emit updateEducationalPopupSignal(evidences[evidence]);
         updateScore(evidence);

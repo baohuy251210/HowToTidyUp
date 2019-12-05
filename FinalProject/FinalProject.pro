@@ -77,6 +77,7 @@ SOURCES += \
     endscene01.cpp \
     endscene02.cpp \
     evidence.cpp \
+    evidencemaskview.cpp \
     evidenceview.cpp \
     introreader.cpp \
     introscene.cpp \
@@ -144,6 +145,7 @@ HEADERS += \
     endscene01.h \
     endscene02.h \
     evidence.h \
+    evidencemaskview.h \
     evidenceview.h \
     introreader.h \
     introscene.h \

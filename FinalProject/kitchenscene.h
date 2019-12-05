@@ -11,6 +11,7 @@
 #include <cleaningtoolview.h>
 #include <evidenceview.h>
 #include <educationalpopup.h>
+#include <evidencemaskview.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -47,7 +48,6 @@ private:
     EvidenceView* bloodWallLabel;
     EvidenceView* gunpowderWallLabel;
     Model* model;
-
     void InitializeWidgets();
     void setupConnections();
     void evidenceHovered(EvidenceEnum evidenceName);

@@ -14,12 +14,16 @@ public:
 
     void setModel(Evidence*);
     void setType(EvidenceEnum type);
-    void highlightEvidence();
     void unhighlightEvidence();
+    void highlightEvidence();
 public slots:
     void setState(EvidenceEnum evidence, CleanState state);
     void setSelected(EvidenceEnum evidence);
     void clearSelection();
+    void enterEventFromMask();
+    void leaveEventFromMask();
+    void enterEvent(QEvent* event) override;
+    void leaveEvent(QEvent* event) override;
 private:
     Evidence* model;
 
@@ -29,10 +33,8 @@ private:
     bool isSelected;
 
 
-    void enterEvent(QEvent* event) override;
-    void leaveEvent(QEvent* event) override;
-    void mouseReleaseEvent(QMouseEvent *ev) override;
     void bloodDrip();
+    void mouseReleaseEvent(QMouseEvent *ev) override;
 
 signals:
     void clickedSignal(EvidenceEnum name);

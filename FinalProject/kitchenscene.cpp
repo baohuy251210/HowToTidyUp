@@ -17,7 +17,9 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     initializeTools();
 
     setupConnections();
-
+    setupPixmaps();
+    ui->bloodFootprintMaskLabel->raise();
+    ui->bloodFloorMaskLabel->raise();
 }
 
 KitchenScene::~KitchenScene()
@@ -30,6 +32,7 @@ void KitchenScene::InitializeWidgets(){
     ui->toolbarWidget->raise();
     ui->evidenceDialog->raise();
     ui->educationalPopup->raise();
+
     ui->exitButton->setAutoRaise(false);
 
 }
@@ -74,7 +77,18 @@ void KitchenScene::setupConnections(){
 
     connect(model, &Model::updateEducationalPopupSignal, ui->educationalPopup, &educationalpopup::evidenceClickedURLChange);
 
+    /*Popup Overlay attempt */
+    //BLOOD FOOTPRINT MASK:
+    connect(ui->bloodFootprintMaskLabel, &EvidenceMaskView::enterMaskSignal, bloodFootprintsLabel, &EvidenceView::enterEventFromMask);
+    connect(ui->bloodFootprintMaskLabel, &EvidenceMaskView::leaveMaskSignal, bloodFootprintsLabel, &EvidenceView::leaveEventFromMask);
+    connect(ui->bloodFootprintMaskLabel, &EvidenceMaskView::clickedMaskSignal, bloodFootprintsLabel, &EvidenceView::clickedSignal);
+    //BLOOD ON TILE MASK:
+    connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::enterMaskSignal, bloodFloorLabel, &EvidenceView::enterEventFromMask);
+    connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::leaveMaskSignal, bloodFloorLabel, &EvidenceView::leaveEventFromMask);
+    connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::clickedMaskSignal, bloodFloorLabel, &EvidenceView::clickedSignal);
 }
+
+
 
 
 void KitchenScene::setupPixmaps(){
@@ -157,7 +171,7 @@ void KitchenScene::initializeTools(){
     bloodFloorLabel->setModel(model->getEvidence(BLOOD_TILE));
     bloodFloor->setStartValues({bleach, oxiclean, rag}, "Bloody stain on the floor");
     bloodFloor->educationalURL = "http://www.google.com";
-
+    ui->bloodFloorMaskLabel->setEvidenceEnum(BLOOD_TILE);
 
     // initialize oily handprint
     Evidence* handprint = new Evidence();
@@ -189,7 +203,7 @@ void KitchenScene::initializeTools(){
     bloodFootprintsLabel->setModel(model->getEvidence(BLOOD_FOOTPRINT));
     bloodyFootprints->setStartValues({bleach, oxiclean, rag}, "Bloody footprints on floor");
     bloodyFootprints->educationalURL = "http://www.google.com";
-
+    ui->bloodFootprintMaskLabel->setEvidenceEnum(BLOOD_FOOTPRINT);
 
     // initialize bloody wall
     Evidence* bloodyWall = new Evidence();
@@ -242,6 +256,10 @@ void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
 }
 
 void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
+    QHash<EvidenceEnum, EvidenceView*>::iterator it;
+    for (it = evidenceLabels.begin(); it != evidenceLabels.end(); it++){
+        it.value()->unhighlightEvidence();
+    }
     evidenceLabels[selectedEvidence]->highlightEvidence();
 }
 

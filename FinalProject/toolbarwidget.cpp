@@ -70,7 +70,6 @@ void ToolbarWidget::displayDescriptionSlot(Tools tool){
         break;
 
     }
-
 }
 
 void ToolbarWidget::hideDescriptionSlot(Tools tool){

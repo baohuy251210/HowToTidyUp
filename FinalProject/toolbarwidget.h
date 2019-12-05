@@ -13,7 +13,7 @@ class ToolbarWidget;
 class ToolbarWidget : public IScene
 {
     Q_OBJECT
-
+signals:
 public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
