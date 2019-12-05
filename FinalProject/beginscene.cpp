@@ -99,7 +99,11 @@ void BeginScene::displayCredit(){
     if (fadeOpacity < 100){
         drawTextLabel(ui->creditLbl, 60, "Hollows Free");
         ui->creditLbl->setText("A MURDER");
-        ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
+        if (fadeOpacity < 70)
+            ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
+        else {
+            ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80,"+QString::number(fadeOpacity)+"%);");
+        }
         fadeOpacity += 2;
     }
     else {
@@ -119,6 +123,10 @@ void BeginScene::zoomLogo(){
         drawTextLabel(ui->logoLbl, logoSize.width(),"Hollows Free");
         ui->logoLbl->setText("HOW TO TIDY UP");
         ui->logoLbl->setStyleSheet("background-color: black;color: rgb(240, 240, 240);");
+        if (logoSize.width() >= 80){
+            ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
+        }
+
     }
     else isLogoDisplayed = true;
 }
