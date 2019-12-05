@@ -3,7 +3,6 @@
 #include <QDebug>
 EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
     name(EvidenceEnum::NONE),
-    cleanState(DIRTY),
     isSelected(false)
 {
 
@@ -11,6 +10,7 @@ EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
 
 void EvidenceView::setModel(Evidence* evidence){
     model = evidence;
+    connect(evidence, &Evidence::cleanStateChangedSignal, this, &EvidenceView::refreshPixmap);
 }
 
 void EvidenceView::setType(EvidenceEnum type){
@@ -27,6 +27,10 @@ void EvidenceView::enterEvent ( QEvent * event )
 }
 
 void EvidenceView::enterEventFromMask(){
+    highlightEvidence();
+}
+
+void EvidenceView::refreshPixmap(){
     highlightEvidence();
 }
 
@@ -57,7 +61,7 @@ void EvidenceView::mouseReleaseEvent ( QMouseEvent * event )
 }
 
 void EvidenceView::highlightEvidence(){
-    switch(cleanState){
+    switch(model->getCleanState()){
     case CLEAN:
         this->setPixmap(model->clean_highlighted);
         break;
@@ -66,13 +70,14 @@ void EvidenceView::highlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty_highlighted);
-//        qDebug() << name << " " << "dirty enter";
         break;
     }
+
+
 }
 
 void EvidenceView::unhighlightEvidence(){
-    switch(cleanState){
+    switch(model->getCleanState()){
     case CLEAN:
         this->setPixmap(model->clean);
         break;
@@ -88,7 +93,7 @@ void EvidenceView::unhighlightEvidence(){
 
 void EvidenceView::setState(EvidenceEnum evidence, CleanState state){
     if(evidence == name){
-        cleanState = state;
+        model->setCleanState(state);
     }
 }
 

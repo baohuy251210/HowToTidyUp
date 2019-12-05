@@ -22,6 +22,7 @@ public slots:
     void clearSelection();
     void enterEventFromMask();
     void leaveEventFromMask();
+    void refreshPixmap();
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
 private:
@@ -29,9 +30,7 @@ private:
 
     EvidenceEnum name;
 
-    CleanState cleanState;
     bool isSelected;
-
 
     void bloodDrip();
     void mouseReleaseEvent(QMouseEvent *ev) override;

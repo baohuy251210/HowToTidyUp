@@ -54,8 +54,17 @@ QPixmap* Evidence::getIcon(){
     }
 }
 
+CleanState Evidence::getCleanState(){
+    return cleanState;
+}
+
 void Evidence::setType(EvidenceEnum type){
     this->type = type;
+}
+
+void Evidence::setCleanState(CleanState state){
+    this->cleanState = state;
+    emit cleanStateChangedSignal();
 }
 
 int Evidence::getCorrectUsedTools(){
