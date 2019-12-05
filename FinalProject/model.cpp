@@ -156,6 +156,7 @@ void Model::saveGameState(QString fileName){
     QJsonObject scoreObj;
     QJsonArray scoreArray;
     for (EvidenceEnum orderEnum: orderEvi){
+        if (evidences.find(orderEnum) != evidences.end())
         scoreArray.append(evidencesScore[orderEnum]);
     }
     fileObj["scores"] = scoreArray;
@@ -191,6 +192,7 @@ void Model::saveGameState(QString fileName){
 * evidences -> medium-hard load -> need functions to update the Evidences.
 */
 void Model::loadGameState(QString fileName){
+
 }
 
 void Model::initDictionaries(){
