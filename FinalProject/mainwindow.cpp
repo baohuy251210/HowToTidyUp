@@ -45,7 +45,7 @@ void MainWindow::startThemeMusic(){
     mainThemeMusic.setVolume(100);
     mainThemeMusic.play();
     mainThemeMusic.setLoop(true);
-    QResource overlayfile(":/i  ntrodata/windsound.ogg");
+    QResource overlayfile(":/introdata/windsound.ogg");
     overlayMusic.openFromMemory(overlayfile.data(), overlayfile.size());
     overlayMusic.setVolume(50);
     overlayMusic.play();
