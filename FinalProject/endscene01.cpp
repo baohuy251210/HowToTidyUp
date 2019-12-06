@@ -17,6 +17,11 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
 {
     ui->setupUi(this);
 
+    QList<QLabel *> list = this->findChildren<QLabel *>();
+    foreach(QLabel *Lbl, list)
+    {
+      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+    }
 
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
@@ -24,11 +29,7 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
     initializeCredits();
 
     updateScore();
-    QList<QLabel *> list = this->findChildren<QLabel *>();
-    foreach(QLabel *Lbl, list)
-    {
-      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
-    }
+
 }
 
 void EndScene01::initializeCredits(){
@@ -37,9 +38,17 @@ void EndScene01::initializeCredits(){
     ui->creditsBackdrop->setStyleSheet("background-color: rgba(0,0,0,0)");
     ui->creditsBackdrop->hide();
 
-    ui->creditsLabel->raise();
-    QString credits = QString("Created By\nThe Senary Ten\n\nHuy Tran\nCam Davie\nEli Hebdon\nJohn Duffy\nDominic Utter\nNathan Gordon");
-    ui->creditsLabel->setText(credits);
+    ui->creditsWidget->raise();
+
+    QString credits = QString("\n\nCreated By\nThe Senary Ten\n\nHuy Tran\nCam Davie\nEli Hebdon\nJohn Duffy\nDominic Utter\nNathan Gordon");
+
+    QLabel* creditsLabel = new QLabel();
+    creditsLabel->setAlignment(Qt::AlignHCenter);
+    creditsLabel->setText(credits);
+    creditsLabel->setStyleSheet("color: rgb(240,240,240)");
+    creditsLabel->setFont(QFont("SF Cartoonist Hand",36));
+
+    ui->creditsLayout->addWidget(creditsLabel);
 }
 
 void EndScene01::updateScore(){
@@ -76,13 +85,15 @@ void EndScene01::on_continueButton_clicked()
     ui->creditsBackdrop->show();
     creditsStarted = true;
     QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
-    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+    //QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
 }
 
 void EndScene01::advanceCreditsPosition(){
-    QRect position = ui->creditsLabel->geometry();
+    QRect position = ui->creditsWidget->geometry();
     position.setY(position.y() - pixelsMovedPerFrame);
-    ui->creditsLabel->setGeometry(position);
+    ui->creditsWidget->setGeometry(position);
+
+    position.setY(position.y() - pixelsMovedPerFrame);
 
     if(position.y() > creditsEndY){
         QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );

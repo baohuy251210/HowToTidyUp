@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <iscene.h>
 #include "model.h"
+#include <QPainter>
 
 namespace Ui {
 class EndScene01;
