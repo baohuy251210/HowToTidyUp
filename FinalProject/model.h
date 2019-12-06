@@ -45,6 +45,7 @@ private:
 
     void saveGameState(QString fileName);
     void loadGameState(QString fileName);
+    QVector<EvidenceEnum> savedEvidencesOrder;
     QHash<EvidenceEnum, QString> mapEnumString;
     QHash<QString, EvidenceEnum> mapStringEnum;
     QHash<Tools, QString> mapToolsString;

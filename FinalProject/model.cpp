@@ -155,12 +155,17 @@ void Model::saveGameState(QString fileName){
                            GUNPOWDER_WALL};
     QJsonObject scoreObj;
     QJsonArray scoreArray;
+    if (!savedEvidencesOrder.isEmpty()){
+        savedEvidencesOrder.clear();
+    }
     for (EvidenceEnum orderEnum: orderEvi){
-        if (evidences.find(orderEnum) != evidences.end())
-        scoreArray.append(evidencesScore[orderEnum]);
+        if (evidences.find(orderEnum) != evidences.end()){
+            scoreArray.append(evidencesScore[orderEnum]);
+            //save the saving evidences order for load
+            savedEvidencesOrder.push_back(orderEnum);
+        }
     }
     fileObj["scores"] = scoreArray;
-    qDebug()<<"saveGame::scores gate done";
 
     //Save evidence
     QJsonArray evidenceArray;
