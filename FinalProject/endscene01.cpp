@@ -45,5 +45,5 @@ EndScene01::~EndScene01()
 
 void EndScene01::on_continueButton_clicked()
 {
-    ui->endingStatsWidget->hide();
+    emit changeScene(MINIGAME);
 }

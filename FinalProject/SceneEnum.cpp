@@ -6,5 +6,6 @@ enum Scene{
     BEGIN,
     MAINMENU,
     ENDING,
+    MINIGAME
 };
 #endif

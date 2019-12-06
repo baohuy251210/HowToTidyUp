@@ -11,6 +11,7 @@
 #include "kitchenscene.h"
 #include "SceneEnum.cpp"
 #include "mainmenuscene.h"
+#include "losingminigame.h"
 #include <SFML/Audio.hpp>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,6 +37,7 @@ private:
     KitchenScene * kitchenScene;
     MainMenuScene * mainmenuScene;
     EndScene01 * endScene;
+    LosingMinigame* losingMinigame;
 
     Model* model;
     void startThemeMusic();

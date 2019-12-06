@@ -85,6 +85,7 @@ SOURCES += \
     iscene.cpp \
     itemdialog.cpp \
     kitchenscene.cpp \
+    losingminigame.cpp \
     main.cpp \
     mainmenuscene.cpp \
     mainwindow.cpp \
@@ -154,6 +155,7 @@ HEADERS += \
     iscene.h \
     itemdialog.h \
     kitchenscene.h \
+    losingminigame.h \
     mainmenuscene.h \
     mainwindow.h \
     model.h \
@@ -168,6 +170,7 @@ FORMS += \
     introscene.ui \
     itemdialog.ui \
     kitchenscene.ui \
+    losingminigame.ui \
     mainmenuscene.ui \
     mainwindow.ui \
     toolbarwidget.ui

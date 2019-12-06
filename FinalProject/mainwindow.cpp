@@ -91,7 +91,9 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         startInGameMusic();
         currentScene = endScene;
         break;
-    default:
+    case MINIGAME:
+        losingMinigame = new LosingMinigame(this);
+        currentScene = losingMinigame;
         break;
     }
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);

@@ -19,6 +19,7 @@ public:
 
 private slots:
     void on_continueButton_clicked();
+signals:
 
 private:
     void updateScore();
