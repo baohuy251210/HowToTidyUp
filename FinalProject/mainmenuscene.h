@@ -25,7 +25,7 @@ public:
 
 public: signals:
     void newPosition(QVector<b2Vec2>);
-
+    void loadGameSignal();
 private slots:
     void on_newGameButton_clicked();
     void on_continueButton_clicked();

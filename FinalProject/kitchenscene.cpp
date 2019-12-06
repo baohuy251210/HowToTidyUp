@@ -24,6 +24,10 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     drawTextLabel(ui->endLabel, 20, "SF Cartoonist Hand SC", "Bold Italic");
 }
 
+void KitchenScene::loadGameKitchen(){
+    model->loadGameSlot();
+}
+
 KitchenScene::~KitchenScene()
 {
     delete ui;

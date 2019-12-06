@@ -26,6 +26,8 @@ class KitchenScene : public IScene
 public:
     explicit KitchenScene(QWidget *parent, Model* model);
     ~KitchenScene();
+    void loadGameKitchen();
+
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
 public slots:

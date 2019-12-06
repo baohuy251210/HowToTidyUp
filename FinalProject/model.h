@@ -26,6 +26,7 @@ public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);
     void hideDialogSlot();
+    void loadGameSlot();
 public:
     Model(QObject *parent);
     ~Model();
@@ -42,9 +43,10 @@ private:
     QHash<EvidenceEnum, double> evidencesScore;
     void updateScore(EvidenceEnum);
     Tools selectedTool;
-
     void saveGameState(QString fileName);
     void loadGameState(QString fileName);
+    bool isLoading;
+    void loadGameUpdate(Tools usedTool, EvidenceEnum loadingEvidence);
     QVector<EvidenceEnum> savedEvidencesOrder;
     QHash<EvidenceEnum, QString> mapEnumString;
     QHash<QString, EvidenceEnum> mapStringEnum;

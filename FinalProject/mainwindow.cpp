@@ -45,7 +45,7 @@ void MainWindow::startThemeMusic(){
     mainThemeMusic.setVolume(100);
     mainThemeMusic.play();
     mainThemeMusic.setLoop(true);
-    QResource overlayfile(":/introdata/windsound.ogg");
+    QResource overlayfile(":/i  ntrodata/windsound.ogg");
     overlayMusic.openFromMemory(overlayfile.data(), overlayfile.size());
     overlayMusic.setVolume(50);
     overlayMusic.play();
@@ -75,6 +75,13 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         overlayMusic.setVolume(1);
         mainThemeMusic.setVolume(5);
         break;
+    case KITCHEN_LOAD:
+        kitchenScene = new KitchenScene(this, model);
+        currentScene = kitchenScene;
+        kitchenScene->loadGameKitchen();
+        overlayMusic.setVolume(1);
+        mainThemeMusic.setVolume(5);
+        break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);
         mainThemeMusic.setVolume(50);
@@ -96,6 +103,8 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     }
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     ui->SceneContainer->addWidget(currentScene);
+
+
 }
 
 void MainWindow::evidenceInteractionSlot(){

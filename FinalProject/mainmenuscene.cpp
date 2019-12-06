@@ -238,7 +238,9 @@ bool MainMenuScene::eventFilter(QObject *obj, QEvent *e){
 
 void MainMenuScene::on_continueButton_clicked()
 {
-    emit changeScene(KITCHEN);
+//    emit loadGameSignal();
+    emit changeScene(KITCHEN_LOAD);
+
 }
 
 void MainMenuScene::updateWorld(){
