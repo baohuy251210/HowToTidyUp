@@ -668,9 +668,48 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="creditsLabel">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>760</y>
+     <width>651</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>36</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(238, 238, 236);</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="creditsBackdrop">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>110</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>bgLabel</zorder>
   <zorder>scoreBackgroundLabel</zorder>
   <zorder>endingStatsWidget</zorder>
+  <zorder>creditsLabel</zorder>
+  <zorder>creditsBackdrop</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

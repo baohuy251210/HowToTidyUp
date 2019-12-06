@@ -4,13 +4,24 @@
 EndScene01::EndScene01(QWidget *parent, Model* model) :
     IScene(parent),
     ui(new Ui::EndScene01),
-    model(model)
+    model(model),
+    creditsFPS(30),
+    pixelsMovedPerFrame(3),
+    creditsStartY(1000),
+    creditsEndY(-2000),
+    creditsStarted(false),
+    backdropDarknessPerFrame(2),
+    backdropOpacity(0),
+    creditsSpeedUpFactor(5)
 
 {
     ui->setupUi(this);
 
+
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
+
+    initializeCredits();
 
     updateScore();
     QList<QLabel *> list = this->findChildren<QLabel *>();
@@ -18,6 +29,17 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
     {
       drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
     }
+}
+
+void EndScene01::initializeCredits(){
+    ui->creditsBackdrop->setGeometry(0,0,1024,768);
+    ui->creditsBackdrop->raise();
+    ui->creditsBackdrop->setStyleSheet("background-color: rgba(0,0,0,0)");
+    ui->creditsBackdrop->hide();
+
+    ui->creditsLabel->raise();
+    QString credits = QString("Created By\nThe Senary Ten\n\nHuy Tran\nCam Davie\nEli Hebdon\nJohn Duffy\nDominic Utter\nNathan Gordon");
+    ui->creditsLabel->setText(credits);
 }
 
 void EndScene01::updateScore(){
@@ -51,4 +73,45 @@ EndScene01::~EndScene01()
 void EndScene01::on_continueButton_clicked()
 {
     ui->endingStatsWidget->hide();
+    ui->creditsBackdrop->show();
+    creditsStarted = true;
+    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
+    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+}
+
+void EndScene01::advanceCreditsPosition(){
+    QRect position = ui->creditsLabel->geometry();
+    position.setY(position.y() - pixelsMovedPerFrame);
+    ui->creditsLabel->setGeometry(position);
+
+    if(position.y() > creditsEndY){
+        QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
+    }else{
+        changeScene(MAINMENU);
+    }
+}
+
+void EndScene01::darkenBackdrop(){
+    backdropOpacity += backdropDarknessPerFrame;
+    if(backdropOpacity > 255){
+        backdropOpacity = 255;
+    }
+    QString script("background-color: rgba(0,0,0," + QString::number(backdropOpacity) + ")");
+    ui->creditsBackdrop->setStyleSheet(script);
+
+    if(backdropOpacity != 255){
+        QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+    }
+}
+
+void EndScene01::mousePressEvent(QMouseEvent *event){
+    if(creditsStarted){
+        pixelsMovedPerFrame *= creditsSpeedUpFactor;
+    }
+}
+
+void EndScene01::mouseReleaseEvent(QMouseEvent *event){
+    if(creditsStarted){
+        pixelsMovedPerFrame /= creditsSpeedUpFactor;
+    }
 }

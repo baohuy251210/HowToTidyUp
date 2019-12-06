@@ -19,11 +19,24 @@ public:
 
 private slots:
     void on_continueButton_clicked();
+    void advanceCreditsPosition();
+    void darkenBackdrop();
 
 private:
     void updateScore();
     Ui::EndScene01 *ui;
     Model* model;
+    int creditsFPS;
+    int pixelsMovedPerFrame;
+    int creditsStartY;
+    int creditsEndY;
+    int creditsSpeedUpFactor;
+    int backdropDarknessPerFrame;
+    int backdropOpacity;
+    bool creditsStarted;
+    void initializeCredits();
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // ENDSCENE01_H
