@@ -17,6 +17,8 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     ui(new Ui::MainMenuScene)
 {
     ui->setupUi(this);
+    QCursor cursor = Qt::ArrowCursor;
+    QApplication::setOverrideCursor(cursor);
     ui->maskLabel->setFixedSize(QSize(1024,768));
 
     //Video widget test

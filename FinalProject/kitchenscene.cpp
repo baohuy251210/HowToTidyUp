@@ -21,7 +21,8 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     setupPixmaps();
     ui->bloodFootprintMaskLabel->raise();
     ui->bloodFloorMaskLabel->raise();
-    drawTextLabel(ui->endLabel, 21, "SF Cartoonist Hand", "Bold");
+    drawTextLabel(ui->backLabel, 21, "SF Cartoonist Hand SC", "Bold");
+    drawTextLabel(ui->endLabel, 23, "SF Cartoonist Hand SC", "Bold");
 }
 
 void KitchenScene::loadGameKitchen(){
@@ -288,4 +289,9 @@ void KitchenScene::exitSceneSlot(){
 void KitchenScene::on_resetButton_clicked()
 {
     emit(startOver());
+}
+void KitchenScene::on_backButton_clicked()
+{
+    qDebug() << "back btn clicked";
+    emit changeScene(MAINMENU);
 }

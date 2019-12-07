@@ -14,10 +14,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     initializeModel();
     initializeScenes();
-    startThemeMusic();
+    setupMusic();
+    //startThemeMusic();
     currentScene = introScene;
     setupConnections();
     ui->SceneContainer->addWidget(currentScene);
+
+
+    musicPlaylistTimer = new QTimer(this);
+    connect(musicPlaylistTimer, &QTimer::timeout, this, &MainWindow::musicPlayNext);
+    musicPlaylistTimer->start(20);
 }
 
 void MainWindow::initializeScenes(){
@@ -39,6 +45,14 @@ void MainWindow::initializeModel(){
     model = new Model(this);
 }
 
+/**MUSIC:*/
+void MainWindow::setupMusic(){
+    musicFiles.push_back(new QResource(":/introdata/theme"));
+    musicFiles.push_back(new QResource(":/introdata/theme2"));
+    /*current starts at the first music*/
+    currentMusicIndex = 0;
+}
+
 void MainWindow::startThemeMusic(){
     QResource musicfile(":/introdata/theme");
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
@@ -52,12 +66,25 @@ void MainWindow::startThemeMusic(){
     overlayMusic.setLoop(true);
 }
 void MainWindow::startInGameMusic(){
+    mainThemeMusic.stop();
     QResource musicfile(":/introdata/theme2");
     mainThemeMusic.openFromMemory(musicfile.data(), musicfile.size());
     mainThemeMusic.setVolume(7);
     mainThemeMusic.play();
     mainThemeMusic.setLoop(true);
     overlayMusic.setVolume(2);
+}
+
+void MainWindow::musicPlayNext(){
+    mainThemeMusic.openFromMemory(musicFiles[currentMusicIndex]->data(), musicFiles[currentMusicIndex]->size());
+    mainThemeMusic.setVolume(10);
+    mainThemeMusic.play();
+    mainThemeMusic.setLoop(true);
+    musicPlaylistTimer->start(mainThemeMusic.getDuration().asMilliseconds());
+    currentMusicIndex++;
+    if (currentMusicIndex == musicFiles.size()){
+        currentMusicIndex = 0;
+    }
 }
 
 
@@ -72,6 +99,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     case KITCHEN:
         kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
+
         overlayMusic.setVolume(1);
         mainThemeMusic.setVolume(5);
         break;
@@ -84,18 +112,17 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         break;
     case MAINMENU:
         mainmenuScene = new MainMenuScene(this);
-        mainThemeMusic.setVolume(50);
-        overlayMusic.setVolume(20);
+        mainThemeMusic.setVolume(20);
+        overlayMusic.setVolume(10);
         currentScene = mainmenuScene;
         break;
     case BEGIN:
         beginScene = new BeginScene(this);
-        startInGameMusic();
+        musicPlayNext();
         currentScene = beginScene;
         break;
     case ENDING:
         endScene = new EndScene01(this, model);
-        startInGameMusic();
         currentScene = endScene;
         break;
     default:
