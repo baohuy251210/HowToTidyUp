@@ -21,8 +21,11 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     setupPixmaps();
     ui->bloodFootprintMaskLabel->raise();
     ui->bloodFloorMaskLabel->raise();
+    ui->resetButton->hide();
     drawTextLabel(ui->backLabel, 21, "SF Cartoonist Hand SC", "Bold");
     drawTextLabel(ui->endLabel, 23, "SF Cartoonist Hand SC", "Bold");
+    drawTextPushButton(ui->resetButton, 17, "SF Cartoonist Hand SC", "Bold");
+
 }
 
 void KitchenScene::loadGameKitchen(){
@@ -43,8 +46,6 @@ void KitchenScene::InitializeWidgets(){
     ui->exitButton->setAutoRaise(false);
     exitDialog = new ExitDialog(this);
     exitDialog->setWindowTitle("");
-
-
 
 }
 
@@ -271,7 +272,7 @@ void KitchenScene::unselectTool(){
 
 void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
     evidenceLabels[selectedEvidence]->unhighlightEvidence();
-
+    ui->resetButton->hide();
 }
 
 void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
@@ -280,6 +281,7 @@ void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
         it.value()->unhighlightEvidence();
     }
     evidenceLabels[selectedEvidence]->highlightEvidence();
+    ui->resetButton->show();
 }
 
 void KitchenScene::exitSceneSlot(){
@@ -292,6 +294,5 @@ void KitchenScene::on_resetButton_clicked()
 }
 void KitchenScene::on_backButton_clicked()
 {
-    qDebug() << "back btn clicked";
     emit changeScene(MAINMENU);
 }

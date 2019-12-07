@@ -101,7 +101,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
     case KITCHEN:
         kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
-
+        musicPlayNext();
         overlayMusic.setVolume(1);
         mainThemeMusic.setVolume(5);
         break;
@@ -109,6 +109,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         kitchenScene = new KitchenScene(this, model);
         currentScene = kitchenScene;
         kitchenScene->loadGameKitchen();
+        musicPlayNext();
         overlayMusic.setVolume(1);
         mainThemeMusic.setVolume(5);
         break;

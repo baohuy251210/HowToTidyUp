@@ -68,6 +68,7 @@ void Evidence::setCleanState(CleanState state){
 }
 
 int Evidence::getCorrectUsedTools(){
+    qDebug()<<"getCorrectUsedTools::" <<usedTools.size();
     int correctNumber = 0;
     for (int i = 0; i < usedTools.size();i++){
         if (usedTools[i] == correctTools[i]){
@@ -79,8 +80,12 @@ int Evidence::getCorrectUsedTools(){
 int Evidence::getCorrectToolsSize(){
     return correctTools.size();
 }
+QVector<CleaningTool*> Evidence::getCorrectToolsVector(){
+    return correctTools;
+}
 
 EvidenceEnum Evidence::getType(){
+    qDebug() <<"getType:: "<<type;
     return this->type;
 }
 
@@ -95,6 +100,7 @@ QVector<CleaningTool> Evidence::getUsedToolsVector(){
     return usedToolsVector;
 }
 
-void Evidence::retryCleaning(){
+void Evidence::retryCleaningEvidence(){
     usedTools.clear();
+    cleanState = DIRTY;
 }

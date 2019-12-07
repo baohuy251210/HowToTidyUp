@@ -108,7 +108,7 @@ void BeginScene::displayCredit(){
         fadeOpacity += 2;
     }
     else {
-        textStartTimer->start(2000);
+        textStartTimer->start(1000);
         ui->continueLbl->show();
         ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
         ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
@@ -140,6 +140,12 @@ void BeginScene::displayNextContext(){
         return;
     }
     else textStartTimer->setInterval(introReader.nextMsDelay());
+    if (creditFadeTimer->isActive()){
+        creditFadeTimer->stop();
+        ui->continueLbl->show();
+        ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
+        ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
+    }
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);
@@ -152,7 +158,7 @@ void BeginScene::displayNextContext(){
     if (currentText == "10:30AM"){
         playWakeEffects();
     }
-    fadeTimer->start(10);
+    fadeTimer->start(20);
 }
 
 void BeginScene::fadeText(){
@@ -160,7 +166,7 @@ void BeginScene::fadeText(){
     if (fadeOpacity <100){
         ui->textLbl->setText(displayText);
         ui->textLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
-        fadeOpacity+=1;
+        fadeOpacity+=2;
     }
     else {
         fadeTimer->stop();

@@ -1,5 +1,6 @@
 #include "itemdialog.h"
 #include "ui_itemdialog.h"
+#include <QDebug>
 
 itemDialog::itemDialog(QWidget *parent) :
     IScene(parent),

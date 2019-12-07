@@ -33,6 +33,7 @@ void Model::eraseAll(){
 
 void Model::addEvidence(EvidenceEnum type, Evidence* evidence){
     evidences.insert(type, evidence);
+    evidences[type]->setType(type);
     evidencesScore.insert(type, 0);
 }
 
@@ -89,6 +90,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 
 
 void Model::updateScore(EvidenceEnum evidence){
+    qDebug() << "updateScore::" << evidences[evidence]->getCorrectUsedTools();
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
     if (abs(evidencesScore[evidence] - 1) <= 0.00001 )
@@ -125,9 +127,15 @@ void Model::hideDialogSlot(){
 }
 
 void Model::retryCleaning(){
-    Evidence* currEv = getEvidence(selectedEvidence);
-    currEv->retryCleaning();
-    emit(clearSteps());
+      Evidence * currentEvidence = getEvidence(selectedEvidence);
+      currentEvidence->retryCleaningEvidence();
+      updateScore(currentEvidence->getType());
+      emit(updateDialogBoxSignal(currentEvidence));
+//    qDebug()<<"afterclear steps::"<< currEv->getType();
+//    currEv->retryCleaningEvidence();
+//    emit(clearSteps());
+//    updateScore(currEv->getType());
+
 }
 
 
@@ -245,6 +253,7 @@ void Model::loadGameState(QString fileName){
             QString currentUsedTool = usedToolsArray[j].toString();
             Tools usedToolEnum = mapStringTools[currentUsedTool];
             loadGameUpdate(usedToolEnum, currentEvidence);
+          //  evidenceClicked(currentEvidence);
         }
     }
     qDebug()<<"loadGame::done";

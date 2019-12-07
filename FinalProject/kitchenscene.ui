@@ -249,16 +249,26 @@ color: rgb(243, 243, 243);</string>
    </property>
   </widget>
   <widget class="QPushButton" name="resetButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>920</x>
      <y>480</y>
      <width>89</width>
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(243, 244, 200);
+color: rgb(46, 52, 54);</string>
+   </property>
    <property name="text">
     <string>Reset</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QToolButton" name="backButton">

@@ -117,7 +117,12 @@ void IntroScene::displayNextContext(){
         return;
     }
     else textStartTimer->setInterval(introReader.nextMsDelay());
-    ui->continueLbl->show();
+    if (creditFadeTimer->isActive()){
+        creditFadeTimer->stop();
+        ui->continueLbl->show();
+        ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
+        ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
+    }
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);

@@ -17,11 +17,11 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
 {
     ui->setupUi(this);
 
-//    QList<QLabel *> list = this->findChildren<QLabel *>();
-//    foreach(QLabel *Lbl, list)
-//    {
-//      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
-//    }
+    QList<QLabel *> list = this->findChildren<QLabel *>();
+    foreach(QLabel *Lbl, list)
+    {
+      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+    }
 
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
@@ -75,11 +75,22 @@ void EndScene01::updateScore(){
     double finalScore = model->getFinalScorePercentage();
 
     // WIN
-    if(finalScore > 80){
+    if(finalScore >= 99){
         ui->endTitleLabel->setText("Spick and span!");
         ui->endDescriptionLabel->setText("Your party went off without a hitch! Great job! Nobody had a clue.");
         ui->bgLabel->setPixmap(QPixmap(":/art/backgrounds/Endgame1"));
-    }else{ // LOSS
+    }
+    else if (finalScore > 70){//70%
+        ui->endTitleLabel->setText("Cleaned up good!");
+        ui->endDescriptionLabel->setText("It was an amazing Thanksgiving Night! But someone noticed blood marks and might report you...");
+        ui->bgLabel->setPixmap(QPixmap(":/art/backgrounds/Endgame1"));
+    }
+    else if (finalScore >20){
+        ui->endTitleLabel->setText("You're new to the game");
+        ui->endDescriptionLabel->setText("10 minutes into your party, the guests discovered a dreadful murder scene...");
+        ui->bgLabel->setPixmap(QPixmap(":/art/backgrounds/Endgame2"));
+    }
+    else{ // LOSS
         ui->endTitleLabel->setText("Disaster!");
         ui->endDescriptionLabel->setText("Someone noticed your mess! What an embarassment! Maybe next year...");
         ui->bgLabel->setPixmap(QPixmap(":/art/backgrounds/Endgame2"));

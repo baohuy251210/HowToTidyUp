@@ -43,10 +43,11 @@ public:
     void setCleanState(CleanState state);
     QList<CleaningTool*>* getUsedTools();
     QVector<CleaningTool> getUsedToolsVector();
+    QVector<CleaningTool*> getCorrectToolsVector();
     int getCorrectUsedTools();
     int getCorrectToolsSize();
     CleanState getCleanState();
-    void retryCleaning();
+    void retryCleaningEvidence();
 private:
      void nothing();
     QVector<CleaningTool*> correctTools;
