@@ -2,11 +2,14 @@
 #define MAINMENUSCENE_H
 
 #include <QWidget>
-#include <iscene.h>
 #include <QTimer>
-#include "Box2D/Box2D.h"
 #include "SFML/Audio.hpp"
-#include <QHBoxLayout>
+#include "kitchenscene.h"
+#include "Box2D/Box2D.h"
+#include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QSound>
+
 namespace Ui {
 class MainMenuScene;
 }

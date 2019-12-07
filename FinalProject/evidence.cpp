@@ -1,10 +1,5 @@
 #include "evidence.h"
 
-#include <QVector>
-#include <QString>
-#include "ToolsEnum.cpp"
-#include <QDebug>
-
 Evidence::Evidence(): isSelected(false), cleanState(DIRTY)
 {
     usedTools.clear();

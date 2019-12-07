@@ -1,9 +1,8 @@
 #ifndef CLEANINGTOOL_H
 #define CLEANINGTOOL_H
 
-#include <QString>
 #include <QPixmap>
-#include <ToolsEnum.cpp>
+#include "ToolsEnum.cpp"
 
 class CleaningTool
 {

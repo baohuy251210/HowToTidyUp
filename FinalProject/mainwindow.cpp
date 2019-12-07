@@ -1,12 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "mainmenuscene.h"
-#include "introscene.h"
-#include "kitchenscene.h"
-#include "model.h"
-#include <QDebug>
-#include <QResource>
-#include <SFML/Audio.hpp>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

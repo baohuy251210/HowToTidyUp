@@ -1,11 +1,10 @@
 #ifndef TOOLBARWIDGET_H
 #define TOOLBARWIDGET_H
 
-#include <QWidget>
-#include "ToolsEnum.cpp"
 #include "cleaningtoolview.h"
 #include "model.h"
 #include "iscene.h"
+
 namespace Ui {
 class ToolbarWidget;
 }

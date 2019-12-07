@@ -2,9 +2,7 @@
 #define EVIDENCEVIEW_H
 
 #include <QLabel>
-#include <CleanStateEnum.cpp>
-#include <EvidenceEnum.cpp>
-#include <evidence.h>
+#include "evidence.h"
 
 class EvidenceView : public QLabel
 {

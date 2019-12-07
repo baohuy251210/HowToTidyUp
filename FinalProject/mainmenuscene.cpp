@@ -1,15 +1,6 @@
 #include "mainmenuscene.h"
 #include "ui_mainmenuscene.h"
-#include <kitchenscene.h>
-#include <QDebug>
-#include "Box2D/Box2D.h"
-#include <QResource>
-#include <QMediaPlayer>
-#include <QVideoWidget>
-#include <QFileInfo>
-#include <QHBoxLayout>
-#include<QNetworkProxyFactory>
-#include <QSound>
+
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),

@@ -1,8 +1,5 @@
 #include "iscene.h"
-#include <QFont>
-#include <QDebug>
-#include <QFontDatabase>
-#include <QLabel>
+
 
 IScene::IScene(QWidget *parent) : QWidget(parent)
 {

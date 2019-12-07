@@ -1,8 +1,5 @@
 #include "model.h"
-#include <QDebug>
-#include <EvidenceEnum.cpp>
-#include <QTimer>
-#include <QFile>
+
 /**
   isLoadCalled: default is false
 */

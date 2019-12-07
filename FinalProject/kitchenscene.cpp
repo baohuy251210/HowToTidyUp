@@ -1,10 +1,6 @@
 #include "kitchenscene.h"
 #include "ui_kitchenscene.h"
-#include "ToolsEnum.cpp"
-#include <evidenceview.h>
-#include <educationalpopup.h>
-#include <exitdialog.h>
-#include <QDebug>
+
 
 KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     IScene(parent),
