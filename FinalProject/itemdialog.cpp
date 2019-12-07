@@ -7,6 +7,8 @@ itemDialog::itemDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->hide();
+    //connect(hintButton, &QToolButton::pressed, model, &Model::hideDialogSlot);
+    connect(ui->hintButton, &QToolButton::clicked, this, &itemDialog::toggleHintVisibleSlot);
 }
 
 itemDialog::~itemDialog()
@@ -18,7 +20,24 @@ void itemDialog::setEvidence(Evidence* evidence){
     clearEvidenceSlot();
     this->show();
     ui->itemDescription->setText(evidence->description);
+    QString hintText = "";
+    static const char * toolEnumStrings[] = {"EMPTY",
+                                             "GLOVE",
+                                             "WATER",
+                                             "NAILPOLISHREMOVER",
+                                             "BLEACH",
+                                             "RAG",
+                                             "OXICLEAN"};
+    for(int i = 0; i < 3; i++){
+        hintText += toolEnumStrings[i];
+        if(i < 2){hintText += ", ";}
+    }
+
+
+    ui->itemHint->setText(hintText);
+    ui->itemHint->setVisible(false);
     drawTextLabel(ui->itemDescription, 18, "SF Cartoonist Hand");
+    drawTextLabel(ui->itemHint, 12, "SF Cartoonist Hand");
     ui->itemPicture->setPixmap(*evidence->getIcon());
 
     QList<CleaningTool*>* usedTools = evidence->getUsedTools();
@@ -38,6 +57,7 @@ void itemDialog::setEvidence(Evidence* evidence){
 
 void itemDialog::clearEvidenceSlot(){
     ui->itemDescription->setText("");
+    ui->itemHint->setText("");
     ui->itemPicture->clear();
     ui->step1->clear();
     ui->step2->clear();
@@ -46,4 +66,8 @@ void itemDialog::clearEvidenceSlot(){
 
 void itemDialog::hideDialogSlot(){
     this->hide();
+}
+
+void itemDialog::toggleHintVisibleSlot(){
+    ui->itemHint->setVisible(!(ui->itemHint->isVisible()));
 }

@@ -16,11 +16,14 @@ public slots:
     void setEvidence(Evidence* evidence);
     void clearEvidenceSlot();
     void hideDialogSlot();
+    void toggleHintVisibleSlot();
+
 public:
     explicit itemDialog(QWidget *parent = nullptr);
     ~itemDialog();
     void setDescription(QString description);
     void setUsedTools(QList<Tools> tools);
+
 
 private:
     Ui::itemDialog *ui;

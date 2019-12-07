@@ -31,6 +31,7 @@ public:
     QList<CleaningTool*> usedTools;
     QString description;
     QString educationalURL;
+    QString hint;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
     QPixmap* getIcon();
     EvidenceEnum getType();
@@ -40,6 +41,7 @@ public:
     QVector<CleaningTool> getUsedToolsVector();
     int getCorrectUsedTools();
     int getCorrectToolsSize();
+    QVector<CleaningTool *> getCorrectTools();
 private:
      void nothing();
     QVector<CleaningTool*> correctTools;
