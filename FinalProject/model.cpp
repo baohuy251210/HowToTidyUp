@@ -11,7 +11,6 @@ Model::Model(QObject * parent) :
     selectedEvidence(EvidenceEnum::NONE),
     selectedTool(GLOVE){
 
-
     initDictionaries();
     isLoading = false;
 }

@@ -10,7 +10,7 @@
 #include <evidenceview.h>
 
 ExitDialog::ExitDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::FramelessWindowHint),
     ui(new Ui::ExitDialog)
 {
     ui->setupUi(this);
