@@ -33,7 +33,6 @@ void itemDialog::setEvidence(Evidence* evidence){
 
     if(usedTools->size() > 2 && usedTools->at(0) != nullptr && usedTools->at(2)->getType() != EMPTY){
        ui->step3->setPixmap(usedTools->at(2)->getIcon());
-       evidence->setCleanState(CLEAN);
     }
 }
 

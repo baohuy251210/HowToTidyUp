@@ -26,7 +26,8 @@ void IScene::drawTextPushButton(QPushButton * pushBtn, int size, QString fontNam
 }
 
 void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString fontStyle){
-//    qDebug() << fontFamily.font("Fiendish", "", 10);
+    if (size == 21)
+        qDebug() << fontFamily.font("SF Cartoonist Hand", "SC", 10);
     appFont = fontFamily.font(fontName,fontStyle, size);
     appFont.setPointSize(size);
     textLbl->setFont(appFont);

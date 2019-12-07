@@ -21,7 +21,7 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     setupPixmaps();
     ui->bloodFootprintMaskLabel->raise();
     ui->bloodFloorMaskLabel->raise();
-    drawTextLabel(ui->endLabel, 20, "SF Cartoonist Hand SC", "Bold Italic");
+    drawTextLabel(ui->endLabel, 21, "SF Cartoonist Hand", "Bold");
 }
 
 void KitchenScene::loadGameKitchen(){

@@ -1,10 +1,10 @@
 {
   "paragraphs":[
-      "An educational production..."
+      "An educational production...",
+      "\"If what we're doing doesn't get under your skin,\n you're more screwed up than I thought, \nor kidding yourself.\"\n\t\t\t- Bill Tench"
   ],
   "delays": [
-    4000,
-    4000,
-    4000
+    5000,
+    8000
   ]
 }

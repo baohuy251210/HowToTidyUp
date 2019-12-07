@@ -12,7 +12,6 @@ Model::Model(QObject * parent) :
     selectedTool(GLOVE){
 
     initDictionaries();
-    qDebug() << "model constructed done";
     isLoading = false;
 }
 
@@ -57,10 +56,10 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         selectedEvidence = evidence;
         evidences[evidence]->isSelected = true;
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
+        updateScore(evidence);
         emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
         emit updateEducationalPopupSignal(evidences[evidence]);
-        updateScore(evidence);
     }
     //if the user click the same current evidence using GLOVE
     if (selectedEvidence == evidence && selectedTool == GLOVE){
@@ -92,7 +91,11 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 void Model::updateScore(EvidenceEnum evidence){
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
-    qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
+    if (abs(evidencesScore[evidence] - 1) <= 0.00001 )
+        evidences[evidence]->setCleanState(CLEAN);
+    else {
+        evidences[evidence]->setCleanState(DIRTY);
+    }
     //Save the file whenever update score and don't save when we are trying to load(kinda make sense right :] )
     if (!isLoading)
         saveGameState(QApplication::applicationDirPath()+"/save01.json");
@@ -102,7 +105,6 @@ double Model::getFinalScorePercentage(){
     int numEvidences = evidences.keys().size();
     double eachEvidencePercent = double(100)/numEvidences;
     for (EvidenceEnum e: evidencesScore.keys()){
-        qDebug()<<e << " : "<<evidencesScore[e];
         /*66.67 percent of 20 is gonna be 66.67*20/100*/
         score += evidencesScore[e]*100.0*eachEvidencePercent/100.0;
     }
@@ -245,7 +247,6 @@ void Model::loadGameState(QString fileName){
 void Model::loadGameUpdate(Tools usedTool, EvidenceEnum loadingEvidence){
     toolClickedSlot(usedTool);
     evidenceClicked(loadingEvidence);
-    qDebug() <<"loadgameupdate:Tools - Evidence:"<<mapToolsString[usedTool] << mapEnumString[loadingEvidence];
 }
 
 void Model::loadGameSlot(){
