@@ -49,6 +49,8 @@ void MainWindow::initializeModel(){
 void MainWindow::setupMusic(){
     musicFiles.push_back(new QResource(":/introdata/theme"));
     musicFiles.push_back(new QResource(":/introdata/theme2"));
+    musicFiles.push_back(new QResource(":/introdata/theme3"));
+    musicFiles.push_back(new QResource(":/introdata/theme4"));
     /*current starts at the first music*/
     currentMusicIndex = 0;
 }

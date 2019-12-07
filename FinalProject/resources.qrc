@@ -82,6 +82,8 @@
         <file alias="begin">IntroData/begin.json</file>
         <file alias="jazzpiano">IntroData/bensound-thejazzpiano.ogg</file>
         <file alias="theme2">IntroData/theme2.ogg</file>
+        <file alias="theme4">IntroData/theme4.ogg</file>
+        <file alias="theme3">IntroData/theme3.ogg</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
