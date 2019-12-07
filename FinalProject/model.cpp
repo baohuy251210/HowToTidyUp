@@ -56,10 +56,10 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         selectedEvidence = evidence;
         evidences[evidence]->isSelected = true;
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
+        updateScore(evidence);
         emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
         emit updateEducationalPopupSignal(evidences[evidence]);
-        updateScore(evidence);
     }
     //if the user click the same current evidence using GLOVE
     if (selectedEvidence == evidence && selectedTool == GLOVE){
@@ -91,6 +91,11 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 void Model::updateScore(EvidenceEnum evidence){
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
+    if (abs(evidencesScore[evidence] - 1) <= 0.00001 )
+        evidences[evidence]->setCleanState(CLEAN);
+    else {
+        evidences[evidence]->setCleanState(DIRTY);
+    }
     //Save the file whenever update score and don't save when we are trying to load(kinda make sense right :] )
     if (!isLoading)
         saveGameState(QApplication::applicationDirPath()+"/save01.json");
