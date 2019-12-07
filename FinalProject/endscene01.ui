@@ -35,9 +35,9 @@
   <widget class="QWidget" name="endingStatsWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>285</x>
+     <x>245</x>
      <y>0</y>
-     <width>481</width>
+     <width>534</width>
      <height>771</height>
     </rect>
    </property>
@@ -63,7 +63,7 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>-1</x>
+      <x>29</x>
       <y>0</y>
       <width>481</width>
       <height>701</height>
@@ -104,7 +104,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="totalPercentLayout">
        <item>
         <spacer name="horizontalSpacer_13">
          <property name="orientation">
@@ -164,7 +164,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <layout class="QHBoxLayout" name="bloodFootprintLayout">
        <item>
         <spacer name="horizontalSpacer_7">
          <property name="orientation">
@@ -246,7 +246,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="oilyHandLayout">
        <item>
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
@@ -325,7 +325,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QHBoxLayout" name="bloodWallLayout">
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -404,7 +404,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="knifeLayout">
        <item>
         <spacer name="horizontalSpacer_9">
          <property name="orientation">
@@ -483,7 +483,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="bloodFloorLayout">
        <item>
         <spacer name="horizontalSpacer_11">
          <property name="orientation">
@@ -562,7 +562,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <layout class="QHBoxLayout" name="gunpowderLayout">
        <item>
         <spacer name="horizontalSpacer_5">
          <property name="orientation">
@@ -646,14 +646,14 @@
   <widget class="QLabel" name="scoreBackgroundLabel">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>245</x>
      <y>-10</y>
-     <width>531</width>
+     <width>534</width>
      <height>811</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(50,50,50, 95)</string>
+    <string notr="true">background-color: rgba(50,50,50, 155)</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Panel</enum>
@@ -685,22 +685,11 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>760</y>
+     <y>650</y>
      <width>681</width>
-     <height>661</height>
+     <height>4000</height>
     </rect>
    </property>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>711</width>
-      <height>631</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="creditsLayout"/>
-   </widget>
   </widget>
   <zorder>bgLabel</zorder>
   <zorder>scoreBackgroundLabel</zorder>

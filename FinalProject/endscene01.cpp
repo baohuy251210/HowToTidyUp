@@ -8,7 +8,7 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
     creditsFPS(30),
     pixelsMovedPerFrame(3),
     creditsStartY(1000),
-    creditsEndY(-2000),
+    creditsEndY(-1500),
     creditsStarted(false),
     backdropDarknessPerFrame(2),
     backdropOpacity(0),
@@ -17,19 +17,19 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
 {
     ui->setupUi(this);
 
-    QList<QLabel *> list = this->findChildren<QLabel *>();
-    foreach(QLabel *Lbl, list)
-    {
-      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
-    }
+//    QList<QLabel *> list = this->findChildren<QLabel *>();
+//    foreach(QLabel *Lbl, list)
+//    {
+//      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+//    }
 
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
 
     initializeCredits();
-
     updateScore();
 
+    qDebug() << ui->knifeLabel->styleSheet();
 }
 
 void EndScene01::initializeCredits(){
@@ -39,16 +39,36 @@ void EndScene01::initializeCredits(){
     ui->creditsBackdrop->hide();
 
     ui->creditsWidget->raise();
+    ui->creditsWidget->setGeometry(62,768,900,4000);
 
-    QString credits = QString("\n\nCreated By\nThe Senary Ten\n\nHuy Tran\nCam Davie\nEli Hebdon\nJohn Duffy\nDominic Utter\nNathan Gordon");
+    QVBoxLayout* creditsLayout = new QVBoxLayout();
+    creditsLayout->setSpacing(1);
+    creditsLayout->setGeometry(QRect(62,768,900,4000));
+    creditsLayout->setAlignment(Qt::AlignTop);
 
-    QLabel* creditsLabel = new QLabel();
-    creditsLabel->setAlignment(Qt::AlignHCenter);
-    creditsLabel->setText(credits);
-    creditsLabel->setStyleSheet("color: rgb(240,240,240)");
-    creditsLabel->setFont(QFont("SF Cartoonist Hand",36));
 
-    ui->creditsLayout->addWidget(creditsLabel);
+    QFile file(":/text/credits");
+    if(!file.exists() || !file.open(QIODevice::ReadOnly)){
+        qDebug() << "Error loading file";
+        return;
+    }
+    QTextStream input(&file);
+
+    while(!input.atEnd()){
+        QString line = input.readLine();
+        QLabel* creditsLabel = new QLabel();
+        creditsLabel->setAlignment(Qt::AlignHCenter);
+        creditsLabel->setMinimumHeight(50);
+        creditsLabel->setText(line);
+        creditsLabel->setStyleSheet("color: rgb(240,240,240)");
+        creditsLabel->setFont(QFont("SF Cartoonist Hand",36));
+        creditsLayout->addWidget(creditsLabel);
+    }
+
+    ui->creditsWidget->setLayout(creditsLayout);
+
+    file.close();
+
 }
 
 void EndScene01::updateScore(){
@@ -85,7 +105,7 @@ void EndScene01::on_continueButton_clicked()
     ui->creditsBackdrop->show();
     creditsStarted = true;
     QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
-    //QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
 }
 
 void EndScene01::advanceCreditsPosition(){

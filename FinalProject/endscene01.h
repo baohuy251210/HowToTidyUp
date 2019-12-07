@@ -4,7 +4,12 @@
 #include <QWidget>
 #include <iscene.h>
 #include "model.h"
-#include <QPainter>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
+#include <QIODevice>
+#include <QHBoxLayout>
+#include <QSpacerItem>
 
 namespace Ui {
 class EndScene01;

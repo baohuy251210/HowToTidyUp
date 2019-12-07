@@ -9,7 +9,6 @@ Model::Model(QObject * parent) :
     selectedTool(GLOVE){
 
     initDictionaries();
-
 }
 
 Model::~Model(){
