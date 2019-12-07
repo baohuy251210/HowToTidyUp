@@ -44,6 +44,7 @@ BeginScene::BeginScene(QWidget *parent) :
     connect(flashContinueTimer, &QTimer::timeout, this, &BeginScene::flashContinueLabel);
     flashContinueTimer->start(500);
     logoTimer->start(2);
+    drawTextLabel(ui->textLbl, 40);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -85,7 +86,7 @@ void BeginScene::displayLogo(){
     if (logoSize.width() >= 100){
         logoTimer->stop();
         fadeOpacity = 5;
-        creditFadeTimer->start(1);
+        creditFadeTimer->start(2);
         isLogoDisplayed=true;
     }
     else {
@@ -143,7 +144,7 @@ void BeginScene::displayNextContext(){
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);
     renderDefaultBlack();
-    fadeOpacity = 1;
+    fadeOpacity = 5;
     currentText = introReader.nextText();
     if (currentText == "..."){
         playCrimeEffects();
@@ -151,16 +152,15 @@ void BeginScene::displayNextContext(){
     if (currentText == "10:30AM"){
         playWakeEffects();
     }
-    fadeTimer->start(20);
+    fadeTimer->start(10);
 }
 
 void BeginScene::fadeText(){
     QString displayText = currentText;
     if (fadeOpacity <100){
         ui->textLbl->setText(displayText);
-        drawTextLabel(ui->textLbl, 40);
         ui->textLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
-        fadeOpacity++;
+        fadeOpacity+=1;
     }
     else {
         fadeTimer->stop();
