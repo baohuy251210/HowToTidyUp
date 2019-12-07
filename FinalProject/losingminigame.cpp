@@ -3,7 +3,7 @@
 
 LosingMinigame::LosingMinigame(QWidget *parent) :
     IScene(parent),
-    ui(new Ui::LosingMinigame), score(0), questionIndex(0), answerIndex(0)
+    ui(new Ui::LosingMinigame), score(0), questionIndex(0)
 {
     ui->setupUi(this);
     questions = new QList<QString>();
@@ -12,14 +12,15 @@ LosingMinigame::LosingMinigame(QWidget *parent) :
     initializeAnswers();
     initializeQuestions();
 
+    ui->faceLabel->lower();
+    ui->bgLabel->lower();
+
 
     ui->questionLabel->setText(questions->at(0));
     ui->option1Button->setText(answers->at(0).first);
     ui->option2Button->setText(answers->at(1).first);
     ui->option3Button->setText(answers->at(2).first);
     ui->option4Button->setText(answers->at(3).first);
-
-    ui->faceLabel->lower();
 
 }
 
@@ -41,7 +42,6 @@ void LosingMinigame::on_option1Button_clicked()
         score--;
     }
     questionIndex += 4;
-    answerIndex++;
     updateFace();
     nextQuestion();
 }
@@ -55,7 +55,6 @@ void LosingMinigame::on_option2Button_clicked()
         score--;
     }
     questionIndex += 4;
-    answerIndex++;
     updateFace();
     nextQuestion();
 }
@@ -69,7 +68,6 @@ void LosingMinigame::on_option3Button_clicked()
         score--;
     }
     questionIndex += 4;
-    answerIndex++;
     updateFace();
     nextQuestion();
 }
@@ -84,7 +82,6 @@ void LosingMinigame::on_option4Button_clicked()
     }
 
     questionIndex += 4;
-    answerIndex++;
     updateFace();
     nextQuestion();
 }
@@ -123,10 +120,10 @@ void LosingMinigame::initializeQuestions(){
 }
 
 void LosingMinigame::nextQuestion(){
-    if (answerIndex == 3) {
+    if (questionIndex / 4 == 3) {
         endGame();
     } else {
-        ui->questionLabel->setText(questions->at(answerIndex));
+        ui->questionLabel->setText(questions->at(questionIndex / 4));
         ui->option1Button->setText(answers->at(questionIndex).first);
         ui->option2Button->setText(answers->at(questionIndex + 1).first);
         ui->option3Button->setText(answers->at(questionIndex + 2).first);
@@ -136,7 +133,8 @@ void LosingMinigame::nextQuestion(){
 }
 
 void LosingMinigame::updateFace(){
-
+    QString policeman = QString(":/art/minigame/policeman%1").arg(score);
+    ui->faceLabel->setPixmap(QPixmap(policeman));
 }
 
 void LosingMinigame::endGame(){

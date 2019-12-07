@@ -117,4 +117,13 @@
     <qresource prefix="/save">
         <file alias="save01">save/save01.json</file>
     </qresource>
+    <qresource prefix="/art/minigame">
+        <file alias="policeman-2">Art/Minigame/policebaton.png</file>
+        <file alias="policeman-1">Art/Minigame/policebatonhappier.png</file>
+        <file alias="policeman-3">Art/Minigame/policegun.png</file>
+        <file alias="policeman">Art/Minigame/policesign.png</file>
+        <file alias="policeman2">Art/Minigame/police_thumbs_up.png</file>
+        <file alias="policeman0">Art/Minigame/policewhistle.png</file>
+        <file alias="policeman1">Art/Minigame/policekindofhappy.png</file>
+    </qresource>
 </RCC>

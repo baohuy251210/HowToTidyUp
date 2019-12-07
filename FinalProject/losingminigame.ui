@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -60,14 +60,23 @@
   <widget class="QLabel" name="faceLabel">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>117</y>
-     <width>571</width>
-     <height>631</height>
+     <x>560</x>
+     <y>110</y>
+     <width>481</width>
+     <height>701</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/art/minigame/policeman0</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="questionLabel">
@@ -83,7 +92,29 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="bgLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/art/backgrounds/Endgame2);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>bgLabel</zorder>
+  <zorder>faceLabel</zorder>
+  <zorder>questionLabel</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -35,7 +35,6 @@ private:
     Ui::LosingMinigame *ui;
     int score;
     int questionIndex;
-    int answerIndex;
     QList<QString>* questions;
     QList<QPair<QString, bool>>* answers;
 
