@@ -117,4 +117,7 @@
     <qresource prefix="/save">
         <file alias="save01">save/save01.json</file>
     </qresource>
+    <qresource prefix="/text">
+        <file alias="credits">Text/credits.txt</file>
+    </qresource>
 </RCC>

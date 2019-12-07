@@ -4,20 +4,71 @@
 EndScene01::EndScene01(QWidget *parent, Model* model) :
     IScene(parent),
     ui(new Ui::EndScene01),
-    model(model)
+    model(model),
+    creditsFPS(30),
+    pixelsMovedPerFrame(3),
+    creditsStartY(1000),
+    creditsEndY(-1500),
+    creditsStarted(false),
+    backdropDarknessPerFrame(2),
+    backdropOpacity(0),
+    creditsSpeedUpFactor(5)
 
 {
     ui->setupUi(this);
 
+//    QList<QLabel *> list = this->findChildren<QLabel *>();
+//    foreach(QLabel *Lbl, list)
+//    {
+//      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+//    }
+
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
 
+    initializeCredits();
     updateScore();
-    QList<QLabel *> list = this->findChildren<QLabel *>();
-    foreach(QLabel *Lbl, list)
-    {
-      drawTextLabel(Lbl, Lbl->font().pointSize()+9, "SF Cartoonist Hand", "");
+
+    qDebug() << ui->knifeLabel->styleSheet();
+}
+
+void EndScene01::initializeCredits(){
+    ui->creditsBackdrop->setGeometry(0,0,1024,768);
+    ui->creditsBackdrop->raise();
+    ui->creditsBackdrop->setStyleSheet("background-color: rgba(0,0,0,0)");
+    ui->creditsBackdrop->hide();
+
+    ui->creditsWidget->raise();
+    ui->creditsWidget->setGeometry(62,768,900,4000);
+
+    QVBoxLayout* creditsLayout = new QVBoxLayout();
+    creditsLayout->setSpacing(1);
+    creditsLayout->setGeometry(QRect(62,768,900,4000));
+    creditsLayout->setAlignment(Qt::AlignTop);
+
+
+    QFile file(":/text/credits");
+    if(!file.exists() || !file.open(QIODevice::ReadOnly)){
+        qDebug() << "Error loading file";
+        return;
     }
+    QTextStream input(&file);
+
+    while(!input.atEnd()){
+        QString line = input.readLine();
+        QLabel* creditsLabel = new QLabel();
+        creditsLabel->setAlignment(Qt::AlignHCenter);
+        creditsLabel->setMinimumHeight(50);
+        creditsLabel->setText(line);
+        creditsLabel->setStyleSheet("color: rgb(240,240,240)");
+        creditsLabel->setFont(QFont("SF Cartoonist Hand",36));
+        creditsLayout->addWidget(creditsLabel);
+    }
+
+    ui->creditsWidget->setLayout(creditsLayout);
+
+    file.close();
+
 }
 
 void EndScene01::updateScore(){
@@ -51,4 +102,47 @@ EndScene01::~EndScene01()
 void EndScene01::on_continueButton_clicked()
 {
     ui->endingStatsWidget->hide();
+    ui->creditsBackdrop->show();
+    creditsStarted = true;
+    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
+    QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+}
+
+void EndScene01::advanceCreditsPosition(){
+    QRect position = ui->creditsWidget->geometry();
+    position.setY(position.y() - pixelsMovedPerFrame);
+    ui->creditsWidget->setGeometry(position);
+
+    position.setY(position.y() - pixelsMovedPerFrame);
+
+    if(position.y() > creditsEndY){
+        QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::advanceCreditsPosition );
+    }else{
+        changeScene(MAINMENU);
+    }
+}
+
+void EndScene01::darkenBackdrop(){
+    backdropOpacity += backdropDarknessPerFrame;
+    if(backdropOpacity > 255){
+        backdropOpacity = 255;
+    }
+    QString script("background-color: rgba(0,0,0," + QString::number(backdropOpacity) + ")");
+    ui->creditsBackdrop->setStyleSheet(script);
+
+    if(backdropOpacity != 255){
+        QTimer::singleShot(1000 / creditsFPS, this, &EndScene01::darkenBackdrop);
+    }
+}
+
+void EndScene01::mousePressEvent(QMouseEvent *event){
+    if(creditsStarted){
+        pixelsMovedPerFrame *= creditsSpeedUpFactor;
+    }
+}
+
+void EndScene01::mouseReleaseEvent(QMouseEvent *event){
+    if(creditsStarted){
+        pixelsMovedPerFrame /= creditsSpeedUpFactor;
+    }
 }
