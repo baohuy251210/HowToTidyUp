@@ -124,3 +124,5 @@ void ToolbarWidget::setupConnections(){
     connect(oxiclean, &CleaningToolView::hideDescription, this, &ToolbarWidget::hideDescriptionSlot);
 
 }
+
+

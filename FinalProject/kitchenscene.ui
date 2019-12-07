@@ -248,6 +248,19 @@ color: rgb(243, 243, 243);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="resetButton">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>480</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </widget>
   <widget class="QToolButton" name="backButton">
    <property name="geometry">
     <rect>
@@ -309,6 +322,7 @@ color: rgb(243, 243, 243);</string>
   <zorder>toolbarWidget</zorder>
   <zorder>bloodFloorMaskLabel</zorder>
   <zorder>endLabel</zorder>
+  <zorder>resetButton</zorder>
   <zorder>backButton</zorder>
   <zorder>backLabel</zorder>
  </widget>

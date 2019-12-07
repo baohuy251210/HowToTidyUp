@@ -124,6 +124,12 @@ void Model::hideDialogSlot(){
     emit hideDialogSignal();
 }
 
+void Model::retryCleaning(){
+    Evidence* currEv = getEvidence(selectedEvidence);
+    currEv->retryCleaning();
+    emit(clearSteps());
+}
+
 
 /**SAVE/LOAD WORK:*/
 /*need a dictionary for Enum*/

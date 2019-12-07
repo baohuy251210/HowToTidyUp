@@ -43,6 +43,11 @@ void itemDialog::clearEvidenceSlot(){
     ui->step2->clear();
     ui->step3->clear();
 }
+void itemDialog::clearSteps(){
+    ui->step1->clear();
+    ui->step2->clear();
+    ui->step3->clear();
+}
 
 void itemDialog::hideDialogSlot(){
     this->hide();

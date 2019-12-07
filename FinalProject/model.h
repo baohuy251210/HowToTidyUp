@@ -22,11 +22,13 @@ signals:
     void clearToolSelections();
     void deselectEvidence(EvidenceEnum);
     void updateEducationalPopupSignal(Evidence*);
+    void clearSteps();
 public slots:
     void evidenceClicked(EvidenceEnum evidence);
     void toolClickedSlot(Tools tool);
     void hideDialogSlot();
     void loadGameSlot();
+    void retryCleaning();
 public:
     Model(QObject *parent);
     ~Model();
