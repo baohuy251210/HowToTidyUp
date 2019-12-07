@@ -167,7 +167,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/art/interactables/gunpowder_wall_01</pixmap>
+    <pixmap resource="resources.qrc">:/art/interactables/gunpowder_wall_01</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -257,6 +257,19 @@ color: rgb(243, 243, 243);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="resetButton">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>480</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </widget>
   <zorder>educationalPopup</zorder>
   <zorder>exitButton</zorder>
   <zorder>bgLabel</zorder>
@@ -271,6 +284,7 @@ color: rgb(243, 243, 243);</string>
   <zorder>toolbarWidget</zorder>
   <zorder>bloodFloorMaskLabel</zorder>
   <zorder>endLabel</zorder>
+  <zorder>resetButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

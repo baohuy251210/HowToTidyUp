@@ -30,14 +30,19 @@ public:
 
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
+    void startOver();
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
     void unselectTool();
 
+
+
 private slots:
     void exitSceneSlot();
 
+
+    void on_resetButton_clicked();
 
 private:
     Ui::KitchenScene *ui;

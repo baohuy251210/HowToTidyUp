@@ -99,6 +99,10 @@ void KitchenScene::setupConnections(){
     connect(ui->bloodFloorMaskLabel, &EvidenceMaskView::clickedMaskSignal, bloodFloorLabel, &EvidenceView::clickedSignal);
 
     connect(ui->exitButton, SIGNAL(clicked()), exitDialog, SLOT(exec()));
+
+    //reset button
+    connect(this, &KitchenScene::startOver, model, &Model::retryCleaning);
+    connect(model, &Model::clearSteps, ui->evidenceDialog, &itemDialog::clearSteps);
 }
 
 
@@ -167,7 +171,7 @@ void KitchenScene::initializeTools(){
     model->addEvidence(KNIFE, knife);
     knifeLabel->setModel(model->getEvidence(KNIFE));
 
-    knife->setStartValues({water, bleach, rag}, "Bloody knife.");
+    knife->setStartValues({water, bleach, rag}, "Bloody knife. I'll probably want to rinse it, then do something about that blood.");
     knife->educationalURL = "http://www.google.com";
 
     // initialize blood stain on floor
@@ -182,7 +186,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(BLOOD_TILE, bloodFloorLabel);
     model->addEvidence(BLOOD_TILE, bloodFloor);
     bloodFloorLabel->setModel(model->getEvidence(BLOOD_TILE));
-    bloodFloor->setStartValues({bleach, oxiclean, rag}, "Bloody stain on the floor");
+    bloodFloor->setStartValues({bleach, oxiclean, rag}, "Bloody stain on the floor. This is gonna be tough to get out. I need to cleanse this and mop it up fast.");
     bloodFloor->educationalURL = "http://www.google.com";
     ui->bloodFloorMaskLabel->setEvidenceEnum(BLOOD_TILE);
 
@@ -198,7 +202,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(FINGERPRINT_GLASS, oilyHandLabel);
     model->addEvidence(FINGERPRINT_GLASS, handprint);
     oilyHandLabel->setModel(model->getEvidence(FINGERPRINT_GLASS));
-    handprint->setStartValues({nailPolishRemover, water, rag}, "Oily handprint on glass");
+    handprint->setStartValues({nailPolishRemover, water, rag}, "Oily handprint on glass. I should make sure I remove the oils before I rinse and dry this mess.");
     handprint->educationalURL = "http://www.google.com";
 
 
@@ -214,7 +218,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(BLOOD_FOOTPRINT, bloodFootprintsLabel);
     model->addEvidence(BLOOD_FOOTPRINT, bloodyFootprints);
     bloodFootprintsLabel->setModel(model->getEvidence(BLOOD_FOOTPRINT));
-    bloodyFootprints->setStartValues({bleach, oxiclean, rag}, "Bloody footprints on floor");
+    bloodyFootprints->setStartValues({bleach, oxiclean, rag}, "Bloody footprints on floor. Ugh, someone stepped in the pool of blood. Ill have to clean this the same way.");
     bloodyFootprints->educationalURL = "http://www.google.com";
     ui->bloodFootprintMaskLabel->setEvidenceEnum(BLOOD_FOOTPRINT);
 
@@ -230,7 +234,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(BLOOD_WALL_WOOD, bloodWallLabel);
     model->addEvidence(BLOOD_WALL_WOOD, bloodyWall);
     bloodWallLabel->setModel(model->getEvidence(BLOOD_WALL_WOOD));
-    bloodyWall->setStartValues({bleach, oxiclean, rag}, "Blood splatter on wooden wall");
+    bloodyWall->setStartValues({bleach, oxiclean, rag}, "Blood splatter on wooden wall. Man, this made a huge mess. I should probably cleanse and treat the stain.");
     bloodyWall->educationalURL = "http://www.google.com";
 
     // initialize gunpowder residue
@@ -245,7 +249,7 @@ void KitchenScene::initializeTools(){
     evidenceLabels.insert(GUNPOWDER_WALL, gunpowderWallLabel);
     model->addEvidence(GUNPOWDER_WALL, gunpowderWall);
     gunpowderWallLabel->setModel(model->getEvidence(GUNPOWDER_WALL));
-    gunpowderWall->setStartValues({rag, water, nailPolishRemover}, "Gunpowder on painted wood and ceramic.");
+    gunpowderWall->setStartValues({rag, water, nailPolishRemover}, "Gunpowder on painted wood and ceramic. Ill bet I can wipe most of it, but It will probably need a rinse and something else for the residue.");
 
 }
 
@@ -263,6 +267,7 @@ void KitchenScene::unselectTool(){
 }
 
 
+
 void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
     evidenceLabels[selectedEvidence]->unhighlightEvidence();
 
@@ -278,4 +283,9 @@ void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
 
 void KitchenScene::exitSceneSlot(){
     emit changeScene(ENDING);
+}
+
+void KitchenScene::on_resetButton_clicked()
+{
+    emit(startOver());
 }

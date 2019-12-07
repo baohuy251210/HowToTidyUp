@@ -19,6 +19,7 @@ signals:
     void cleanStateChangedSignal();
 
 public:
+
     Evidence();
     ~Evidence() override;
 
@@ -45,6 +46,7 @@ public:
     int getCorrectUsedTools();
     int getCorrectToolsSize();
     CleanState getCleanState();
+    void retryCleaning();
 private:
      void nothing();
     QVector<CleaningTool*> correctTools;

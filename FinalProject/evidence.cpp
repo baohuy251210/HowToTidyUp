@@ -94,3 +94,7 @@ QVector<CleaningTool> Evidence::getUsedToolsVector(){
     }
     return usedToolsVector;
 }
+
+void Evidence::retryCleaning(){
+    usedTools.clear();
+}
