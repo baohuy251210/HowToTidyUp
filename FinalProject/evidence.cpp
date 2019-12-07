@@ -82,6 +82,10 @@ QVector<CleaningTool*> Evidence::getCorrectToolsVector(){
     return correctTools;
 }
 
+QVector<CleaningTool *> Evidence::getCorrectTools(){
+    return correctTools;
+}
+
 EvidenceEnum Evidence::getType(){
     return this->type;
 }
