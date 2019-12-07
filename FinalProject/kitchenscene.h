@@ -12,6 +12,7 @@
 #include <evidenceview.h>
 #include <educationalpopup.h>
 #include <evidencemaskview.h>
+#include <exitdialog.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,16 +26,22 @@ class KitchenScene : public IScene
 public:
     explicit KitchenScene(QWidget *parent, Model* model);
     ~KitchenScene();
+    void loadGameKitchen();
+
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
+    void startOver();
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
     void unselectTool();
 
-private slots:
-    void on_exitButton_clicked();
 
+
+private slots:
+    void exitSceneSlot();
+    void on_resetButton_clicked();
+    void on_backButton_clicked();
 
 private:
     Ui::KitchenScene *ui;
@@ -47,6 +54,7 @@ private:
     EvidenceView* brokenPlateLabel;
     EvidenceView* bloodWallLabel;
     EvidenceView* gunpowderWallLabel;
+    ExitDialog* exitDialog;
     Model* model;
     void InitializeWidgets();
     void setupConnections();

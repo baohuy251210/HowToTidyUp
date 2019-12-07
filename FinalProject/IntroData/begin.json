@@ -4,7 +4,7 @@
       "...",
       "5:30 P. M.",
       "!!!!",
-      "Where am i? ",
+      "Where am I? ",
       "What happened?\n Did I black out again?...",
       "This place is a mess and I have guests arriving soon!\n   I better get it cleaned up before they get here!"
   ],
@@ -15,7 +15,7 @@
       2000,
       3000,
       3000,
-      3000,
-      4000
+      6000,
+      7000
   ]
 }

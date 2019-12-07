@@ -18,6 +18,7 @@ public slots:
     void hideDialogSlot();
     void toggleHintVisibleSlot();
 
+    void clearSteps();
 public:
     explicit itemDialog(QWidget *parent = nullptr);
     ~itemDialog();

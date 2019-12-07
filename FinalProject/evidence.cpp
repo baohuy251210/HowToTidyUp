@@ -54,11 +54,21 @@ QPixmap* Evidence::getIcon(){
     }
 }
 
+CleanState Evidence::getCleanState(){
+    return cleanState;
+}
+
 void Evidence::setType(EvidenceEnum type){
     this->type = type;
 }
 
+void Evidence::setCleanState(CleanState state){
+    this->cleanState = state;
+    emit cleanStateChangedSignal();
+}
+
 int Evidence::getCorrectUsedTools(){
+    qDebug()<<"getCorrectUsedTools::" <<usedTools.size();
     int correctNumber = 0;
     for (int i = 0; i < usedTools.size();i++){
         if (usedTools[i] == correctTools[i]){
@@ -70,12 +80,16 @@ int Evidence::getCorrectUsedTools(){
 int Evidence::getCorrectToolsSize(){
     return correctTools.size();
 }
+QVector<CleaningTool*> Evidence::getCorrectToolsVector(){
+    return correctTools;
+}
 
 QVector<CleaningTool *> Evidence::getCorrectTools(){
     return correctTools;
 }
 
 EvidenceEnum Evidence::getType(){
+    qDebug() <<"getType:: "<<type;
     return this->type;
 }
 
@@ -88,4 +102,9 @@ QVector<CleaningTool> Evidence::getUsedToolsVector(){
         usedToolsVector.push_back(*usedTools[i]);
     }
     return usedToolsVector;
+}
+
+void Evidence::retryCleaningEvidence(){
+    usedTools.clear();
+    cleanState = DIRTY;
 }

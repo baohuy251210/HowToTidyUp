@@ -13,7 +13,6 @@ class ToolbarWidget;
 class ToolbarWidget : public IScene
 {
     Q_OBJECT
-signals:
 public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
@@ -33,6 +32,8 @@ public:
 public slots:
     void displayDescriptionSlot(Tools);
     void hideDescriptionSlot(Tools);
+
+
 
 
 private:

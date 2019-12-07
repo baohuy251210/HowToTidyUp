@@ -82,6 +82,8 @@
         <file alias="begin">IntroData/begin.json</file>
         <file alias="jazzpiano">IntroData/bensound-thejazzpiano.ogg</file>
         <file alias="theme2">IntroData/theme2.ogg</file>
+        <file alias="theme4">IntroData/theme4.ogg</file>
+        <file alias="theme3">IntroData/theme3.ogg</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
@@ -113,8 +115,12 @@
     <qresource prefix="/art/ui">
         <file>Art/UI/toolbar_01.png</file>
         <file>Art/UI/item_dialog_01.png</file>
+        <file alias="backbtn">Art/UI/backbutton.png</file>
     </qresource>
     <qresource prefix="/save">
         <file alias="save01">save/save01.json</file>
+    </qresource>
+    <qresource prefix="/text">
+        <file alias="credits">Text/credits.txt</file>
     </qresource>
 </RCC>
