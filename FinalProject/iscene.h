@@ -20,7 +20,7 @@ public:
                             QString fontName="SF Cartoonist Hand",QString style = "");
     /*Draw Text for a PushButton passed in a size, Font name and style*/
     void drawTextLabel(QLabel*, int size,
-                       QString fontName="SF Cartoonist Hand",QString style="");
+                       QString fontName="SF Cartoonist Hand",QString style= "");
 
 signals:
     void changeScene(Scene sceneName);
@@ -29,8 +29,21 @@ signals:
 public slots:
 
 private:
+    void addFont(){
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold_Italic");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Italic");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC_Bold");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC_Bold_Italic");
+        fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_SC_Italic");
+        fontFamily.addApplicationFont(":/art/fonts/Fiendish");
+        fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
+        fontFamily.addApplicationFont(":/art/fonts/Black Night");
+    }
     /*Font database for the app*/
-    QFontDatabase fontFamily;
+    QFontDatabase  fontFamily;
     void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
