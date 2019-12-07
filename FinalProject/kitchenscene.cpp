@@ -272,5 +272,10 @@ void KitchenScene::setSelectedEvidenceSlot(EvidenceEnum selectedEvidence){
 }
 
 void KitchenScene::exitSceneSlot(){
-    emit changeScene(ENDING);
+    double finalScore = model->getFinalScorePercentage();
+    if (finalScore > 80){
+        emit changeScene(ENDING);
+    } else {
+        emit changeScene(MINIGAME);
+    }
 }

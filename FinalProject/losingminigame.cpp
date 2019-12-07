@@ -1,5 +1,6 @@
 #include "losingminigame.h"
 #include "ui_losingminigame.h"
+#include <QTimer>
 
 LosingMinigame::LosingMinigame(QWidget *parent) :
     IScene(parent),
@@ -8,19 +9,20 @@ LosingMinigame::LosingMinigame(QWidget *parent) :
     ui->setupUi(this);
     questions = new QList<QString>();
     answers = new QList<QPair<QString, bool>>();
+    delay = new QTimer(this);
+    charIndex = 1;
+    connect(delay, &QTimer::timeout, this, &LosingMinigame::updateQuestion);
 
     initializeAnswers();
     initializeQuestions();
 
+    ui->dialogLabel->lower();
     ui->faceLabel->lower();
     ui->bgLabel->lower();
 
+    enableButtons(false);
 
-    ui->questionLabel->setText(questions->at(0));
-    ui->option1Button->setText(answers->at(0).first);
-    ui->option2Button->setText(answers->at(1).first);
-    ui->option3Button->setText(answers->at(2).first);
-    ui->option4Button->setText(answers->at(3).first);
+    nextQuestion();
 
 }
 
@@ -31,6 +33,14 @@ LosingMinigame::~LosingMinigame()
 
 void LosingMinigame::exitSceneSlot(){
     emit changeScene(MAINMENU);
+}
+
+void LosingMinigame::enableButtons(bool enabled){
+    ui->option1Button->setEnabled(enabled);
+    ui->option2Button->setEnabled(enabled);
+    ui->option3Button->setEnabled(enabled);
+    ui->option4Button->setEnabled(enabled);
+
 }
 
 void LosingMinigame::on_option1Button_clicked()
@@ -113,7 +123,7 @@ void LosingMinigame::initializeAnswers(){
 }
 
 void LosingMinigame::initializeQuestions(){
-    questions->append("q1");
+    questions->append("q11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
     questions->append("q2");
     questions->append("q3");
 
@@ -123,13 +133,28 @@ void LosingMinigame::nextQuestion(){
     if (questionIndex / 4 == 3) {
         endGame();
     } else {
-        ui->questionLabel->setText(questions->at(questionIndex / 4));
-        ui->option1Button->setText(answers->at(questionIndex).first);
-        ui->option2Button->setText(answers->at(questionIndex + 1).first);
-        ui->option3Button->setText(answers->at(questionIndex + 2).first);
-        ui->option4Button->setText(answers->at(questionIndex + 3).first);
+        delay->start(100);
     }
 
+}
+
+void LosingMinigame::updateQuestion(){
+    if (charIndex < questions->at(questionIndex / 4).length()){
+        ui->questionLabel->setText(questions->at(questionIndex / 4).left(charIndex));
+        charIndex++;
+    } else {
+        updateAnswers();
+    }
+}
+
+void LosingMinigame::updateAnswers(){
+    delay->stop();
+    enableButtons(true);
+    ui->questionLabel->setText(questions->at(questionIndex / 4));
+    ui->option1Button->setText(answers->at(questionIndex).first);
+    ui->option2Button->setText(answers->at(questionIndex + 1).first);
+    ui->option3Button->setText(answers->at(questionIndex + 2).first);
+    ui->option4Button->setText(answers->at(questionIndex + 3).first);
 }
 
 void LosingMinigame::updateFace(){
@@ -138,5 +163,24 @@ void LosingMinigame::updateFace(){
 }
 
 void LosingMinigame::endGame(){
-    emit changeScene(MAINMENU);
+    ui->option1Button->setText("...");
+    ui->option2Button->setText("...");
+    ui->option3Button->setText("...");
+    ui->option4Button->setText("...");
+
+    if (score > 0) {
+        ui->questionLabel->setText("Alright, youu're going to jail!!!!");
+    } else {
+        ui->questionLabel->setText("Okay then, you're free to go..");
+
+    }
+
+    emit changeScene(ENDING);
+}
+
+void LosingMinigame::mousePressEvent(QMouseEvent *event){
+    if (event->button() == Qt::LeftButton){
+            if (delay->isActive())
+                updateAnswers();
+            }
 }

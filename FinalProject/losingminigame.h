@@ -31,11 +31,17 @@ private slots:
 
     void on_option4Button_clicked();
 
+    void updateQuestion();
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+
 private:
     Ui::LosingMinigame *ui;
     int score;
     int questionIndex;
     QList<QString>* questions;
+    QTimer* delay;
+    int charIndex;
     QList<QPair<QString, bool>>* answers;
 
     void initializeQuestions();
@@ -43,6 +49,8 @@ private:
     void nextQuestion();
     void updateFace();
     void endGame();
+    void enableButtons(bool);
+    void updateAnswers();
 
 
 };

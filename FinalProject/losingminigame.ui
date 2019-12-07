@@ -27,29 +27,53 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="option1Button">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>...</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="option2Button">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>...</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="option3Button">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>...</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="option4Button">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>...</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -88,6 +112,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid black;</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -108,10 +135,27 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="dialogLabel">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>540</y>
+     <width>771</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(186, 189, 182);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>bgLabel</zorder>
   <zorder>faceLabel</zorder>
   <zorder>questionLabel</zorder>
+  <zorder>dialogLabel</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>
