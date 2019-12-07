@@ -1,6 +1,5 @@
 #include "iscene.h"
 #include <QFont>
-#include <QDebug>
 #include <QFontDatabase>
 #include <QLabel>
 
@@ -22,6 +21,3 @@ void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString 
     textLbl->setFont(appFont);
 }
 
-void IScene::mouseReleaseEvent(QMouseEvent *event){
-    //emit hideDialogSignal();
-}

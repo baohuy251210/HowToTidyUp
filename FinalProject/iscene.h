@@ -45,7 +45,7 @@ private:
 
     /*Font database for the app*/
     QFontDatabase  fontFamily;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+
 };
 
 #endif // ISCENE_H

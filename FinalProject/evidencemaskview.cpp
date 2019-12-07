@@ -9,13 +9,11 @@ void EvidenceMaskView::setEvidenceEnum(EvidenceEnum eviEnum){
     evidenceName = eviEnum;
 }
 void EvidenceMaskView::enterEvent(QEvent *event){
-//    qDebug() << "maskviewenter::" << evidenceName;
     emit enterMaskSignal();
 
 }
 
 void EvidenceMaskView::leaveEvent(QEvent *event){
-//    qDebug() << "maskviewleave::" << evidenceName;
     emit leaveMaskSignal();
 }
 

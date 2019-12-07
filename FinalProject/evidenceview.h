@@ -32,7 +32,6 @@ private:
 
     bool isSelected;
 
-    void bloodDrip();
     void mouseReleaseEvent(QMouseEvent *ev) override;
 
 signals:

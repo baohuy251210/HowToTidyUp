@@ -46,7 +46,6 @@ void EvidenceView::leaveEvent ( QEvent * event )
 }
 void EvidenceView::leaveEventFromMask(){
     if (!this->model->isSelected){
-//        qDebug() << "leaveEventFromMask::"<<this->model->getType();
         unhighlightEvidence();
     }
 }
@@ -86,7 +85,6 @@ void EvidenceView::unhighlightEvidence(){
         break;
     case DIRTY:
         this->setPixmap(model->dirty);
-//        qDebug() << name << " " << "dirty leave";
         break;
     }
 }
@@ -107,8 +105,3 @@ void EvidenceView::clearSelection(){
     this->isSelected = false;
 }
 
-void EvidenceView::bloodDrip(){
-//intialize a world, QLable vector, and some set amount of drops.
-//essentially call the same code that we use to drop the leaves down, minus the position changes
-//current issue: getting the location of the item in question so that it only falls from that particular one.
-}

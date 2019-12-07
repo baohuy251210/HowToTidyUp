@@ -23,7 +23,7 @@ class MainWindow : public QMainWindow
 
 public slots:
     void ChangeScene(Scene sceneEnum);
-    void evidenceInteractionSlot();
+
 
 public:
     MainWindow(QWidget *parent = nullptr);

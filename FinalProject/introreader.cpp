@@ -6,7 +6,6 @@
 #include <QPainter>
 #include <math.h>
 #include <iostream>
-#include <QDebug>
 IntroReader::IntroReader()
 {
 }

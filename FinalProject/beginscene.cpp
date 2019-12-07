@@ -52,6 +52,11 @@ BeginScene::BeginScene(QWidget *parent) :
 BeginScene::~BeginScene()
 {
     delete ui;
+    delete fadeTimer;
+    delete logoTimer;
+    delete creditFadeTimer;
+    delete flashContinueTimer;
+    delete textStartTimer;
 }
 
 

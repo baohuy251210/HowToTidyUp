@@ -3,7 +3,6 @@
 #include "ToolsEnum.cpp"
 #include <QResource>
 #include <QFont>
-#include <QDebug>
 #include <QFontDatabase>
 #include <QLabel>
 

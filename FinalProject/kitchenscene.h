@@ -34,7 +34,7 @@ signals:
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
-    void unselectTool();
+
 
 
 
@@ -59,7 +59,6 @@ private:
     void InitializeWidgets();
     void setupConnections();
     void evidenceHovered(EvidenceEnum evidenceName);
-    void setupPixmaps();
     void setupEvidence();
     void initializeTools();
     void initializeEvidence();

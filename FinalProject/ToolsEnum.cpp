@@ -9,7 +9,5 @@ enum Tools{
     BLEACH,
     RAG,
     OXICLEAN,
-//    BORAX,
-//    PUMICE
 };
 #endif
