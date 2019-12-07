@@ -39,6 +39,9 @@ private slots:
     void exitSceneSlot();
 
 
+
+    void on_backButton_clicked();
+
 private:
     Ui::KitchenScene *ui;
     QHash<EvidenceEnum, EvidenceView*> evidenceLabels;

@@ -204,7 +204,8 @@ void Model::loadGameState(QString fileName){
     QFile file(fileName);
 
     if (!file.exists()){
-        qDebug() << "lawdGame::file does not exists (not found)";
+        saveGameState(QApplication::applicationDirPath()+"/save01.json");
+        qDebug() << "lawdGame::file does not exists (not found), create a new save";
         return;
     }
     if (file.isOpen()){
