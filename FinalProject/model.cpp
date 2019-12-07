@@ -13,7 +13,6 @@ Model::Model(QObject * parent) :
 
 
     initDictionaries();
-    qDebug() << "model constructed done";
     isLoading = false;
 }
 
@@ -93,7 +92,6 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 void Model::updateScore(EvidenceEnum evidence){
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
-    qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
     //Save the file whenever update score and don't save when we are trying to load(kinda make sense right :] )
     if (!isLoading)
         saveGameState(QApplication::applicationDirPath()+"/save01.json");
@@ -103,7 +101,6 @@ double Model::getFinalScorePercentage(){
     int numEvidences = evidences.keys().size();
     double eachEvidencePercent = double(100)/numEvidences;
     for (EvidenceEnum e: evidencesScore.keys()){
-        qDebug()<<e << " : "<<evidencesScore[e];
         /*66.67 percent of 20 is gonna be 66.67*20/100*/
         score += evidencesScore[e]*100.0*eachEvidencePercent/100.0;
     }
@@ -246,7 +243,6 @@ void Model::loadGameState(QString fileName){
 void Model::loadGameUpdate(Tools usedTool, EvidenceEnum loadingEvidence){
     toolClickedSlot(usedTool);
     evidenceClicked(loadingEvidence);
-    qDebug() <<"loadgameupdate:Tools - Evidence:"<<mapToolsString[usedTool] << mapEnumString[loadingEvidence];
 }
 
 void Model::loadGameSlot(){
