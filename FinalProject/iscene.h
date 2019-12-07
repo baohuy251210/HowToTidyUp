@@ -22,13 +22,6 @@ public:
     void drawTextLabel(QLabel*, int size,
                        QString fontName="SF Cartoonist Hand",QString style= "");
 
-signals:
-    void changeScene(Scene sceneName);
-    void addEvidence(Evidence* evidenceName);
-    void hideDialogSignal();
-public slots:
-
-private:
     void addFont(){
         fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand");
         fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold");
@@ -42,6 +35,14 @@ private:
         fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
         fontFamily.addApplicationFont(":/art/fonts/Black Night");
     }
+signals:
+    void changeScene(Scene sceneName);
+    void addEvidence(Evidence* evidenceName);
+    void hideDialogSignal();
+public slots:
+
+private:
+
     /*Font database for the app*/
     QFontDatabase  fontFamily;
     void mouseReleaseEvent(QMouseEvent *event) override;

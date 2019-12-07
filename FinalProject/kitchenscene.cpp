@@ -22,6 +22,7 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     ui->bloodFootprintMaskLabel->raise();
     ui->bloodFloorMaskLabel->raise();
     ui->resetButton->hide();
+    this->addFont();
     drawTextLabel(ui->backLabel, 21, "SF Cartoonist Hand SC", "Bold");
     drawTextLabel(ui->endLabel, 23, "SF Cartoonist Hand SC", "Bold");
     drawTextPushButton(ui->resetButton, 17, "SF Cartoonist Hand SC", "Bold");
