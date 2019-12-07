@@ -1,5 +1,4 @@
 #include "evidencemaskview.h"
-#include <QDebug>
 EvidenceMaskView::EvidenceMaskView(QWidget * parent):
     QLabel(parent)
 {

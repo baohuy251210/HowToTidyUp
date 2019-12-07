@@ -1,10 +1,8 @@
 #ifndef ITEMDIALOG_H
 #define ITEMDIALOG_H
 
-#include <QWidget>
-#include <ToolsEnum.cpp>
-#include <evidence.h>
-#include <iscene.h>
+#include "iscene.h"
+
 namespace Ui {
 class itemDialog;
 }

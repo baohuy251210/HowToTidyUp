@@ -1,6 +1,5 @@
 #include "toolbarwidget.h"
 #include "ui_toolbarwidget.h"
-#include "ToolsEnum.cpp"
 
 ToolbarWidget::ToolbarWidget(QWidget *parent) :
     IScene(parent),

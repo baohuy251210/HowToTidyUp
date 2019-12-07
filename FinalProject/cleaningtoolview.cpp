@@ -1,9 +1,4 @@
 #include "cleaningtoolview.h"
-#include "ToolsEnum.cpp"
-#include <qdebug.h>
-#include <qcursor.h>
-#include <QMouseEvent>
-#include <QApplication>
 
 CleaningToolView::CleaningToolView(QWidget *parent) : QLabel(parent)
 {

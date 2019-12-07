@@ -1,10 +1,12 @@
 #ifndef INTROSCENE_H
 #define INTROSCENE_H
 
-#include <QWidget>
-#include <iscene.h>
-#include <QTimer>
 #include "introreader.h"
+#include "mainmenuscene.h"
+#include <QResource>
+#include <QFile>
+#include <QMouseEvent>
+
 namespace Ui {
 class IntroScene;
 }

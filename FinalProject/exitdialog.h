@@ -2,6 +2,8 @@
 #define EXITDIALOG_H
 
 #include <QDialog>
+#include <QFontDatabase>
+#include "ToolsEnum.cpp"
 
 namespace Ui {
 class ExitDialog;

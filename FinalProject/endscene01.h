@@ -1,15 +1,11 @@
 #ifndef ENDSCENE01_H
 #define ENDSCENE01_H
 
-#include <QWidget>
-#include <iscene.h>
+#include "iscene.h"
 #include "model.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
-#include <QIODevice>
-#include <QHBoxLayout>
-#include <QSpacerItem>
 
 namespace Ui {
 class EndScene01;

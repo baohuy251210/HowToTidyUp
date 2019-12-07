@@ -2,17 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <iscene.h>
-#include "model.h"
-#include "ToolsEnum.cpp"
-#include "introscene.h"
 #include "endscene01.h"
 #include "beginscene.h"
-#include "kitchenscene.h"
-#include "SceneEnum.cpp"
 #include "mainmenuscene.h"
-#include <QResource>
-#include <SFML/Audio.hpp>
+#include "introscene.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

@@ -1,6 +1,4 @@
 #include "evidenceview.h"
-#include "Box2D/Box2D.h"
-#include <QDebug>
 EvidenceView::EvidenceView(QWidget* parent) : QLabel(parent),
     name(EvidenceEnum::NONE),
     isSelected(false)

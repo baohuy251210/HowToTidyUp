@@ -1,8 +1,4 @@
 #include "evidence.h"
-#include <QVector>
-#include <QString>
-#include "ToolsEnum.cpp"
-
 
 Evidence::Evidence(): isSelected(false), cleanState(DIRTY)
 {
