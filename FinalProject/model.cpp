@@ -243,6 +243,8 @@ void Model::loadGameState(QString fileName){
     }
 
     file.close();
+
+    toolClickedSlot(GLOVE);
 }
 
 void Model::loadGameUpdate(Tools usedTool, EvidenceEnum loadingEvidence){
