@@ -15,7 +15,11 @@ class Evidence : public QObject
 {
     Q_OBJECT
 
+signals:
+    void cleanStateChangedSignal();
+
 public:
+
     Evidence();
     ~Evidence() override;
 
@@ -36,10 +40,14 @@ public:
     EvidenceEnum getType();
     void setType(EvidenceEnum type);
     bool isSelected;
+    void setCleanState(CleanState state);
     QList<CleaningTool*>* getUsedTools();
     QVector<CleaningTool> getUsedToolsVector();
+    QVector<CleaningTool*> getCorrectToolsVector();
     int getCorrectUsedTools();
     int getCorrectToolsSize();
+    CleanState getCleanState();
+    void retryCleaningEvidence();
 private:
      void nothing();
     QVector<CleaningTool*> correctTools;

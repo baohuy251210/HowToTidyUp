@@ -12,6 +12,7 @@
 #include "SceneEnum.cpp"
 #include "mainmenuscene.h"
 #include "losingminigame.h"
+#include <QResource>
 #include <SFML/Audio.hpp>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,12 +41,17 @@ private:
     LosingMinigame* losingMinigame;
 
     Model* model;
+    void setupMusic();
     void startThemeMusic();
     void startInGameMusic();
+    void musicPlayNext();
+    QTimer * musicPlaylistTimer;
+    QVector<QResource*> musicFiles;
+    int currentMusicIndex;
+    sf::Music mainThemeMusic;
     void initializeModel();
     void initializeScenes();
     void setupConnections();
-    sf::Music mainThemeMusic;
     sf::Music overlayMusic;
 };
 #endif // MAINWINDOW_H

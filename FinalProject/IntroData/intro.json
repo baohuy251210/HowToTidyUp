@@ -1,10 +1,10 @@
 {
   "paragraphs":[
-      "An educational production..."
+      "An educational production...",
+      "\"The question is not only why did the killer do it,\n but why did the killer do it this way?\"\n\t\t\t- Bill Tench"
   ],
   "delays": [
-    4000,
-    4000,
-    4000
+    5000,
+    8000
   ]
 }

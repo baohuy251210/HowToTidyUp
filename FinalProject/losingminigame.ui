@@ -16,9 +16,9 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>40</x>
      <y>610</y>
-     <width>731</width>
+     <width>951</width>
      <height>131</height>
     </rect>
    </property>
@@ -84,8 +84,8 @@
   <widget class="QLabel" name="faceLabel">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>110</y>
+     <x>580</x>
+     <y>120</y>
      <width>481</width>
      <height>701</height>
     </rect>
@@ -106,14 +106,19 @@
   <widget class="QLabel" name="questionLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>560</y>
-     <width>711</width>
+     <x>139</x>
+     <y>556</y>
+     <width>771</width>
      <height>31</height>
     </rect>
    </property>
+   <property name="accessibleName">
+    <string/>
+   </property>
    <property name="styleSheet">
-    <string notr="true">border: 1px solid black;</string>
+    <string notr="true">color: rgb(0, 0, 0);
+background-color: rgba(255, 255, 255, 175);
+border: 2px solid black;</string>
    </property>
    <property name="text">
     <string/>
@@ -138,24 +143,55 @@
   <widget class="QLabel" name="dialogLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>540</y>
-     <width>771</width>
-     <height>211</height>
+     <x>28</x>
+     <y>590</y>
+     <width>971</width>
+     <height>161</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(186, 189, 182);</string>
+    <string notr="true">border: 2px solid black;
+background-color: rgba(255, 255, 255, 175);</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="infoLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>241</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 175);
+border: 2px solid black;</string>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>bgLabel</zorder>
   <zorder>faceLabel</zorder>
-  <zorder>questionLabel</zorder>
   <zorder>dialogLabel</zorder>
+  <zorder>infoLabel</zorder>
+  <zorder>questionLabel</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

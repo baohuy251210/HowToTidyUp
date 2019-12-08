@@ -26,16 +26,22 @@ class KitchenScene : public IScene
 public:
     explicit KitchenScene(QWidget *parent, Model* model);
     ~KitchenScene();
+    void loadGameKitchen();
+
 signals:
     void signalUseToolAndEvidence(EvidenceEnum);
+    void startOver();
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
     void unselectTool();
 
+
+
 private slots:
     void exitSceneSlot();
-
+    void on_resetButton_clicked();
+    void on_backButton_clicked();
 
 private:
     Ui::KitchenScene *ui;

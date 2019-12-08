@@ -32,6 +32,10 @@ private slots:
     void on_option4Button_clicked();
 
     void updateQuestion();
+
+    void endMiniGameSlot();
+
+    void hideInfoLabelSlot();
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 
@@ -40,7 +44,8 @@ private:
     int score;
     int questionIndex;
     QList<QString>* questions;
-    QTimer* delay;
+    QList<QString>* infoList;
+    QTimer* questionDelay;
     int charIndex;
     QList<QPair<QString, bool>>* answers;
 
@@ -48,9 +53,12 @@ private:
     void initializeAnswers();
     void nextQuestion();
     void updateFace();
-    void endGame();
+    void getGameResult();
     void enableButtons(bool);
     void updateAnswers();
+    void advanceQuestion(bool);
+    void initializeInfoList();
+
 
 
 };

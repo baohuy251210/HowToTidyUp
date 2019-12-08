@@ -1,5 +1,6 @@
 #include "itemdialog.h"
 #include "ui_itemdialog.h"
+#include <QDebug>
 
 itemDialog::itemDialog(QWidget *parent) :
     IScene(parent),
@@ -39,6 +40,11 @@ void itemDialog::setEvidence(Evidence* evidence){
 void itemDialog::clearEvidenceSlot(){
     ui->itemDescription->setText("");
     ui->itemPicture->clear();
+    ui->step1->clear();
+    ui->step2->clear();
+    ui->step3->clear();
+}
+void itemDialog::clearSteps(){
     ui->step1->clear();
     ui->step2->clear();
     ui->step3->clear();

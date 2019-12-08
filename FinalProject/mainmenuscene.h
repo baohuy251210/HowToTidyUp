@@ -21,12 +21,11 @@ public:
     b2World world;
     QVector<b2Body*> leafBodies;
     QVector<QLabel*> leafLabels;
-    QHBoxLayout * hlayout;
     QVector<QString> soundFiles;
 
 public: signals:
     void newPosition(QVector<b2Vec2>);
-
+    void loadGameSignal();
 private slots:
     void on_newGameButton_clicked();
     void on_continueButton_clicked();

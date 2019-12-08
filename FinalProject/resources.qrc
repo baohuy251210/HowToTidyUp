@@ -82,6 +82,8 @@
         <file alias="begin">IntroData/begin.json</file>
         <file alias="jazzpiano">IntroData/bensound-thejazzpiano.ogg</file>
         <file alias="theme2">IntroData/theme2.ogg</file>
+        <file alias="theme4">IntroData/theme4.ogg</file>
+        <file alias="theme3">IntroData/theme3.ogg</file>
     </qresource>
     <qresource prefix="/art/fonts">
         <file alias="Fiendish">fonts/Fiendish.ttf</file>
@@ -113,17 +115,21 @@
     <qresource prefix="/art/ui">
         <file>Art/UI/toolbar_01.png</file>
         <file>Art/UI/item_dialog_01.png</file>
+        <file alias="backbtn">Art/UI/backbutton.png</file>
     </qresource>
     <qresource prefix="/save">
         <file alias="save01">save/save01.json</file>
     </qresource>
     <qresource prefix="/art/minigame">
-        <file alias="policeman-2">Art/Minigame/policebaton.png</file>
-        <file alias="policeman-1">Art/Minigame/policebatonhappier.png</file>
-        <file alias="policeman-3">Art/Minigame/policegun.png</file>
-        <file alias="policeman">Art/Minigame/policesign.png</file>
-        <file alias="policeman2">Art/Minigame/police_thumbs_up.png</file>
-        <file alias="policeman0">Art/Minigame/policewhistle.png</file>
-        <file alias="policeman1">Art/Minigame/policekindofhappy.png</file>
+        <file alias="policeman1">Art/Minigame/cop1.png</file>
+        <file alias="policeman2">Art/Minigame/cop2.png</file>
+        <file alias="policeman0">Art/Minigame/cop3.png</file>
+        <file alias="policeman">Art/Minigame/cop4.png</file>
+        <file alias="policeman-3">Art/Minigame/cop5.png</file>
+        <file alias="policeman-2">Art/Minigame/cop6.png</file>
+        <file alias="policeman-1">Art/Minigame/cop7.png</file>
+    </qresource>
+    <qresource prefix="/text">
+        <file alias="credits">Text/credits.txt</file>
     </qresource>
 </RCC>

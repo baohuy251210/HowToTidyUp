@@ -44,6 +44,7 @@ BeginScene::BeginScene(QWidget *parent) :
     connect(flashContinueTimer, &QTimer::timeout, this, &BeginScene::flashContinueLabel);
     flashContinueTimer->start(500);
     logoTimer->start(2);
+    drawTextLabel(ui->textLbl, 40);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -85,7 +86,7 @@ void BeginScene::displayLogo(){
     if (logoSize.width() >= 100){
         logoTimer->stop();
         fadeOpacity = 5;
-        creditFadeTimer->start(1);
+        creditFadeTimer->start(2);
         isLogoDisplayed=true;
     }
     else {
@@ -107,7 +108,7 @@ void BeginScene::displayCredit(){
         fadeOpacity += 2;
     }
     else {
-        textStartTimer->start(2000);
+        textStartTimer->start(1000);
         ui->continueLbl->show();
         ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
         ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
@@ -139,11 +140,17 @@ void BeginScene::displayNextContext(){
         return;
     }
     else textStartTimer->setInterval(introReader.nextMsDelay());
+    if (creditFadeTimer->isActive()){
+        creditFadeTimer->stop();
+        ui->continueLbl->show();
+        ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
+        ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
+    }
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);
     renderDefaultBlack();
-    fadeOpacity = 1;
+    fadeOpacity = 5;
     currentText = introReader.nextText();
     if (currentText == "..."){
         playCrimeEffects();
@@ -158,9 +165,8 @@ void BeginScene::fadeText(){
     QString displayText = currentText;
     if (fadeOpacity <100){
         ui->textLbl->setText(displayText);
-        drawTextLabel(ui->textLbl, 40);
         ui->textLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
-        fadeOpacity++;
+        fadeOpacity+=2;
     }
     else {
         fadeTimer->stop();

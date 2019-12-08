@@ -43,6 +43,7 @@ IntroScene::IntroScene(QWidget *parent) :
     connect(flashContinueTimer, &QTimer::timeout, this, &IntroScene::flashContinueLabel);
     flashContinueTimer->start(400);
     logoTimer->start(1);
+    drawTextLabel(ui->textLbl, 40);
     /*inits*/
     ui->textLbl->setAlignment(Qt::AlignCenter);
 }
@@ -70,7 +71,7 @@ void IntroScene::displayLogo(){
     if (logoSize.width() >= 500){
         logoTimer->stop();
         fadeOpacity = 5;
-        creditFadeTimer->start(1);
+        creditFadeTimer->start(2);
         isLogoDisplayed = true;
 
     }
@@ -86,7 +87,7 @@ void IntroScene::displayCredit(){
         drawTextLabel(ui->creditLbl, 55, "Black Night");
         ui->creditLbl->setText("THE SENARY TEN\nPRESENTS");
         ui->creditLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
-        fadeOpacity += 1;
+        fadeOpacity += 2;
     }
     else {
         textStartTimer->start(1000);
@@ -112,16 +113,21 @@ void IntroScene::displayNextContext(){
     if (introReader.reachEndOfText()){
         textStartTimer->stop();
         fadeTimer->stop();
-        emit changeScene(MAINMENU);
+        emit changeScene(MINIGAME);
         return;
     }
     else textStartTimer->setInterval(introReader.nextMsDelay());
-    ui->continueLbl->show();
+    if (creditFadeTimer->isActive()){
+        creditFadeTimer->stop();
+        ui->continueLbl->show();
+        ui->creditLbl->setStyleSheet("color: rgba(255, 80, 80, 90%);");
+        ui->logoLbl->setStyleSheet("background-color: black;color: rgb(255, 80, 80);");
+    }
     ui->logoLbl->setPixmap(QPixmap(0,0));
     ui->logoLbl->setVisible(false);
     ui->creditLbl->setVisible(false);
     renderDefaultBlack();
-    fadeOpacity = 1;
+    fadeOpacity = 5;
     currentText = introReader.nextText();
     fadeTimer->start(20);
 }
@@ -130,7 +136,7 @@ void IntroScene::fadeText(){
     QString displayText = currentText;
     if (fadeOpacity <100){
         ui->textLbl->setText(displayText);
-        drawTextLabel(ui->textLbl, 40);
+
         ui->textLbl->setStyleSheet("color: rgba(255, 255, 255,"+QString::number(fadeOpacity)+"%);");
         fadeOpacity++;
     }

@@ -3,13 +3,16 @@
 #include <EvidenceEnum.cpp>
 #include <QTimer>
 #include <QFile>
+/**
+  isLoadCalled: default is false
+*/
 Model::Model(QObject * parent) :
     QObject(parent),
     selectedEvidence(EvidenceEnum::NONE),
     selectedTool(GLOVE){
 
     initDictionaries();
-
+    isLoading = false;
 }
 
 Model::~Model(){
@@ -30,6 +33,7 @@ void Model::eraseAll(){
 
 void Model::addEvidence(EvidenceEnum type, Evidence* evidence){
     evidences.insert(type, evidence);
+    evidences[type]->setType(type);
     evidencesScore.insert(type, 0);
 }
 
@@ -53,10 +57,10 @@ void Model::evidenceClicked(EvidenceEnum evidence){
         selectedEvidence = evidence;
         evidences[evidence]->isSelected = true;
         evidences[evidence]->addUsedTool(cleaningTools[selectedTool]);
+        updateScore(evidence);
         emit setSelectedEvidence(evidence);
         emit updateDialogBoxSignal(evidences[evidence]);
         emit updateEducationalPopupSignal(evidences[evidence]);
-        updateScore(evidence);
     }
     //if the user click the same current evidence using GLOVE
     if (selectedEvidence == evidence && selectedTool == GLOVE){
@@ -86,18 +90,23 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 
 
 void Model::updateScore(EvidenceEnum evidence){
+    qDebug() << "updateScore::" << evidences[evidence]->getCorrectUsedTools();
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
-    qDebug()<<"Debug current overall score"<<getFinalScorePercentage();
-    //Save the file whenever update score (kinda make sense right :] )
-    saveGameState(QApplication::applicationDirPath()+"/save01.json");
+    if (abs(evidencesScore[evidence] - 1) <= 0.00001 )
+        evidences[evidence]->setCleanState(CLEAN);
+    else {
+        evidences[evidence]->setCleanState(DIRTY);
+    }
+    //Save the file whenever update score and don't save when we are trying to load(kinda make sense right :] )
+    if (!isLoading)
+        saveGameState(QApplication::applicationDirPath()+"/save01.json");
 }
 double Model::getFinalScorePercentage(){
     double score = 0;
     int numEvidences = evidences.keys().size();
     double eachEvidencePercent = double(100)/numEvidences;
     for (EvidenceEnum e: evidencesScore.keys()){
-        qDebug()<<e << " : "<<evidencesScore[e];
         /*66.67 percent of 20 is gonna be 66.67*20/100*/
         score += evidencesScore[e]*100.0*eachEvidencePercent/100.0;
     }
@@ -117,6 +126,18 @@ void Model::hideDialogSlot(){
     emit hideDialogSignal();
 }
 
+void Model::retryCleaning(){
+      Evidence * currentEvidence = getEvidence(selectedEvidence);
+      currentEvidence->retryCleaningEvidence();
+      updateScore(currentEvidence->getType());
+      emit(updateDialogBoxSignal(currentEvidence));
+//    qDebug()<<"afterclear steps::"<< currEv->getType();
+//    currEv->retryCleaningEvidence();
+//    emit(clearSteps());
+//    updateScore(currEv->getType());
+
+}
+
 
 /**SAVE/LOAD WORK:*/
 /*need a dictionary for Enum*/
@@ -127,7 +148,7 @@ void Model::hideDialogSlot(){
 //save evidences Score  <Evidence Enum, double>
 /*selectec tool and selected Evidence are probably not needed*/
 void Model::saveGameState(QString fileName){
-    qDebug()<<"saveGame::fileName"<<fileName;
+    qDebug()<<"saveGame::fileName:"<<fileName;
     if (fileName.isEmpty()){
         qDebug() << "saveGame::file empty";
         return;
@@ -138,8 +159,6 @@ void Model::saveGameState(QString fileName){
         file.close();
     }
 
-    qDebug()<<"saveGame::exists? :"<<file.openMode();
-    qDebug() << "saveGame::file permissions:"<<file.permissions();
     if (!file.open(QIODevice::WriteOnly)){
         qDebug() << "saveGame::not able to write";
         return;
@@ -155,12 +174,16 @@ void Model::saveGameState(QString fileName){
                            GUNPOWDER_WALL};
     QJsonObject scoreObj;
     QJsonArray scoreArray;
+    if (!savedEvidencesOrder.isEmpty()){
+        savedEvidencesOrder.clear();
+    }
     for (EvidenceEnum orderEnum: orderEvi){
-        if (evidences.find(orderEnum) != evidences.end())
-        scoreArray.append(evidencesScore[orderEnum]);
+        if (evidences.find(orderEnum) != evidences.end()){
+            scoreArray.append(evidencesScore[orderEnum]);
+
+        }
     }
     fileObj["scores"] = scoreArray;
-    qDebug()<<"saveGame::scores gate done";
 
     //Save evidence
     QJsonArray evidenceArray;
@@ -171,28 +194,81 @@ void Model::saveGameState(QString fileName){
        QJsonArray usedToolsArray;
        for (CleaningTool *iterTool : usedToolsList){
             QString ToolString = mapToolsString[iterTool->getType()];
-            qDebug() << "inSaveGame::"<<ToolString;
            usedToolsArray.append(ToolString);
        }
        evidenceArray.append(usedToolsArray);
     }
 
     //get evidences by
-    fileObj["usedToolsMap:"] = evidenceArray;
+    fileObj["usedToolsMap"] = evidenceArray;
 
     /*finalize*/
     QJsonDocument jsonDoc(fileObj);
-    qDebug() << "saveGame::evidenceArray done";
     file.write(jsonDoc.toJson(QJsonDocument::Compact));
     qDebug() << "saveGame::done ";
 }
+
 /*Perhaps load the evidences, cleaning tools back-end ?
 * evidences Score -> easy to load.
 * cleaning Tools -> easy-medium load -> need function to update the cleaning Tool
 * evidences -> medium-hard load -> need functions to update the Evidences.
+ * filename: default build (or release folder) -> save01.json
 */
 void Model::loadGameState(QString fileName){
+    QFile file(fileName);
 
+    if (!file.exists()){
+        saveGameState(QApplication::applicationDirPath()+"/save01.json");
+        qDebug() << "lawdGame::file does not exists (not found), create a new save";
+        return;
+    }
+    if (file.isOpen()){
+        file.close();
+    }
+    if (!file.open(QIODevice::ReadOnly)){
+        qDebug() << "lawdGame::not able to read file";
+        return;
+    }
+    //start loading to QJson document:
+    QJsonDocument loadJsonDoc = QJsonDocument().fromJson(file.readAll());
+    if (loadJsonDoc.isEmpty()){
+        qDebug() << "lawdGame::lawdJsonDoc is empty";
+        return;
+    }
+
+    savedEvidencesOrder = { KNIFE,
+                            BLOOD_TILE,
+                            BLOOD_WALL_WOOD,
+                            BLOOD_FOOTPRINT,
+                            FINGERPRINT_GLASS,
+                            GUNPOWDER_WALL};
+    //ok if it's not empty then let's go:
+    QJsonObject loadObj = loadJsonDoc.object();
+    //I'm gonna load the usedTools map first.
+    QJsonArray usedToolsMapArray = loadObj["usedToolsMap"].toArray();
+    for (int i = 0; i < usedToolsMapArray.size(); i++){
+        EvidenceEnum currentEvidence = savedEvidencesOrder[i];
+        QJsonArray usedToolsArray = usedToolsMapArray[i].toArray();
+        for (int j = 0; j < usedToolsArray.size(); j++){
+            QString currentUsedTool = usedToolsArray[j].toString();
+            Tools usedToolEnum = mapStringTools[currentUsedTool];
+            loadGameUpdate(usedToolEnum, currentEvidence);
+          //  evidenceClicked(currentEvidence);
+        }
+    }
+    qDebug()<<"loadGame::done";
+    file.close();
+}
+
+void Model::loadGameUpdate(Tools usedTool, EvidenceEnum loadingEvidence){
+    toolClickedSlot(usedTool);
+    evidenceClicked(loadingEvidence);
+}
+
+void Model::loadGameSlot(){
+    isLoading = true;
+    loadGameState(QApplication::applicationDirPath()+"/save01.json");
+    isLoading = false;
 }
 
 void Model::initDictionaries(){
