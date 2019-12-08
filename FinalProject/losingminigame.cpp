@@ -23,6 +23,21 @@ LosingMinigame::LosingMinigame(QWidget *parent) :
     ui->bgLabel->lower();
     ui->questionLabel->raise();
 
+    QList<QLabel *> list = this->findChildren<QLabel *>();
+    foreach(QLabel *Lbl, list)
+    {
+      drawTextLabel(Lbl, Lbl->font().pointSize()+5, "SF Cartoonist Hand", "");
+    }
+
+    QList<QPushButton*> list2 = this->findChildren<QPushButton*>();
+    foreach(QPushButton *btn, list2)
+    {
+      drawTextPushButton(btn, btn->font().pointSize()+5, "SF Cartoonist Hand", "");
+    }
+
+    QCursor cursor = Qt::ArrowCursor;
+    QApplication::setOverrideCursor(cursor);
+
     enableButtons(false);
 
     nextQuestion();
