@@ -24,11 +24,15 @@ public:
     ~itemDialog();
     void setDescription(QString description);
     void setUsedTools(QList<Tools> tools);
+    QHash<Tools, QString> mapToolsString;
+
+    void initDictionary();
 
 
 private:
     Ui::itemDialog *ui;
     void setupTextFonts();
+
 };
 
 #endif // ITEMDIALOG_H

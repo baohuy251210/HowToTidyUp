@@ -10,6 +10,8 @@ itemDialog::itemDialog(QWidget *parent) :
     this->hide();
     //connect(hintButton, &QToolButton::pressed, model, &Model::hideDialogSlot);
     connect(ui->hintButton, &QToolButton::clicked, this, &itemDialog::toggleHintVisibleSlot);
+
+    initDictionary();
 }
 
 itemDialog::~itemDialog()
@@ -22,23 +24,17 @@ void itemDialog::setEvidence(Evidence* evidence){
     this->show();
     ui->itemDescription->setText(evidence->description);
     QString hintText = "";
-    static const char * toolEnumStrings[] = {"EMPTY",
-                                             "GLOVE",
-                                             "WATER",
-                                             "NAILPOLISHREMOVER",
-                                             "BLEACH",
-                                             "RAG",
-                                             "OXICLEAN"};
+
     for(int i = 0; i < 3; i++){
-        hintText += toolEnumStrings[i];
+        hintText += mapToolsString[evidence->getCorrectTools().at(i)->getType()];
         if(i < 2){hintText += ", ";}
     }
 
 
     ui->itemHint->setText(hintText);
     ui->itemHint->setVisible(false);
-    drawTextLabel(ui->itemDescription, 18, "SF Cartoonist Hand");
-    drawTextLabel(ui->itemHint, 12, "SF Cartoonist Hand");
+    drawTextLabel(ui->itemDescription, 13, "SF Cartoonist Hand");
+    drawTextLabel(ui->itemHint, 10, "SF Cartoonist Hand");
     ui->itemPicture->setPixmap(*evidence->getIcon());
 
     QList<CleaningTool*>* usedTools = evidence->getUsedTools();
@@ -72,6 +68,16 @@ void itemDialog::clearSteps(){
 
 void itemDialog::hideDialogSlot(){
     this->hide();
+}
+
+void itemDialog::initDictionary(){
+    mapToolsString.insert(EMPTY, "EMPTY");
+    mapToolsString.insert(GLOVE, "GLOVE");
+    mapToolsString.insert(WATER, "WATER");
+    mapToolsString.insert(NAILPOLISHREMOVER, "NAILPOLISHREMOVER");
+    mapToolsString.insert(BLEACH, "BLEACH");
+    mapToolsString.insert(RAG, "RAG");
+    mapToolsString.insert(OXICLEAN, "OXICLEAN");
 }
 
 void itemDialog::toggleHintVisibleSlot(){
