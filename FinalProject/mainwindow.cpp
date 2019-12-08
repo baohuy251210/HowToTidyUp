@@ -33,6 +33,10 @@ MainWindow::~MainWindow(){
     delete ui;
     delete currentScene;
     delete introScene;
+    delete endScene;
+    delete losingMinigame;
+    delete mainmenuScene;
+    delete kitchenScene;
 }
 
 void MainWindow::initializeModel(){

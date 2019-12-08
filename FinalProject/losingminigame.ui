@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>610</y>
+     <y>600</y>
      <width>951</width>
-     <height>131</height>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -28,7 +28,7 @@
       <item>
        <widget class="QPushButton" name="option1Button">
         <property name="styleSheet">
-         <string notr="true">border: 1px solid black;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>...</string>
@@ -41,7 +41,7 @@
       <item>
        <widget class="QPushButton" name="option2Button">
         <property name="styleSheet">
-         <string notr="true">border: 1px solid black;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>...</string>
@@ -54,7 +54,7 @@
       <item>
        <widget class="QPushButton" name="option3Button">
         <property name="styleSheet">
-         <string notr="true">border: 1px solid black;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>...</string>
@@ -67,7 +67,7 @@
       <item>
        <widget class="QPushButton" name="option4Button">
         <property name="styleSheet">
-         <string notr="true">border: 1px solid black;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>...</string>
@@ -106,9 +106,9 @@
   <widget class="QLabel" name="questionLabel">
    <property name="geometry">
     <rect>
-     <x>139</x>
+     <x>29</x>
      <y>556</y>
-     <width>771</width>
+     <width>971</width>
      <height>31</height>
     </rect>
    </property>

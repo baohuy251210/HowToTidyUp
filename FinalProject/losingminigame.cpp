@@ -86,22 +86,22 @@ void LosingMinigame::advanceQuestion(bool goodAnswer){
 
 void LosingMinigame::initializeAnswers(){
     // question 1 answers
-    answers->append(QPair<QString, bool>("Uh yeah, I uh was using a knife and got blood everywhere. I was carving my Thanksgiving turkey.", true));
-    answers->append(QPair<QString, bool>("Yeah, everything's fine officer. I accidentally cut myself carving the turkey before dinner.", true));
-    answers->append(QPair<QString, bool>("Yes", false));
-    answers->append(QPair<QString, bool>("My wife just left me but I'm good thanks.", false));
+    answers->append(QPair<QString, bool>("1. Uh yeah, I uh was using a knife and got blood everywhere. I was carving my Thanksgiving turkey.", true));
+    answers->append(QPair<QString, bool>("2. Yeah, everything's fine officer. I accidentally cut myself carving the turkey before dinner.", true));
+    answers->append(QPair<QString, bool>("3. Yes", false));
+    answers->append(QPair<QString, bool>("4. My wife just left me but I'm good thanks.", false));
 
     //question 2 answers
-    answers->append(QPair<QString, bool>("And did he also request a super ugly officer to investigate?", false));
-    answers->append(QPair<QString, bool>("I'm not screaming, you're screaming!", false));
-    answers->append(QPair<QString, bool>("Yeah, he kind of lost his mind after Vietnam. Did you go over and check in with him before coming over here?", true));
-    answers->append(QPair<QString, bool>("I've had my window open all day and didn't hear anything. I'm really busy getting ready for dinner, is it ok if I get back to it?", true));
+    answers->append(QPair<QString, bool>("1. And did he also request a super ugly officer to investigate?", false));
+    answers->append(QPair<QString, bool>("2. I'm not screaming, you're screaming!", true));
+    answers->append(QPair<QString, bool>("3. Yeah, he kind of lost his mind after Vietnam. Did you go over and check in with him before coming over here?", true));
+    answers->append(QPair<QString, bool>("4. I've had my window open all day and didn't hear anything. I'm really busy getting ready for dinner, is it ok if I get back to it?", false));
 
     //question 3 answers
-    answers->append(QPair<QString, bool>("Yes, but I've been playing violin all afternoon since I'm first chair in the orchestra. I've been paying attention to that all afternoon.", true));
-    answers->append(QPair<QString, bool>("I .. I don't feel so good..", false));
-    answers->append(QPair<QString, bool>("Everything's ok. You can ask any detail about what I've done today. I'm an open book.", true));
-    answers->append(QPair<QString, bool>("Yes, trying to copy my mother's pumpkin pie recipe has me all over the place.", false));
+    answers->append(QPair<QString, bool>("1. Yes, but I've been playing violin all afternoon since I'm first chair in the orchestra. I've been paying attention to that all afternoon.", true));
+    answers->append(QPair<QString, bool>("2. I .. I don't feel so good..", false));
+    answers->append(QPair<QString, bool>("3. Everything's ok. You can ask any detail about what I've done today. I'm an open book.", false));
+    answers->append(QPair<QString, bool>("4. Yes, trying to copy my mother's pumpkin pie recipe has me all over the place.", true));
 
     //question 4 answers
     answers->append(QPair<QString, bool>("m", false));
@@ -133,7 +133,7 @@ void LosingMinigame::nextQuestion(){
 
     if (questionIndex / 4 == 3) {
         getGameResult();
-    } else {
+    } else if (questionIndex / 4 < 3) {
         ui->infoLabel->setText(infoList->at(questionIndex / 4));
         ui->infoLabel->setVisible(true);
         ui->questionLabel->setText("...");
@@ -141,6 +141,7 @@ void LosingMinigame::nextQuestion(){
         ui->option2Button->setText("...");
         ui->option3Button->setText("...");
         ui->option4Button->setText("...");
+        enableButtons(false);
         QTimer::singleShot(7000, this, &LosingMinigame::hideInfoLabelSlot);
     }
 
@@ -183,10 +184,13 @@ void LosingMinigame::getGameResult(){
     ui->option4Button->setText("...");
 
     if (score > 0) {
-        QString policeman = QString(":/art/minigame/policeman%1").arg(2);
+        QString policeman = QString(":/art/minigame/policeman2");
+        ui->faceLabel->setPixmap(QPixmap(policeman));
+
         ui->questionLabel->setText("Okay then, you're free to go..");
     } else {
-        QString policeman = QString(":/art/minigame/policeman%1").arg(-2);
+        QString policeman = QString(":/art/minigame/policeman-3");
+        ui->faceLabel->setPixmap(QPixmap(policeman));
         ui->questionLabel->setText("Alright, you're going to jail!!!!");
 
     }
@@ -198,6 +202,7 @@ void LosingMinigame::getGameResult(){
 void LosingMinigame::mousePressEvent(QMouseEvent *event){
     if (event->button() == Qt::LeftButton){
             if (questionDelay->isActive()){
+                questionDelay->stop();
                 updateAnswers();
             }
     }
