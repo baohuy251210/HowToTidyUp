@@ -8,11 +8,11 @@ EndScene01::EndScene01(QWidget *parent, Model* model) :
     creditsFPS(30),
     pixelsMovedPerFrame(3),
     creditsStartY(1000),
-    creditsEndY(-1500),
-    creditsStarted(false),
-    backdropDarknessPerFrame(2),
+    creditsEndY(-1500),    
+    creditsSpeedUpFactor(5),
+    backdropDarknessPerFrame(2),        
     backdropOpacity(0),
-    creditsSpeedUpFactor(5)
+    creditsStarted(false)
 
 {
     ui->setupUi(this);

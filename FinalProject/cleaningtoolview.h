@@ -2,7 +2,8 @@
 #define CLEANINGTOOLVIEW_H
 #include "ToolsEnum.cpp"
 #include <QLabel>
-#include <cleaningtool.h>
+#include "cleaningtool.h"
+#include <QApplication>
 
 class CleaningToolView : public QLabel
 {

@@ -1,15 +1,15 @@
 #ifndef MODEL_H
 #define MODEL_H
-#include <evidence.h>
-#include <cleaningtool.h>
-#include <ToolsEnum.cpp>
-#include <EvidenceEnum.cpp>
+
+#include "evidence.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QObject>
-#include <QHash>
 #include <QJsonArray>
 #include <QApplication>
+#include <QTimer>
+#include <QFile>
+
 class Model : public QObject
 {
     Q_OBJECT

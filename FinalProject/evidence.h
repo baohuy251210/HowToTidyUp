@@ -1,15 +1,11 @@
 #ifndef EVIDENCE_H
 #define EVIDENCE_H
 
-#include <QVector>
-#include <QString>
+#include <QDebug>
 #include "ToolsEnum.cpp"
-#include <EvidenceEnum.cpp>
-#include <CleanStateEnum.cpp>
-#include <QPixmap>
-#include <QLabel>
-#include <cleaningtool.h>
-#include <ToolsEnum.cpp>
+#include "EvidenceEnum.cpp"
+#include "CleanStateEnum.cpp"
+#include "cleaningtool.h"
 
 class Evidence : public QObject
 {

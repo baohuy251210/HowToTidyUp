@@ -1,14 +1,12 @@
 #ifndef ISCENE_H
 #define ISCENE_H
 
-#include <QWidget>
-#include <QTimer>
-#include <QFont>
 #include <QPushButton>
-#include <QLabel>
-#include <QFontDatabase>
+#include "evidence.h"
 #include "SceneEnum.cpp"
-#include <evidence.h>
+#include <QFontDatabase>
+#include <QLabel>
+
 class IScene : public QWidget
 {
     Q_OBJECT
@@ -45,7 +43,7 @@ private:
 
     /*Font database for the app*/
     QFontDatabase  fontFamily;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+
 };
 
 #endif // ISCENE_H

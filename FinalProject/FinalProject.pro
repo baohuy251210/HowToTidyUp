@@ -75,7 +75,6 @@ SOURCES += \
     cleaningtoolview.cpp \
     educationalpopup.cpp \
     endscene01.cpp \
-    endscene02.cpp \
     evidence.cpp \
     evidencemaskview.cpp \
     evidenceview.cpp \
@@ -144,7 +143,6 @@ HEADERS += \
     cleaningtoolview.h \
     educationalpopup.h \
     endscene01.h \
-    endscene02.h \
     evidence.h \
     evidencemaskview.h \
     evidenceview.h \

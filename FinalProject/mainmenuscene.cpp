@@ -1,15 +1,5 @@
 #include "mainmenuscene.h"
 #include "ui_mainmenuscene.h"
-#include <kitchenscene.h>
-#include <QDebug>
-#include "Box2D/Box2D.h"
-#include <QResource>
-#include <QMediaPlayer>
-#include <QVideoWidget>
-#include <QFileInfo>
-#include <QHBoxLayout>
-#include<QNetworkProxyFactory>
-#include <QSound>
 
 MainMenuScene::MainMenuScene(QWidget *parent) :
     IScene(parent),
@@ -20,11 +10,6 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     QCursor cursor = Qt::ArrowCursor;
     QApplication::setOverrideCursor(cursor);
     ui->maskLabel->setFixedSize(QSize(1024,768));
-
-    //Video widget test
-    QMediaPlayer* player = new QMediaPlayer;
-    QVideoWidget* vw = new QVideoWidget;
-    player->setVideoOutput(vw);
 
     fadeOpacity = 100; //percentage
     ui->maskLabel->setStyleSheet("background-color: rgb(0,0,0)");
@@ -48,7 +33,6 @@ MainMenuScene::MainMenuScene(QWidget *parent) :
     srand(time(nullptr));
     //Init Box2d
     numLeaves = 15;
-//    setLayout(hlayout);
     isLastLeavesRow = false;
 
 

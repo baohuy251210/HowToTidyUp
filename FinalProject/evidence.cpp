@@ -1,10 +1,5 @@
 #include "evidence.h"
 
-#include <QVector>
-#include <QString>
-#include "ToolsEnum.cpp"
-#include <QDebug>
-
 Evidence::Evidence(): isSelected(false), cleanState(DIRTY)
 {
     usedTools.clear();
@@ -68,7 +63,6 @@ void Evidence::setCleanState(CleanState state){
 }
 
 int Evidence::getCorrectUsedTools(){
-    qDebug()<<"getCorrectUsedTools::" <<usedTools.size();
     int correctNumber = 0;
     for (int i = 0; i < usedTools.size();i++){
         if (usedTools[i] == correctTools[i]){
@@ -89,7 +83,6 @@ QVector<CleaningTool *> Evidence::getCorrectTools(){
 }
 
 EvidenceEnum Evidence::getType(){
-    qDebug() <<"getType:: "<<type;
     return this->type;
 }
 

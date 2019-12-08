@@ -1,12 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "mainmenuscene.h"
-#include "introscene.h"
-#include "kitchenscene.h"
-#include "model.h"
-#include <QDebug>
-#include <QResource>
-#include <SFML/Audio.hpp>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::initializeScenes(){
     introScene = new IntroScene(this);
-    //    mainmenuScene = new MainMenuScene(this);
+
 }
 
 void MainWindow::setupConnections(){
@@ -39,6 +32,7 @@ void MainWindow::setupConnections(){
 MainWindow::~MainWindow(){
     delete ui;
     delete currentScene;
+    delete introScene;
 }
 
 void MainWindow::initializeModel(){
@@ -128,8 +122,7 @@ void MainWindow::ChangeScene(Scene sceneEnum){
         endScene = new EndScene01(this, model);
         currentScene = endScene;
         break;
-    default:
-        break;
+
     }
     connect(currentScene, &IScene::changeScene, this, &MainWindow::ChangeScene);
     ui->SceneContainer->addWidget(currentScene);
@@ -137,6 +130,3 @@ void MainWindow::ChangeScene(Scene sceneEnum){
 
 }
 
-void MainWindow::evidenceInteractionSlot(){
-
-}

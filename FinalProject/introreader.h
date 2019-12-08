@@ -2,6 +2,8 @@
 #define INTROREADER_H
 #include <QVector>
 #include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 class IntroReader
 {

@@ -4,8 +4,11 @@
 #include <QWidget>
 #include <iscene.h>
 #include <QTimer>
-#include "introreader.h"
-#include "SFML/Audio.hpp"
+#include <SFML/Audio.hpp>
+#include <QResource>
+#include <QMouseEvent>
+#include <introreader.h>
+
 namespace Ui {
 class BeginScene;
 }

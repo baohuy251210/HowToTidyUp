@@ -1,18 +1,10 @@
 #ifndef KITCHENSCENE_H
 #define KITCHENSCENE_H
 
-#include <QWidget>
-#include <iscene.h>
-#include <toolbarwidget.h>
-#include "ToolsEnum.cpp"
-#include <EvidenceEnum.cpp>
-#include <evidence.h>
-#include <model.h>
-#include <cleaningtoolview.h>
-#include <evidenceview.h>
-#include <educationalpopup.h>
-#include <evidencemaskview.h>
-#include <exitdialog.h>
+#include "iscene.h"
+#include "toolbarwidget.h"
+#include "evidenceview.h"
+#include "exitdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,7 +26,7 @@ signals:
 public slots:
     void deselectEvidenceSlot(EvidenceEnum);
     void setSelectedEvidenceSlot(EvidenceEnum);
-    void unselectTool();
+
 
 
 
@@ -59,7 +51,6 @@ private:
     void InitializeWidgets();
     void setupConnections();
     void evidenceHovered(EvidenceEnum evidenceName);
-    void setupPixmaps();
     void setupEvidence();
     void initializeTools();
     void initializeEvidence();

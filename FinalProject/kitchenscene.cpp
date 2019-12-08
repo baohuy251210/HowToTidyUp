@@ -1,10 +1,6 @@
 #include "kitchenscene.h"
 #include "ui_kitchenscene.h"
-#include "ToolsEnum.cpp"
-#include <evidenceview.h>
-#include <educationalpopup.h>
-#include <exitdialog.h>
-#include <QDebug>
+
 
 KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     IScene(parent),
@@ -18,7 +14,6 @@ KitchenScene::KitchenScene(QWidget *parent, Model* model) :
     initializeTools();
 
     setupConnections();
-    setupPixmaps();
     ui->bloodFootprintMaskLabel->raise();
     ui->bloodFloorMaskLabel->raise();
     ui->resetButton->hide();
@@ -36,6 +31,7 @@ void KitchenScene::loadGameKitchen(){
 KitchenScene::~KitchenScene()
 {
     delete ui;
+    delete exitDialog;
 }
 
 void KitchenScene::InitializeWidgets(){
@@ -108,12 +104,6 @@ void KitchenScene::setupConnections(){
     connect(model, &Model::clearSteps, ui->evidenceDialog, &itemDialog::clearSteps);
 }
 
-
-
-
-void KitchenScene::setupPixmaps(){
-
-}
 
 void KitchenScene::initializeTools(){
     CleaningTool* glove = new CleaningTool("Glove: A convenient cleaning tool.  I can use it to find out more information about evidence.");
@@ -265,12 +255,6 @@ void KitchenScene::initializeEvidence(){
     bloodWallLabel = ui->bloodWallLabel;
     gunpowderWallLabel = ui->gunpowderLabel;
 }
-
-void KitchenScene::unselectTool(){
-
-}
-
-
 
 void KitchenScene::deselectEvidenceSlot(EvidenceEnum selectedEvidence){
     evidenceLabels[selectedEvidence]->unhighlightEvidence();
