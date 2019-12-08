@@ -1,16 +1,7 @@
 #include "beginscene.h"
 #include "ui_beginscene.h"
-#include "introreader.h"
-#include "mainmenuscene.h"
-#include <cstdlib>
-#include <QTimer>
-#include <QImage>
-#include <QFileDialog>
-#include <QString>
-#include <QDebug>
-#include <QResource>
-#include <QMouseEvent>
-#include <QPixmap>
+
+
 BeginScene::BeginScene(QWidget *parent) :
     IScene(parent),
     ui(new Ui::BeginScene)
@@ -52,6 +43,11 @@ BeginScene::BeginScene(QWidget *parent) :
 BeginScene::~BeginScene()
 {
     delete ui;
+    delete fadeTimer;
+    delete logoTimer;
+    delete creditFadeTimer;
+    delete flashContinueTimer;
+    delete textStartTimer;
 }
 
 

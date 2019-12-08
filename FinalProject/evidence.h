@@ -1,15 +1,11 @@
 #ifndef EVIDENCE_H
 #define EVIDENCE_H
 
-#include <QVector>
-#include <QString>
+#include <QDebug>
 #include "ToolsEnum.cpp"
-#include <EvidenceEnum.cpp>
-#include <CleanStateEnum.cpp>
-#include <QPixmap>
-#include <QLabel>
-#include <cleaningtool.h>
-#include <ToolsEnum.cpp>
+#include "EvidenceEnum.cpp"
+#include "CleanStateEnum.cpp"
+#include "cleaningtool.h"
 
 class Evidence : public QObject
 {
@@ -35,6 +31,7 @@ public:
     QList<CleaningTool*> usedTools;
     QString description;
     QString educationalURL;
+    QString hint;
     QPixmap dirty, dirty_highlighted, semiclean, semiclean_highlighted, clean, clean_highlighted;
     QPixmap* getIcon();
     EvidenceEnum getType();
@@ -46,6 +43,7 @@ public:
     QVector<CleaningTool*> getCorrectToolsVector();
     int getCorrectUsedTools();
     int getCorrectToolsSize();
+    QVector<CleaningTool *> getCorrectTools();
     CleanState getCleanState();
     void retryCleaningEvidence();
 private:

@@ -1,8 +1,5 @@
 #include "model.h"
-#include <QDebug>
-#include <EvidenceEnum.cpp>
-#include <QTimer>
-#include <QFile>
+
 /**
   isLoadCalled: default is false
 */
@@ -89,8 +86,7 @@ void Model::evidenceClicked(EvidenceEnum evidence){
 }
 
 
-void Model::updateScore(EvidenceEnum evidence){
-    qDebug() << "updateScore::" << evidences[evidence]->getCorrectUsedTools();
+void Model::updateScore(EvidenceEnum evidence){    
     evidencesScore[evidence]=
             double(evidences[evidence]->getCorrectUsedTools())/double(evidences[evidence]->getCorrectToolsSize());
     if (abs(evidencesScore[evidence] - 1) <= 0.00001 )
@@ -131,11 +127,6 @@ void Model::retryCleaning(){
       currentEvidence->retryCleaningEvidence();
       updateScore(currentEvidence->getType());
       emit(updateDialogBoxSignal(currentEvidence));
-//    qDebug()<<"afterclear steps::"<< currEv->getType();
-//    currEv->retryCleaningEvidence();
-//    emit(clearSteps());
-//    updateScore(currEv->getType());
-
 }
 
 
@@ -147,10 +138,8 @@ void Model::retryCleaning(){
 //save cleaning tools <Tools, Cleaning Tool *
 //save evidences Score  <Evidence Enum, double>
 /*selectec tool and selected Evidence are probably not needed*/
-void Model::saveGameState(QString fileName){
-    qDebug()<<"saveGame::fileName:"<<fileName;
-    if (fileName.isEmpty()){
-        qDebug() << "saveGame::file empty";
+void Model::saveGameState(QString fileName){    
+    if (fileName.isEmpty()){        
         return;
     }
 
@@ -159,8 +148,7 @@ void Model::saveGameState(QString fileName){
         file.close();
     }
 
-    if (!file.open(QIODevice::WriteOnly)){
-        qDebug() << "saveGame::not able to write";
+    if (!file.open(QIODevice::WriteOnly)){        
         return;
     }
 
@@ -205,7 +193,7 @@ void Model::saveGameState(QString fileName){
     /*finalize*/
     QJsonDocument jsonDoc(fileObj);
     file.write(jsonDoc.toJson(QJsonDocument::Compact));
-    qDebug() << "saveGame::done ";
+
 }
 
 /*Perhaps load the evidences, cleaning tools back-end ?
@@ -218,21 +206,18 @@ void Model::loadGameState(QString fileName){
     QFile file(fileName);
 
     if (!file.exists()){
-        saveGameState(QApplication::applicationDirPath()+"/save01.json");
-        qDebug() << "lawdGame::file does not exists (not found), create a new save";
+        saveGameState(QApplication::applicationDirPath()+"/save01.json");        
         return;
     }
     if (file.isOpen()){
         file.close();
     }
-    if (!file.open(QIODevice::ReadOnly)){
-        qDebug() << "lawdGame::not able to read file";
+    if (!file.open(QIODevice::ReadOnly)){        
         return;
     }
     //start loading to QJson document:
     QJsonDocument loadJsonDoc = QJsonDocument().fromJson(file.readAll());
-    if (loadJsonDoc.isEmpty()){
-        qDebug() << "lawdGame::lawdJsonDoc is empty";
+    if (loadJsonDoc.isEmpty()){        
         return;
     }
 
@@ -253,10 +238,10 @@ void Model::loadGameState(QString fileName){
             QString currentUsedTool = usedToolsArray[j].toString();
             Tools usedToolEnum = mapStringTools[currentUsedTool];
             loadGameUpdate(usedToolEnum, currentEvidence);
-          //  evidenceClicked(currentEvidence);
+
         }
     }
-    qDebug()<<"loadGame::done";
+
     file.close();
 }
 

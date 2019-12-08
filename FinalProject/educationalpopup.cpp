@@ -10,10 +10,7 @@
 
 #include "educationalpopup.h"
 #include "ui_educationalpopup.h"
-#include <QDesktopServices>
-#include <QUrl>
-#include "model.h"
-#include "ToolsEnum.cpp"
+
 
 //Constructor
 educationalpopup::educationalpopup(QWidget *parent) :

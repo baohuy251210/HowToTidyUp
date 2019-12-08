@@ -11,11 +11,10 @@
 #ifndef EDUCATIONALPOPUP_H
 #define EDUCATIONALPOPUP_H
 
-#include <QWidget>
-#include "ToolsEnum.cpp"
 #include "cleaningtoolview.h"
 #include "model.h"
 #include "iscene.h"
+#include <QUrl>
 #include <QDesktopServices>
 
 namespace Ui {

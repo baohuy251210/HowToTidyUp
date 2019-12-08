@@ -1,14 +1,12 @@
 #ifndef ISCENE_H
 #define ISCENE_H
 
-#include <QWidget>
-#include <QTimer>
-#include <QFont>
 #include <QPushButton>
-#include <QLabel>
-#include <QFontDatabase>
+#include "evidence.h"
 #include "SceneEnum.cpp"
-#include <evidence.h>
+#include <QFontDatabase>
+#include <QLabel>
+
 class IScene : public QWidget
 {
     Q_OBJECT
@@ -22,13 +20,6 @@ public:
     void drawTextLabel(QLabel*, int size,
                        QString fontName="SF Cartoonist Hand",QString style= "");
 
-signals:
-    void changeScene(Scene sceneName);
-    void addEvidence(Evidence* evidenceName);
-    void hideDialogSignal();
-public slots:
-
-private:
     void addFont(){
         fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand");
         fontFamily.addApplicationFont(":/introdata/SF_Cartoonist_Hand_Bold");
@@ -42,9 +33,17 @@ private:
         fontFamily.addApplicationFont(":/art/fonts/Hollows Free");
         fontFamily.addApplicationFont(":/art/fonts/Black Night");
     }
+signals:
+    void changeScene(Scene sceneName);
+    void addEvidence(Evidence* evidenceName);
+    void hideDialogSignal();
+public slots:
+
+private:
+
     /*Font database for the app*/
     QFontDatabase  fontFamily;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+
 };
 
 #endif // ISCENE_H

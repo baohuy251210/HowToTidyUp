@@ -1,6 +1,5 @@
 #include "itemdialog.h"
 #include "ui_itemdialog.h"
-#include <QDebug>
 
 itemDialog::itemDialog(QWidget *parent) :
     IScene(parent),
@@ -8,6 +7,10 @@ itemDialog::itemDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->hide();
+    //connect(hintButton, &QToolButton::pressed, model, &Model::hideDialogSlot);
+    connect(ui->hintButton, &QToolButton::clicked, this, &itemDialog::toggleHintVisibleSlot);
+
+    initDictionary();
 }
 
 itemDialog::~itemDialog()
@@ -19,7 +22,18 @@ void itemDialog::setEvidence(Evidence* evidence){
     clearEvidenceSlot();
     this->show();
     ui->itemDescription->setText(evidence->description);
-    drawTextLabel(ui->itemDescription, 18, "SF Cartoonist Hand");
+    QString hintText = "";
+
+    for(int i = 0; i < 3; i++){
+        hintText += mapToolsString[evidence->getCorrectTools().at(i)->getType()];
+        if(i < 2){hintText += ", ";}
+    }
+
+
+    ui->itemHint->setText(hintText);
+    ui->itemHint->setVisible(false);
+    drawTextLabel(ui->itemDescription, 13, "SF Cartoonist Hand");
+    drawTextLabel(ui->itemHint, 10, "SF Cartoonist Hand");
     ui->itemPicture->setPixmap(*evidence->getIcon());
 
     QList<CleaningTool*>* usedTools = evidence->getUsedTools();
@@ -39,6 +53,7 @@ void itemDialog::setEvidence(Evidence* evidence){
 
 void itemDialog::clearEvidenceSlot(){
     ui->itemDescription->setText("");
+    ui->itemHint->setText("");
     ui->itemPicture->clear();
     ui->step1->clear();
     ui->step2->clear();
@@ -52,4 +67,18 @@ void itemDialog::clearSteps(){
 
 void itemDialog::hideDialogSlot(){
     this->hide();
+}
+
+void itemDialog::initDictionary(){
+    mapToolsString.insert(EMPTY, "EMPTY");
+    mapToolsString.insert(GLOVE, "GLOVE");
+    mapToolsString.insert(WATER, "WATER");
+    mapToolsString.insert(NAILPOLISHREMOVER, "NAILPOLISHREMOVER");
+    mapToolsString.insert(BLEACH, "BLEACH");
+    mapToolsString.insert(RAG, "RAG");
+    mapToolsString.insert(OXICLEAN, "OXICLEAN");
+}
+
+void itemDialog::toggleHintVisibleSlot(){
+    ui->itemHint->setVisible(!(ui->itemHint->isVisible()));
 }

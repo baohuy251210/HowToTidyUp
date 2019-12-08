@@ -1,12 +1,5 @@
 #include "introreader.h"
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QColor>
-#include <QTextStream>
-#include <QPainter>
-#include <math.h>
-#include <iostream>
-#include <QDebug>
+
 IntroReader::IntroReader()
 {
 }

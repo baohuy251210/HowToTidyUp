@@ -1,9 +1,9 @@
 #ifndef EVIDENCEMASKVIEW_H
 #define EVIDENCEMASKVIEW_H
 #include <QLabel>
-#include <CleanStateEnum.cpp>
-#include <EvidenceEnum.cpp>
-#include <evidence.h>
+#include "CleanStateEnum.cpp"
+#include "EvidenceEnum.cpp"
+#include "evidence.h"
 
 
 class EvidenceMaskView : public QLabel

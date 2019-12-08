@@ -1,13 +1,5 @@
 #include "exitdialog.h"
 #include "ui_exitdialog.h"
-#include "ToolsEnum.cpp"
-#include <QResource>
-#include <QFont>
-#include <QDebug>
-#include <QFontDatabase>
-#include <QLabel>
-
-#include <evidenceview.h>
 
 ExitDialog::ExitDialog(QWidget *parent) :
     QDialog(parent, Qt::FramelessWindowHint),

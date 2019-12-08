@@ -1,8 +1,4 @@
 #include "iscene.h"
-#include <QFont>
-#include <QDebug>
-#include <QFontDatabase>
-#include <QLabel>
 
 IScene::IScene(QWidget *parent) : QWidget(parent)
 {
@@ -11,19 +7,14 @@ IScene::IScene(QWidget *parent) : QWidget(parent)
 }
 
 void IScene::drawTextPushButton(QPushButton * pushBtn, int size, QString fontName,QString fontStyle){
-    addFont();
     appFont = fontFamily.font(fontName, fontStyle, size);
     appFont.setPointSize(size);
     pushBtn->setFont(appFont);
 }
 
 void IScene::drawTextLabel(QLabel * textLbl, int size, QString fontName,QString fontStyle){
-    addFont();
     appFont = fontFamily.font(fontName,fontStyle, size);
     appFont.setPointSize(size);
     textLbl->setFont(appFont);
 }
 
-void IScene::mouseReleaseEvent(QMouseEvent *event){
-    //emit hideDialogSignal();
-}

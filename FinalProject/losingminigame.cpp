@@ -108,6 +108,11 @@ void LosingMinigame::initializeAnswers(){
     answers->append(QPair<QString, bool>("n", false));
     answers->append(QPair<QString, bool>("o", true));
     answers->append(QPair<QString, bool>("p", true));
+
+    ui->option1Button->setText("...");
+    ui->option2Button->setText("...");
+    ui->option3Button->setText("...");
+    ui->option4Button->setText("...");
 }
 
 void LosingMinigame::initializeQuestions(){
@@ -178,8 +183,10 @@ void LosingMinigame::getGameResult(){
     ui->option4Button->setText("...");
 
     if (score > 0) {
+        QString policeman = QString(":/art/minigame/policeman%1").arg(2);
         ui->questionLabel->setText("Okay then, you're free to go..");
     } else {
+        QString policeman = QString(":/art/minigame/policeman%1").arg(-2);
         ui->questionLabel->setText("Alright, you're going to jail!!!!");
 
     }

@@ -1,15 +1,6 @@
 #include "introscene.h"
 #include "ui_introscene.h"
-#include "introreader.h"
-#include "mainmenuscene.h"
-#include <QTimer>
-#include <QImage>
-#include <QFileDialog>
-#include <QString>
-#include <QDebug>
-#include <QResource>
-#include <QMouseEvent>
-#include <QPixmap>
+
 IntroScene::IntroScene(QWidget *parent) :
     IScene(parent),
     ui(new Ui::IntroScene)
