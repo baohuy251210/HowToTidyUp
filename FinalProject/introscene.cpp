@@ -113,7 +113,7 @@ void IntroScene::displayNextContext(){
     if (introReader.reachEndOfText()){
         textStartTimer->stop();
         fadeTimer->stop();
-        emit changeScene(MINIGAME);
+        emit changeScene(MAINMENU);
         return;
     }
     else textStartTimer->setInterval(introReader.nextMsDelay());
