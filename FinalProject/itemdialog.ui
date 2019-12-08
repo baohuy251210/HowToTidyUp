@@ -224,7 +224,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background : rgb(0, 0, 0, 0); border: none;</string>
+    <string notr="true">background : rgba(0, 0, 0, 0); border: none;</string>
    </property>
    <property name="text">
     <string>?</string>
